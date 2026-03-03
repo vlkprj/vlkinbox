@@ -3,164 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ДІРА</title>
+    <title>Приймальня</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            background-color: #050510;
-            color: white;
-            font-family: sans-serif;
+        /* Отут ми задаємо ті самі кольори Клода */
+        :root {
+            --bg-cream: #F4F0EB;
+            --text-dark: #222222;
+            --claude-terracotta: #D87A60;
+            --card-light: #FFFFFF;
+            --hole-grey: #E5E0D8;
         }
 
-        #app-container {
-            position: relative;
+        /* Загальний фон і шрифт */
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Наш бенто-контейнер, який тримає всі плитки купи */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Робимо дві колонки */
+            gap: 12px; /* Відстань між плитками */
+            max-width: 400px; /* Ширина як у екрана телефона */
             width: 100%;
-            height: 100vh;
-            background-image: url('IMG_8620.png'); 
-            background-size: cover;
-            background-position: center;
+        }
+
+        /* Базовий стиль для кожної плитки */
+        .bento-item {
+            background-color: var(--card-light);
+            border-radius: 20px;
+            padding: 24px 16px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); /* Дуже ніжна тінь */
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
-            padding-bottom: 40px;
+            min-height: 120px;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        #flying-message {
-            position: absolute;
-            bottom: 130px;
-            background: rgba(0, 255, 200, 0.2);
-            border: 1px solid rgba(0, 255, 200, 0.5);
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 18px;
-            max-width: 80%;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            opacity: 0; 
-            z-index: 5;
+        /* Робимо Скриньку великою на обидві колонки і теракотовою */
+        .item-box {
+            grid-column: span 2; 
+            background-color: var(--claude-terracotta);
+            color: #FFF;
+            font-size: 20px;
+            min-height: 140px;
         }
 
-        #controls {
-            display: flex;
-            gap: 10px;
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 15px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .item-hole {
+            background-color: var(--hole-grey);
+            border: 1px dashed #A09C96; /* Естетика сирого вебу для Діри */
         }
 
-        input {
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            outline: none;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            font-size: 16px;
+        .item-void {
+            background-color: #111;
+            color: #FFF;
         }
 
-        input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+        /* Іконки/Емодзі робимо більшими */
+        .icon {
+            font-size: 32px;
+            margin-bottom: 8px;
         }
 
-        button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-            transition: transform 0.1s ease;
-        }
-
-        button:active {
-            transform: scale(0.92);
-        }
-
-        .btn-send { background: #00ffcc; color: black; }
-        .btn-trash { background: #ff4444; color: white; }
-
-        @keyframes suckIntoHole {
-            0% {
-                transform: translate(0, 0) scale(1) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(0, -45vh) scale(0) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        @keyframes throwToTrash {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(20vw, -25vh) scale(0) rotate(45deg);
-                opacity: 0;
-            }
-        }
-
-        .animate-hole {
-            animation: suckIntoHole 1.5s ease-in-out forwards;
-        }
-
-        .animate-trash {
-            animation: throwToTrash 1s ease-in forwards;
+        .subtitle {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-top: 4px;
         }
     </style>
 </head>
 <body>
 
-    <div id="app-container">
-        <div id="flying-message"></div>
+    <div class="bento-grid">
+        
+        <a href="#" class="bento-item item-box">
+            <div class="icon">📥</div>
+            <div>СКРИНЬКА</div>
+            <div class="subtitle">Написати серйозно або розказати історію</div>
+        </a>
 
-        <div id="controls">
-            <input type="text" id="msg-input" placeholder="Напиши щось...">
-            <button class="btn-send" onclick="sendToHole()">В діру</button>
-            <button class="btn-trash" onclick="sendToTrash()">В урну</button>
-        </div>
+        <a href="#" class="bento-item item-hole">
+            <div class="icon">🕳️</div>
+            <div>ДІРА</div>
+            <div class="subtitle">Шопопало, капс і меми</div>
+        </a>
+
+        <a href="#" class="bento-item">
+            <div class="icon">📸</div>
+            <div>ПОЛАРОЇД</div>
+            <div class="subtitle">Тільки візуал</div>
+        </a>
+
+        <a href="#" class="bento-item item-void">
+            <div class="icon">⬛</div>
+            <div>ВАКУУМ</div>
+            <div class="subtitle">Просто помовчати</div>
+        </a>
+
+        <a href="#" class="bento-item" style="grid-column: span 2; min-height: 80px; flex-direction: row; justify-content: space-around;">
+            <div>💬 Чатік</div>
+            <div>🛒 Базарчик</div>
+        </a>
+
     </div>
-
-    <script>
-        const inputElement = document.getElementById('msg-input');
-        const flyingMessage = document.getElementById('flying-message');
-
-        function prepareMessage() {
-            const text = inputElement.value;
-            if (text.trim() === '') return false;
-
-            flyingMessage.innerText = text;
-            flyingMessage.style.opacity = '1';
-            
-            inputElement.value = '';
-
-            flyingMessage.classList.remove('animate-hole', 'animate-trash');
-            
-            void flyingMessage.offsetWidth; 
-
-            return true;
-        }
-
-        function sendToHole() {
-            if (prepareMessage()) {
-                flyingMessage.classList.add('animate-hole');
-            }
-        }
-
-        function sendToTrash() {
-            if (prepareMessage()) {
-                flyingMessage.classList.add('animate-trash');
-            }
-        }
-    </script>
 
 </body>
 </html>
