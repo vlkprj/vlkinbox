@@ -3,223 +3,359 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Приймальня</title>
+    <title>Валківська Приймальня</title>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700;900&family=Press+Start+2P&family=Caveat:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* =========================================
-           БЛОК 1: ДИЗАЙН (CSS)
-           Тут ми задаємо сирий бруталістичний стиль
-           ========================================= */
-        body {
-            background-color: #E5E0D8; /* Колір старого паперу/картону */
-            color: #111;
-            font-family: "Courier New", Courier, monospace; /* Друкарська машинка для атмосферності */
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+        :root {
+            --bg-color: #050505;
+            --text-main: #f0f0f0;
+            --orange-border: #d48259;
+            --red-fill: #b33939;
+            --cyan-text: #48dbfb;
+            --yellow-mem: #f5d142;
+            --beige-circle: #e8e4d9;
         }
 
-        /* Стартовий екран з пальцем */
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            height: 100%;
+        }
+
+        /* --- ІНТРО --- */
         #intro-screen {
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: #E5E0D8;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-            z-index: 999;
+            z-index: 9999;
             transition: opacity 0.5s ease;
         }
+        
+        #intro-screen h1 {
+            font-size: 24px;
+            text-align: center;
+            letter-spacing: 2px;
+            animation: pulse 1.5s infinite;
+        }
 
-        .finger {
+        #intro-screen .finger {
             font-size: 50px;
             margin-bottom: 20px;
             animation: pointDown 1s infinite alternate;
         }
 
-        @keyframes pointDown {
-            from { transform: translateY(-10px); }
-            to { transform: translateY(10px); }
+        /* --- ОСНОВНИЙ КОНТЕЙНЕР --- */
+        #main-app {
+            display: none; /* Покажемо через JS */
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            gap: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
         }
 
-        /* Сітка з кнопками (поки схована) */
-        #main-grid {
-            display: none; /* Спочатку не показуємо */
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            padding: 20px;
-            max-width: 400px;
-            width: 100%;
-            box-sizing: border-box;
-            margin-top: 20px;
+        /* Анімація появи кнопок */
+        .pop-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s forwards;
         }
 
-        /* Сама кнопка — груба, жива, неідеальна */
-        .bento-btn {
-            background: #FFF;
-            border: 3px solid #111; /* Жирний чорний контур */
-            border-radius: 0px; /* Ніяких згладжувань, ми ж в авангарді */
-            padding: 20px 10px;
-            text-align: center;
-            font-weight: bold;
-            box-shadow: 6px 6px 0px #111; /* Жорстка тінь */
-            opacity: 0; /* Для анімації появи */
-            transform: translateY(30px);
-            transition: all 0.2s ease, opacity 0.5s, transform 0.5s;
+        /* --- КНОПКИ --- */
+        .btn {
             cursor: pointer;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-decoration: none;
+            display: block;
+            transition: transform 0.2s, filter 0.2s;
+            user-select: none;
+        }
+
+        .btn:active { transform: scale(0.95); }
+
+        /* Серйозна кнопка - стабільна і нудна для балансу */
+        .btn-serious {
+            border: 2px solid var(--orange-border);
+            border-radius: 15px;
+            padding: 30px 40px;
+            color: var(--orange-border);
+            font-family: 'Courier Prime', monospace; /* Серйозний шрифт */
+            font-size: 18px;
+            width: 60%;
+        }
+
+        /* Блок Історія + Думка */
+        .row-group {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-story {
+            border: 2px solid #fff;
+            border-radius: 30px;
+            padding: 15px 20px;
+            font-size: 16px;
+        }
+
+        .btn-unpopular {
+            background-color: var(--red-fill);
+            border-radius: 30px;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid var(--red-fill);
+        }
+
+        /* Шопопало - крива, дивна, живе своїм життям */
+        .btn-shopopalo {
+            border: 2px solid var(--text-main);
+            border-radius: 40px;
+            padding: 10px 30px;
+            color: var(--cyan-text);
+            font-family: 'Caveat', cursive;
+            font-size: 28px;
+            text-transform: none;
+            transform: rotate(-3deg);
+            animation: wiggle 3s infinite;
+        }
+
+        /* Центральний хаос (Мем, Фото, Промовчати) */
+        .chaos-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .btn-mem {
+            background-color: var(--yellow-mem);
+            color: #000;
+            font-family: 'Press Start 2P', monospace; /* Піксельний шрифт */
+            font-size: 12px;
+            padding: 30px 10px;
+            line-height: 1.5;
+            box-shadow: 4px 4px 0px #fff;
+        }
+        .btn-mem:hover { animation: shake 0.5s infinite; }
+
+        .btn-silence {
+            border: 1px solid #666;
+            color: #888;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        .btn-silence:hover { opacity: 0.2; } /* Зникає при наведенні */
+
+        .btn-photo {
+            background-color: var(--beige-circle);
+            color: #000;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100px;
-            text-decoration: none;
-            color: #111;
-        }
-
-        /* Ефект натискання (кнопка вдавлюється) */
-        .bento-btn:active {
-            transform: translate(6px, 6px) !important;
-            box-shadow: 0px 0px 0px #111;
-        }
-
-        /* Клас, який JS додаватиме для появи кнопок */
-        .bento-btn.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Індивідуальні приколи кнопок */
-        .btn-serious { background-color: #D87A60; color: #FFF; grid-column: span 2; }
-        .btn-void { background-color: #111; color: #FFF; animation: breathe 4s infinite; }
-        
-        @keyframes breathe {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
-        }
-
-        /* Твій ефект рваного маркера для png-шок Валок */
-        .valky-img {
-            width: 100%;
-            max-width: 150px;
+            font-size: 12px;
+            font-weight: 900;
             grid-column: span 2;
-            margin: 0 auto;
-            /* Цей фільтр робить білу обводку, а потім чорну, імітуючи вирізку */
-            filter: drop-shadow(2px 0 0 white) drop-shadow(0 2px 0 white) drop-shadow(-2px 0 0 white) drop-shadow(0 -2px 0 white) drop-shadow(4px 4px 0 black);
-            opacity: 0;
-            transition: opacity 1s;
+            box-shadow: 0 0 20px rgba(232, 228, 217, 0.2);
         }
-        .valky-img.show { opacity: 1; }
 
-        /* Троль-попап */
-        #troll-popup {
-            display: none;
-            position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%) rotate(-4deg);
-            background: #FFE600;
-            border: 4px solid #111;
-            padding: 20px;
-            box-shadow: 10px 10px 0px #111;
-            z-index: 1000;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
+        /* Промо лінки */
+        .promo-links {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 10px;
+            font-weight: 900;
+            color: #48dbfb;
         }
+
+        /* Атмосфера і КАПС */
+        .bottom-row {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .btn-atmosphere {
+            background: linear-gradient(to bottom, #a1c4fd 0%, #c2e9fb 50%, #84fab0 50%, #8fd3f4 100%);
+            width: 100px;
+            height: 100px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            border: 2px solid #fff;
+        }
+
+        .btn-caps {
+            font-size: 28px;
+            font-weight: 900;
+            text-align: right;
+            flex-grow: 1;
+            transition: all 0.1s;
+        }
+
+        .admin-link {
+            color: var(--red-fill);
+            font-size: 10px;
+            text-align: center;
+            margin-top: 40px;
+            opacity: 0.5;
+        }
+
+        /* --- ПОПАП "ТИСНИ ВЖЕ" --- */
+        #idle-popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #fff;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+            z-index: 1000;
+        }
+        #idle-popup.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* --- АНІМАЦІЇ --- */
+        @keyframes pointDown { from { transform: translateY(-10px); } to { transform: translateY(10px); } }
+        @keyframes pulse { 0% { opacity: 0.7; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes wiggle { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+        @keyframes shake { 0% { transform: translate(1px, 1px) rotate(0deg); } 25% { transform: translate(-1px, -2px) rotate(-1deg); } 50% { transform: translate(-3px, 0px) rotate(1deg); } 75% { transform: translate(3px, 2px) rotate(0deg); } 100% { transform: translate(1px, -1px) rotate(0deg); } }
     </style>
 </head>
 <body>
 
     <div id="intro-screen">
         <div class="finger">👇</div>
-        <div>ОБЕРІТЬ ЩО ВИ ХОЧЕТЕ</div>
+        <h1>ОБЕРІТЬ ЩО ВИ ХОЧЕТЕ<br>ОПУБЛІКУВАТИ</h1>
     </div>
 
-    <div id="main-grid">
+    <div id="main-app">
         
-        <a href="#" class="bento-btn btn-serious">
-            <span style="font-size: 24px;">📥 СКРИНЬКА</span>
-            <small style="font-weight: normal; margin-top: 5px;">Написати серйозно</small>
-        </a>
+        <div style="align-self: flex-start; background: #fff; color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; font-size: 20px;">B</div>
 
-        <a href="#" class="bento-btn" style="border-style: dashed;">
-            <span style="font-size: 24px;">🕳️ ДІРА</span>
-            <small style="font-weight: normal; margin-top: 5px;">Шитпостинг і меми</small>
-        </a>
-
-        <a href="#" class="bento-btn" id="caps-button">
-            нАпИсАтИ КаПсОм
-        </a>
-
-        <a href="#" class="bento-btn btn-void">
-            <span>⬛ ПРОМОВЧАТИ</span>
-        </a>
-
+        <div class="btn btn-serious pop-in" style="animation-delay: 0.2s;">
+            НАПИСАТИ<br>ЩОСЬ<br>СЕРЙОЗНЕ
         </div>
 
-    <div id="troll-popup">
-        Ей, ти будеш щось тицяти чи просто дивишся? 👀<br>
-        <button onclick="document.getElementById('troll-popup').style.display='none'" style="margin-top: 15px; border: 2px solid black; background: white; padding: 5px 15px; font-weight: bold; cursor: pointer;">Ой, та зараз</button>
+        <div class="row-group">
+            <div class="btn btn-story pop-in" style="animation-delay: 0.4s;">Розказати історію</div>
+            <div class="btn btn-unpopular pop-in" style="animation-delay: 0.6s;">Непопулярна Думка</div>
+        </div>
+
+        <div class="btn btn-shopopalo pop-in" style="animation-delay: 0.8s;">
+            Написати Шопопало
+        </div>
+
+        <div class="chaos-grid">
+            <div class="btn btn-mem pop-in" style="animation-delay: 1s;">ВІДПРАВИТИ<br><br>МЕМ</div>
+            <div class="btn btn-silence pop-in" style="animation-delay: 1.2s;">ПРОМОВЧАТИ</div>
+            <div class="btn btn-photo pop-in" style="animation-delay: 1.4s;">
+                <span style="font-size: 24px; margin-bottom: 5px;">🖼️</span>
+                ВІДПРАВИТИ<br>ФОТО
+            </div>
+        </div>
+
+        <div class="promo-links pop-in" style="animation-delay: 1.6s;">
+            <span style="cursor:pointer;">ГЛЯНУТИ БАЗАРЧИК</span>
+            <span style="cursor:pointer;">ГЛЯНУТИ ЧАТІК</span>
+        </div>
+
+        <div class="bottom-row pop-in" style="animation-delay: 1.8s;">
+            <div class="btn btn-atmosphere">ПОКАЗАТИ АТМОСФЕРУ</div>
+            <div class="btn btn-caps" id="caps-btn">НАПИСАТИ<br>КАПСОМ</div>
+        </div>
+
+        <div class="admin-link pop-in" style="animation-delay: 2s;">
+            ЗАПИТАТИ АДМІНІВ<br>(краще не треба, ця кнопка тут раді прілічія)
+        </div>
+
     </div>
 
+    <div id="idle-popup">Алло, ну тисни вже кудись! 🙄</div>
+
     <script>
-        /* =========================================
-           БЛОК 2: МАГІЯ (JavaScript)
-           Тут ми прописуємо таймінги, попапи і логіку
-           ========================================= */
-
         document.addEventListener("DOMContentLoaded", () => {
-            const intro = document.getElementById("intro-screen");
-            const grid = document.getElementById("main-grid");
-            const buttons = document.querySelectorAll(".bento-btn");
-            // const localImg = document.getElementById("local-img"); // розкоментуй, коли додаси картинку
+            const intro = document.getElementById('intro-screen');
+            const app = document.getElementById('main-app');
+            const idlePopup = document.getElementById('idle-popup');
+            const capsBtn = document.getElementById('caps-btn');
 
-            // 1. Прибираємо стартовий екран через 2.5 секунди
+            // 1. Логіка Інтро (ховаємо через 2.5 секунди)
             setTimeout(() => {
-                intro.style.opacity = "0";
+                intro.style.opacity = '0';
                 setTimeout(() => {
-                    intro.style.display = "none";
-                    grid.style.display = "grid"; // Показуємо сітку
-
-                    // 2. Каскадна поява кнопок (по черзі)
-                    buttons.forEach((btn, index) => {
-                        setTimeout(() => {
-                            btn.classList.add("show");
-                        }, index * 200); // Кожна наступна з'являється на 200 мілісекунд пізніше
-                    });
-
-                    // Поява картинки
-                    // setTimeout(() => { localImg.classList.add("show"); }, buttons.length * 200);
-
-                    // 3. Запускаємо таймер на троль-попап (через 10 секунд бездіяльності)
-                    let idleTimer = setTimeout(() => {
-                        document.getElementById("troll-popup").style.display = "block";
-                    }, 10000);
-
-                    // Якщо юзер клікнув будь-куди на екрані, скасовуємо попап (щоб не бісив)
-                    document.body.addEventListener('click', () => {
-                        clearTimeout(idleTimer);
-                    });
-
-                }, 500); // Чекаємо поки інтро зникне плавно
+                    intro.style.display = 'none';
+                    app.style.display = 'flex';
+                    resetIdleTimer(); // Запускаємо таймер тільки коли з'явився інтерфейс
+                }, 500);
             }, 2500);
 
-            // 4. Шизофренія для кнопки КАПСУ
-            const capsBtn = document.getElementById("caps-button");
-            const capsText = "написати капсом";
-            
+            // 2. Жива кнопка КАПСУ (сходить з розуму)
+            const capsStates = [
+                "НАПИСАТИ<br>КАПСОМ", 
+                "написати<br>капсом", 
+                "НаПиСаТи<br>КаПсОм", 
+                "НАПИСАТИ<br>капсом"
+            ];
             setInterval(() => {
-                // Кожні 150 мілісекунд рандомно міняємо великі/малі літери
-                let glitchedText = capsText.split('').map(char => {
-                    return Math.random() > 0.5 ? char.toUpperCase() : char.toLowerCase();
-                }).join('');
-                capsBtn.innerText = glitchedText;
-            }, 150);
+                const randomState = capsStates[Math.floor(Math.random() * capsStates.length)];
+                capsBtn.innerHTML = randomState;
+            }, 800); // Змінюється кожні 800мс
+
+            // 3. Таймер бездіяльності (Агресивний UX)
+            let idleTimer;
+            const idleTimeLimit = 6000; // 6 секунд без дій - вилазить попап
+
+            function resetIdleTimer() {
+                clearTimeout(idleTimer);
+                idlePopup.classList.remove('show');
+                
+                // Якщо користувач нічого не робить, показуємо попап
+                idleTimer = setTimeout(() => {
+                    idlePopup.classList.add('show');
+                }, idleTimeLimit);
+            }
+
+            // Відстежуємо будь-яку активність юзера
+            ['mousemove', 'touchstart', 'scroll', 'click'].forEach(evt => 
+                document.addEventListener(evt, resetIdleTimer, false)
+            );
         });
     </script>
 </body>
