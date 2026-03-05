@@ -37,15 +37,15 @@
             align-items: center;
         }
 
-        .header-handwritten {
-            font-family: 'Caveat', cursive;
-            font-size: 32px;
-            color: #ff4757;
-            letter-spacing: 2px;
-            transform: rotate(-6deg);
-            margin-bottom: -5px;
-            margin-left: -40px;
-        }
+       .header-handwritten {
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    color: #DA7C5D;
+    letter-spacing: 2px;
+    transform: rotate(-6deg);
+    margin-bottom: -5px;
+    margin-left: -40px;
+}
 
         .dropdown-links {
             display: flex;
@@ -55,30 +55,31 @@
         }
 
         .hyperlink-cutout {
-            background: #fff;
-            color: #0000EE;
-            text-decoration: underline;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 14px;
-            padding: 2px 6px;
-            border: 1px dashed #999;
-            box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
-            transform: rotate(-2deg);
-        }
+    background: transparent;
+    color: #0000EE;
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px;
+    padding: 0px 4px;
+    border: 1px dashed #999;
+    transform: rotate(-2deg);
+}
 
         .hyperlink-cutout:nth-child(2) {
             transform: rotate(1deg);
         }
 
         .tiktok-subtitle {
-            font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            text-align: center;
-            line-height: 1.5;
-            margin-top: 25px;
-            padding: 0 20px;
-        }
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.5;
+    margin-top: 25px;
+    margin-bottom: 45px;
+    padding: 0 20px;
+}
+
 
         .tiktok-subtitle span {
             background-color: #000;
@@ -134,33 +135,34 @@
         }
 
         .b-serious {
-            background: #FAFAF5;
-            border: 2px solid #333;
-            border-radius: 12px;
-            color: #333;
-            font-family: 'PT Serif', serif;
-            padding: 20px;
-            width: 240px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-            line-height: 1.3;
-        }
+    background: #FAFAF5;
+    border: 2px solid #333;
+    border-radius: 12px;
+    color: #333;
+    font-family: 'PT Serif', serif;
+    padding: 20px;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    line-height: 1.2;
+}
 
-        .b-serious .normal-text {
-            font-size: 18px;
-            font-weight: 400;
-        }
+.b-serious .normal-text {
+    font-size: 32px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
 
-        .b-serious .word-serious {
-            font-weight: 700;
-            font-style: italic;
-            font-size: 32px;
-            color: #000;
-            margin-top: 5px;
-            text-transform: uppercase;
-        }
+.b-serious .word-serious {
+    font-weight: 700;
+    font-style: italic;
+    font-size: 32px;
+    color: #000;
+    text-transform: uppercase;
+}
+
 
         .b-silence {
             background: #f5f5f5;
@@ -235,71 +237,92 @@
         }
 
         .b-problem {
-            background: #ece9d8;
-            border-top: 2px solid #fff;
-            border-left: 2px solid #fff;
-            border-right: 2px solid #848484;
-            border-bottom: 2px solid #848484;
-            display: flex;
-            flex-direction: column;
-            width: 90%;
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
-            border-radius: 0;
-        }
+    background: #e8eaed;
+    background-image: radial-gradient(#d5d7db 1px, transparent 1px);
+    background-size: 10px 10px;
+    border: 1px solid #dadce0;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
 
-        .b-problem .title-bar {
-            background: #000080;
-            color: #fff;
-            font-family: 'Tahoma', sans-serif;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 3px 8px;
-            text-align: left;
-            display: flex;
-            justify-content: space-between;
-        }
+.b-problem .map-header {
+    background: #fff;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #dadce0;
+}
 
-        .b-problem .title-bar .close-btn {
-            background: #ece9d8;
-            color: #000;
-            border: 1px solid #fff;
-            border-right-color: #848484;
-            border-bottom-color: #848484;
-            font-size: 10px;
-            padding: 0 4px;
-            line-height: 1;
-        }
+.b-problem .map-header .icon-pin {
+    color: #ea4335;
+    font-size: 24px;
+}
 
-        .b-problem .content {
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: #000;
-            font-family: 'Tahoma', sans-serif;
-        }
+.b-problem .map-content {
+    padding: 15px;
+    text-align: left;
+    background: rgba(255,255,255,0.7);
+}
 
-        .b-problem .icon {
-            font-size: 32px;
-        }
+.b-problem .map-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #202124;
+}
 
-        .b-problem .text {
-            font-size: 22px;
-            font-weight: bold;
-        }
+.b-problem .map-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #5f6368;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
 
         .b-unpopular {
-            background: #111;
-            color: #ff4757;
-            border: 2px solid #ff4757;
-            border-radius: 8px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 900;
-            padding: 15px 25px;
-            font-size: 18px;
-            text-transform: uppercase;
-            box-shadow: 0 10px 20px rgba(255, 71, 87, 0.2);
-        }
+    background: #fff;
+    color: #000;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    padding: 15px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.b-unpopular .post-text {
+    font-weight: 700;
+    font-size: 16px;
+    text-align: left;
+}
+
+.b-unpopular .reactions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.b-unpopular .react {
+    background: #f0f2f5;
+    border-radius: 16px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #65676b;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
 
         .b-capslock {
             background: #dcdcdc;
@@ -376,17 +399,45 @@
             border: 1px solid #b2bec3;
         }
 
-        .b-idea {
-            background: #f1c40f;
-            color: #000;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 900;
-            font-size: 20px;
-            padding: 15px 30px;
-            border: 2px solid #000;
-            border-radius: 8px;
-            transform: rotate(-2deg);
-        }
+       .b-idea {
+    background: #fff;
+    color: #000;
+    font-family: 'Space Grotesk', sans-serif;
+    border: 2px dashed #000;
+    border-radius: 16px;
+    width: 90%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.b-idea .idea-icon {
+    font-size: 32px;
+    color: #27ae60;
+    background: #eafaf1;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.b-idea .idea-title {
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.b-idea .idea-hint {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #7f8c8d;
+    height: 14px;
+    font-weight: 500;
+}
+
 
         .b-atmosphere {
             background: #fff;
@@ -417,22 +468,20 @@
             margin-top: 10px;
         }
 
-        .b-admins {
-            background: linear-gradient(180deg, #f9f9f9 0%, #e0e0e0 100%);
-            border: 1px solid #ccc;
-            border-radius: 30px;
-            color: #333;
-            padding: 12px 25px;
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            margin-top: 20px;
-        }
+       .b-admins {
+    background: transparent;
+    border: none;
+    color: #0000EE;
+    text-decoration: underline;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: pointer;
+}
 
-        .b-admins b {
-            font-weight: 900;
-            font-size: 13px;
-            color: #000;
-        }
 
         .footer-copy {
             font-family: 'Inter', sans-serif;
@@ -495,76 +544,89 @@
         </div>
     </div>
 
-    <div class="tiktok-subtitle">
-        <span>Оберіть нижче що вам ближче і натисніть на кнопку:</span>
+ <div class="tiktok-subtitle">
+    <span>Що хочете опублікувати? Натисніть на будь-яку кнопку нижче 👇🏻</span>
+</div>
+
+<div class="main-feed">
+    
+    <div class="btn b-story">
+        <span id="story-text"></span><span class="cursor">|</span>
     </div>
 
-    <div class="main-feed">
-        
-        <div class="btn b-story">
-            <span id="story-text"></span><span class="cursor">|</span>
-        </div>
-
-        <div class="btn b-serious">
-            <span class="normal-text">Написати</span>
-            <span class="normal-text">щось</span>
-            <div class="word-serious">СЕРЙОЗН<span id="glitch-letter">Е</span></div>
-        </div>
-
-        <div class="btn b-silence" id="btn-silence">
-            <span class="material-symbols-outlined" id="icon-silence">volume_up</span>
-            <span>ПРОМОВЧАТИ</span>
-        </div>
-
-        <div class="btn b-photo">
-            <span class="material-symbols-outlined">photo_library</span>
-            ВІДПРАВИТИ ФОТО
-        </div>
-
-        <div class="btn b-petition">
-            <span class="material-symbols-outlined">edit_document</span>
-            <div class="pet-text">
-                <span class="pet-title">Звернутись до місцевої влади</span>
-                <span class="pet-sub">✍️ 0 підписів (і всім пофіг)</span>
-            </div>
-        </div>
-
-        <div class="btn b-problem">
-            <div class="title-bar">
-                <span>System Alert</span>
-                <span class="close-btn">X</span>
-            </div>
-            <div class="content">
-                <span class="icon">⚠️</span>
-                <span class="text">ОТАКА проблєма</span>
-            </div>
-        </div>
-
-        <div class="btn b-unpopular">Непопулярна Думка</div>
-
-        <div class="btn b-capslock">
-            <span class="top">написати</span>
-            <span class="bottom">КАПСОМ</span>
-        </div>
-
-        <div class="btn b-shopopalo">
-            <div class="avatar"><span class="material-symbols-outlined" style="font-size: 20px;">person</span></div>
-            <div class="input-text">Написати шопопало...</div>
-        </div>
-
-        <div class="btn b-meme">Відправити<br>мем</div>
-
-        <div class="btn b-idea">Є ІДЕЯ 💡</div>
-
-        <div class="btn b-atmosphere">
-            <div class="placeholder"></div>
-            <div class="text">Показати атмосферу на районі</div>
-        </div>
-
-        <div class="btn b-admins"><b>ЗАПИТАТИ АДМІНІВ</b> (краще не треба, ця кнопка тут раді прілічія)</div>
-        
-        <div class="footer-copy">ВШТ • 2026. Всі права незахищені.</div>
+    <div class="btn b-serious">
+        <span class="normal-text">НАПИСАТИ</span>
+        <span class="normal-text">ЩОСЬ</span>
+        <span class="word-serious">СЕРЙОЗН<span id="glitch-letter">Е</span></span>
     </div>
+
+    <div class="btn b-silence" id="btn-silence">
+        <span class="material-symbols-outlined" id="icon-silence">volume_up</span>
+        <span>ПРОМОВЧАТИ</span>
+    </div>
+
+    <div class="btn b-petition">
+        <span class="material-symbols-outlined">edit_document</span>
+        <div class="pet-text">
+            <span class="pet-title">Звернутись до місцевої влади</span>
+            <span class="pet-sub">✍️ 0 підписів</span>
+        </div>
+    </div>
+
+    <div class="btn b-photo">
+        <span class="material-symbols-outlined">photo_library</span>
+        ВІДПРАВИТИ ФОТО
+    </div>
+
+    <div class="btn b-problem">
+        <div class="map-header">
+            <span class="material-symbols-outlined icon-pin">location_on</span>
+            <span style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: #000;">Додати об'єкт</span>
+        </div>
+        <div class="map-content">
+            <div class="map-title">ОТАКА ПРОБЛЄМА</div>
+            <div class="map-desc">[коли в місті щось пішло не так]</div>
+        </div>
+    </div>
+
+    <div class="btn b-unpopular">
+        <div class="post-text">НЕПОПУЛЯРНА ДУМКА 🤫</div>
+        <div class="reactions">
+            <div class="react">👎 27</div>
+            <div class="react">🤬 13</div>
+            <div class="react">👍 12</div>
+            <div class="react">🤡 6</div>
+        </div>
+    </div>
+
+    <div class="btn b-capslock">
+        <span class="top">написати</span>
+        <span class="bottom">КАПСОМ</span>
+    </div>
+
+    <div class="btn b-shopopalo">
+        <div class="avatar"><span class="material-symbols-outlined" style="font-size: 20px;">person</span></div>
+        <div class="input-text">Написати шопопало...</div>
+    </div>
+
+    <div class="btn b-meme">Відправити<br>мем</div>
+
+    <div class="btn b-idea">
+        <div class="idea-icon"><span class="material-symbols-outlined">add</span></div>
+        <div class="idea-title">Є ІДЕЯ</div>
+        <div class="idea-hint" id="idea-hint-text">як зробити місто краще;</div>
+    </div>
+
+    <div class="btn b-atmosphere">
+        <div class="placeholder"></div>
+        <div class="text">Показати атмосферу на районі</div>
+    </div>
+
+    <div class="btn b-admins">mailto: admins@valky.ua</div>
+    
+    <div class="footer-copy">ВШТ • 2026. Всі права незахищені.</div>
+</div>
+
 
     <div id="scroll-fab">
         <span class="material-symbols-outlined" id="fab-icon">arrow_downward</span>
@@ -572,91 +634,110 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            
-            const glitchLetter = document.getElementById('glitch-letter');
-            setInterval(() => {
-                glitchLetter.innerText = glitchLetter.innerText === 'Е' ? 'О' : 'Е';
-            }, 800);
+    
+    const glitchLetter = document.getElementById('glitch-letter');
+    setInterval(() => {
+        glitchLetter.innerText = glitchLetter.innerText === 'Е' ? 'О' : 'Е';
+    }, 800);
 
-            const silenceBtn = document.getElementById('btn-silence');
-            const silenceIcon = document.getElementById('icon-silence');
-            silenceBtn.addEventListener('click', () => {
-                if (silenceIcon.innerText === 'volume_up') {
-                    silenceIcon.innerText = 'volume_off';
-                    silenceBtn.style.opacity = '0.6';
-                } else {
-                    silenceIcon.innerText = 'volume_up';
-                    silenceBtn.style.opacity = '1';
-                }
-            });
+    const silenceBtn = document.getElementById('btn-silence');
+    const silenceIcon = document.getElementById('icon-silence');
+    silenceBtn.addEventListener('click', () => {
+        if (silenceIcon.innerText === 'volume_up') {
+            silenceIcon.innerText = 'volume_off';
+            silenceBtn.style.opacity = '0.6';
+        } else {
+            silenceIcon.innerText = 'volume_up';
+            silenceBtn.style.opacity = '1';
+        }
+    });
 
-            const storyStr = "Розказати історію";
-            const storyEl = document.getElementById('story-text');
-            let i = 0;
-            function typeWriter() {
-                if (i < storyStr.length) {
-                    storyEl.innerHTML += storyStr.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 120);
-                }
-            }
+    const storyStr = "Розказати історію";
+    const storyEl = document.getElementById('story-text');
+    let i = 0;
 
-            const fab = document.getElementById('scroll-fab');
-            const fabIcon = document.getElementById('fab-icon');
+    function typeWriter() {
+        if (i < storyStr.length) {
+            storyEl.innerHTML += storyStr.charAt(i);
+            i++;
+            setTimeout(typeWriter, 120);
+        } else {
+            setTimeout(() => {
+                storyEl.innerHTML = "";
+                i = 0;
+                typeWriter();
+            }, 2000);
+        }
+    }
 
-            function smoothScrollTo(endY, duration) {
-                const startY = window.scrollY;
-                const distanceY = endY - startY;
-                let startTime = null;
+    const hints = ["як зробити місто краще;", "а давайте…;", "можна ж було б…;", "як покращити…;"];
+    const hintEl = document.getElementById('idea-hint-text');
+    let hintIdx = 0;
+    setInterval(() => {
+        hintIdx = (hintIdx + 1) % hints.length;
+        hintEl.innerText = hints[hintIdx];
+    }, 2000);
 
-                function step(timestamp) {
-                    if (!startTime) startTime = timestamp;
-                    const progress = timestamp - startTime;
-                    const percent = Math.min(progress / duration, 1);
-                    const ease = percent < 0.5 ? 2 * percent * percent : -1 + (4 - 2 * percent) * percent;
-                    window.scrollTo(0, startY + distanceY * ease);
-                    if (progress < duration) {
-                        window.requestAnimationFrame(step);
-                    }
-                }
+    const fab = document.getElementById('scroll-fab');
+    const fabIcon = document.getElementById('fab-icon');
+
+    function smoothScrollTo(endY, duration) {
+        const startY = window.scrollY;
+        const distanceY = endY - startY;
+        let startTime = null;
+
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = timestamp - startTime;
+            const percent = Math.min(progress / duration, 1);
+            const ease = percent < 0.5 ?
+                2 * percent * percent : -1 + (4 - 2 * percent) * percent;
+
+            window.scrollTo(0, startY + distanceY * ease);
+
+            if (progress < duration) {
                 window.requestAnimationFrame(step);
             }
+        }
+        window.requestAnimationFrame(step);
+    }
 
+    setTimeout(() => {
+        smoothScrollTo(document.body.scrollHeight, 2500);
+        
+        setTimeout(() => {
+            smoothScrollTo(0, 1000);
+            
             setTimeout(() => {
-                smoothScrollTo(document.body.scrollHeight, 2500);
-                
-                setTimeout(() => {
-                    smoothScrollTo(0, 1000);
-                    
-                    setTimeout(() => {
-                        fab.classList.add('show');
-                        typeWriter();
-                    }, 1000);
-                }, 3000);
-            }, 800);
+                fab.classList.add('show');
+                typeWriter();
+            }, 1000);
 
-            function checkScrollPosition() {
-                const scrolledToBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
-                
-                if (scrolledToBottom) {
-                    fabIcon.innerHTML = 'arrow_upward';
-                } else {
-                    fabIcon.innerHTML = 'arrow_downward';
-                }
-            }
+        }, 1000);
+    }, 800);
 
-            window.addEventListener('scroll', checkScrollPosition);
+    function checkScrollPosition() {
+        const scrolledToBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
+        if (scrolledToBottom) {
+            fabIcon.innerHTML = 'arrow_upward';
+        } else {
+            fabIcon.innerHTML = 'arrow_downward';
+        }
+    }
 
-            fab.addEventListener('click', () => {
-                const scrolledToBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
-                
-                if (scrolledToBottom) {
-                    smoothScrollTo(0, 1000);
-                } else {
-                    smoothScrollTo(document.body.scrollHeight, 1500);
-                }
-            });
-        });
+    window.addEventListener('scroll', checkScrollPosition);
+
+    fab.addEventListener('click', () => {
+        const scrolledToBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
+        
+        if (scrolledToBottom) {
+            smoothScrollTo(0, 1000);
+        } else {
+            smoothScrollTo(document.body.scrollHeight, 1500);
+        }
+    });
+});
+
     </script>
 </body>
 </html>
