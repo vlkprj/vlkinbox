@@ -150,7 +150,7 @@
     height: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
     text-align: left;
     line-height: 1.1;
@@ -158,6 +158,17 @@
     box-shadow: 0 12px 24px rgba(0,0,0,0.15);
     transform: translateY(-4px);
     transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.serious-text-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.serious-plus {
+    align-self: flex-end;
+    color: #ccc;
+    font-size: 28px;
 }
 
 .b-serious:active {
@@ -528,31 +539,40 @@
     font-size: 20px;
     margin-top: 15px;
 }
-}
 
 .b-admins {
-    background: #c0c0c0;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #dfdfdf #000000 #000000 #dfdfdf;
-    font-family: 'Tahoma', sans-serif;
-    font-size: 14px;
-    padding: 8px 15px;
-    color: #000;
+    background: #e0e0e0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    font-family: 'Verdana', sans-serif;
+    font-size: 11px;
+    padding: 6px 12px;
+    color: #0000ee;
+    text-decoration: underline;
     text-align: center;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .admin-subtext {
     font-size: 10px;
     font-weight: normal;
+    color: #000;
+    text-decoration: none;
+    display: block;
+    margin-top: 2px;
 }
-
 
 .b-admins:active {
-    border-color: #000000 #dfdfdf #dfdfdf #000000;
-    padding: 9px 14px 7px 16px;
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    padding: 7px 11px 5px 13px;
 }
+
 
 
 .side-tag {
@@ -597,25 +617,63 @@
 }
 
 .breathe-container {
-    display: none; flex-direction: column; align-items: center; gap: 20px;
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 250px;
+    justify-content: center;
+    align-items: center;
 }
 
 .breathe-msg {
-    font-size: 18px; font-family: 'Space Grotesk', sans-serif; transition: opacity 0.5s;
+    font-size: 24px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: bold;
+    color: #333;
 }
 
 .breathe-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -60px;
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 150, 255, 0.8) 0%, rgba(0, 150, 255, 0) 80%);
+    background: radial-gradient(circle, rgba(0, 150, 255, 0.25) 0%, rgba(0, 150, 255, 0) 70%);
     animation: breatheAnim 8s infinite ease-in-out;
+    z-index: 1;
+}
+
+.breathe-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.nose-emoji {
+    font-size: 60px;
+    display: inline-block;
+    transition: transform 4s ease-in-out;
+}
+
+.nose-inhale {
+    transform: translateY(-20px) scale(1.3);
+}
+
+.nose-exhale {
+    transform: translateY(15px) scale(1);
 }
 
 @keyframes breatheAnim {
     0%, 100% { transform: scale(1); opacity: 0.5; }
     50% { transform: scale(2.5); opacity: 1; }
 }
+
 
 
 
@@ -722,31 +780,164 @@
     font-size: 16px;
 }
 
-.info-banner {
-    background: #e7f3ff;
-    color: #004085;
-    border-radius: 8px;
-    padding: 12px 15px;
-    margin: -25px 20px 30px 20px;
+
+.frutiger-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 9999;
     display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    line-height: 1.4;
-    border: 1px solid #b8daff;
+    justify-content: center;
+    align-items: center;
 }
 
-.info-banner .material-symbols-outlined {
-    font-size: 20px;
-    color: #004085;
+.frutiger-window {
+    width: 300px;
+    background: linear-gradient(180deg, rgba(240,248,255,0.85) 0%, rgba(215,235,249,0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 0 0 1px rgba(110, 150, 200, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    overflow: hidden;
 }
+
+.frutiger-titlebar {
+    height: 28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(200,225,245,0.5) 40%, rgba(150,195,230,0.4) 45%, rgba(180,215,240,0.5) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6px 0 10px;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.frutiger-title-text {
+    font-size: 12px;
+    color: #0f1e3d;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.frutiger-close {
+    width: 38px;
+    height: 16px;
+    background: linear-gradient(180deg, #e8a0a0 0%, #c05050 45%, #a02020 50%, #d04040 100%);
+    border: 1px solid #601010;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 1px rgba(255,200,200,0.8);
+    position: relative;
+    cursor: pointer;
+}
+
+.frutiger-close::before, .frutiger-close::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 17px;
+    width: 2px;
+    height: 8px;
+    background: white;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+
+.frutiger-close::before { transform: rotate(45deg); }
+.frutiger-close::after { transform: rotate(-45deg); }
+
+.frutiger-close:active {
+    background: linear-gradient(180deg, #a02020 0%, #c05050 100%);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.frutiger-content {
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #ffffff;
+}
+
+.frutiger-icon {
+    width: 32px;
+    height: 32px;
+    background: radial-gradient(circle at 30% 30%, #4facfe 0%, #00f2fe 100%);
+    border-radius: 50%;
+    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.7), 0 2px 4px rgba(0,0,0,0.2);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.frutiger-icon::after {
+    content: 'i';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-family: 'Times New Roman', serif;
+    font-size: 22px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+
+.frutiger-text {
+    font-size: 12px;
+    color: #000;
+    line-height: 1.4;
+}
+
+.frutiger-footer {
+    background: #f0f0f0;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #dfdfdf;
+}
+
+.frutiger-btn {
+    background: linear-gradient(180deg, #fefefe 0%, #ebebeb 45%, #dddddd 50%, #cfcfcf 100%);
+    border: 1px solid #888;
+    border-radius: 3px;
+    padding: 3px 24px;
+    font-size: 12px;
+    color: #000;
+    cursor: pointer;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.9), 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.frutiger-btn:active {
+    background: linear-gradient(180deg, #cccccc 0%, #e6e6e6 100%);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    border-color: #555;
+}
+
 
 
         
     </style>
 </head>
 <body>
+    
+    <div class="frutiger-overlay" id="anon-alert">
+    <div class="frutiger-window">
+        <div class="frutiger-titlebar">
+            <span class="frutiger-title-text">Повідомлення Windows</span>
+            <div class="frutiger-close" id="close-x"></div>
+        </div>
+        <div class="frutiger-content">
+            <div class="frutiger-icon"></div>
+            <div class="frutiger-text">Всі ваші повідомлення абсолютно анонімні (навіть ми не знаємо хто ви)! Якщо хочете деанон — введіть нікнейм у спеціальне поле.</div>
+        </div>
+        <div class="frutiger-footer">
+            <div class="frutiger-btn" id="close-btn">ОК</div>
+        </div>
+    </div>
+</div>
+
 
     <div class="top-header">
         <span class="header-handwritten">ВАЛКІВСЬКА</span>
@@ -761,11 +952,6 @@
     <span>Що хочете опублікувати? Натисніть на будь-яку кнопку нижче 👇🏻</span>
 </div>
 
-<div class="info-banner">
-    <span class="material-symbols-outlined">info</span>
-    <div class="info-text"><b>Зверніть увагу!</b> Всі ваші повідомлення абсолютно анонімні (навіть ми не знаємо хто ви)! Якщо ви хочете вказати імʼя або нікнейм, введіть його в спеціальне поле вводу.</div>
-</div>
-
 
 <div class="main-feed">
     
@@ -778,10 +964,14 @@
 
 
 <div class="btn b-serious">
-    <span class="normal-text">НАПИСАТИ</span>
-    <span class="normal-text">ЩОСЬ</span>
-    <span class="word-serious">СЕРЙОЗН<span id="glitch-letter">Е</span></span>
+    <div class="serious-text-wrapper">
+        <span class="normal-text">НАПИСАТИ</span>
+        <span class="normal-text">ЩОСЬ</span>
+        <span class="word-serious">СЕРЙОЗН<span id="glitch-letter">Е</span></span>
+    </div>
+    <span class="material-symbols-outlined serious-plus">add</span>
 </div>
+
 
     <div class="btn b-silence" id="btn-silence">
         <span class="material-symbols-outlined" id="icon-silence">volume_up</span>
@@ -873,13 +1063,17 @@
     
     <div class="silence-overlay" id="silence-overlay">
     <span class="material-symbols-outlined close-silence" id="close-silence">close</span>
-    <div class="silence-timer" id="silence-timer">30</div>
-    <div class="silence-msg">ну мовчіть...</div>
+    <div class="silence-timer" id="silence-timer" style="display: none;">30</div>
+    <div class="silence-msg" id="silence-main-msg">ну мовчіть...</div>
     <div class="breathe-container" id="breathe-container">
-        <div class="breathe-msg" id="breathe-msg">Вдихніть...</div>
         <div class="breathe-circle"></div>
+        <div class="breathe-content">
+            <div class="breathe-msg" id="breathe-msg">Вдих</div>
+            <div id="nose-icon" class="nose-emoji nose-inhale">👃🏻</div>
+        </div>
     </div>
 </div>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -954,33 +1148,58 @@ document.addEventListener("DOMContentLoaded", () => {
     let silenceTimeout;
     let breatheInterval;
 
+        const silenceMainMsg = document.getElementById('silence-main-msg');
+    let initialTimeout;
+
     function closeSilence() {
         if (overlay) overlay.style.display = 'none';
         clearInterval(silenceInterval);
-        clearTimeout(silenceTimeout);
         clearInterval(breatheInterval);
+        clearTimeout(initialTimeout);
+        clearTimeout(silenceTimeout);
     }
 
     if (silenceBtn && overlay) {
+        const noseIcon = document.getElementById('nose-icon');
+
         silenceBtn.addEventListener('click', () => {
             overlay.style.display = 'flex';
             breatheContainer.style.display = 'none';
-            timerEl.innerText = '30';
-            let timeLeft = 30;
+            timerEl.style.display = 'none';
+            silenceMainMsg.style.display = 'block';
+            silenceMainMsg.innerText = 'ну мовчіть...';
 
-            silenceInterval = setInterval(() => {
-                timeLeft--;
-                timerEl.innerText = timeLeft;
-                if (timeLeft <= 0) closeSilence();
-            }, 1000);
+            initialTimeout = setTimeout(() => {
+                silenceMainMsg.innerText = 'давайте подихаємо або шо..';
+                
+                silenceTimeout = setTimeout(() => {
+                    silenceMainMsg.style.display = 'none';
+                    breatheContainer.style.display = 'flex';
+                    timerEl.style.display = 'block';
+                    timerEl.innerText = '30';
+                    let timeLeft = 30;
+                    
+                    silenceInterval = setInterval(() => {
+                        timeLeft--;
+                        timerEl.innerText = timeLeft;
+                        if (timeLeft <= 0) closeSilence();
+                    }, 1000);
 
-            silenceTimeout = setTimeout(() => {
-                breatheContainer.style.display = 'flex';
-                breatheMsg.innerText = 'Вдихніть...';
-                breatheInterval = setInterval(() => {
-                    breatheMsg.innerText = breatheMsg.innerText === 'Вдихніть...' ? 'Видихніть...' : 'Вдихніть...';
-                }, 4000);
-            }, 3000);
+                    breatheMsg.innerText = 'Вдих';
+                    noseIcon.className = 'nose-emoji nose-inhale';
+
+                    breatheInterval = setInterval(() => {
+                        if (breatheMsg.innerText === 'Вдих') {
+                            breatheMsg.innerText = 'Виииидих';
+                            noseIcon.className = 'nose-emoji nose-exhale';
+                        } else {
+                            breatheMsg.innerText = 'Вдих';
+                            noseIcon.className = 'nose-emoji nose-inhale';
+                        }
+                    }, 4000);
+
+                }, 2000);
+            }, 1500);
         });
 
         closeBtn.addEventListener('click', closeSilence);
@@ -989,30 +1208,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
     const fab = document.getElementById('scroll-fab');
     const fabIcon = document.getElementById('fab-icon');
 
- function smoothScrollTo(endY, duration) {
-    const startY = window.scrollY;
-    const distanceY = endY - startY;
-    let startTime = null;
+     function smoothScrollTo(endY, duration) {
+        const startY = window.scrollY;
+        const distanceY = endY - startY;
+        let startTime = null;
 
-    function step(timestamp) {
-        if (!startTime) startTime = timestamp;
-        const progress = timestamp - startTime;
-        const percent = Math.min(progress / duration, 1);
-        
-        const ease = percent < 0.5 ? 2 * percent * percent : 1 - Math.pow(-2 * percent + 2, 2) / 2;
-
-        window.scrollTo(0, startY + distanceY * ease);
-
-        if (progress < duration) {
-            window.requestAnimationFrame(step);
+        function easeOutExpo(x) {
+            return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
         }
-    }
-    window.requestAnimationFrame(step);
-}
 
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = timestamp - startTime;
+            const percent = Math.min(progress / duration, 1);
+            
+            window.scrollTo(0, startY + distanceY * easeOutExpo(percent));
+
+            if (progress < duration) {
+                window.requestAnimationFrame(step);
+            }
+        }
+        window.requestAnimationFrame(step);
+    }
 
     function checkScrollPosition() {
         const scrolledToBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
@@ -1026,19 +1247,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     window.addEventListener('scroll', checkScrollPosition);
-
     if (fab) {
         fab.addEventListener('click', () => {
             const scrolledToBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
             
             if (scrolledToBottom) {
-                smoothScrollTo(0, 1000);
+                smoothScrollTo(0, 800);
             } else {
-                smoothScrollTo(document.body.scrollHeight, 1500);
+                smoothScrollTo(document.body.scrollHeight, 800);
             }
         });
     }
+
 });
+
+const anonAlert = document.getElementById('anon-alert');
+const closeX = document.getElementById('close-x');
+const closeBtn = document.getElementById('close-btn');
+
+if (anonAlert) {
+    if (closeX) closeX.addEventListener('click', () => anonAlert.style.display = 'none');
+    if (closeBtn) closeBtn.addEventListener('click', () => anonAlert.style.display = 'none');
+}
+
+typeWriter();
 
 
     </script>
