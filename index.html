@@ -8,16 +8,22 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     
     <style>
-        * { box-sizing: border-box; }
+ * {
+    box-sizing: border-box;
+}
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            background-color: #FAFAF5;
-            color: #050505;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #FAFAF5;
+    color: #050505;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
 
         .top-header {
             width: 100%;
@@ -542,19 +548,23 @@
 
 .b-admins {
     background: #e0e0e0;
-    border-top: 2px solid #ffffff;
-    border-left: 2px solid #ffffff;
-    border-right: 2px solid #808080;
-    border-bottom: 2px solid #808080;
+    border-top: 3px solid #ffffff;
+    border-left: 3px solid #ffffff;
+    border-right: 3px solid #808080;
+    border-bottom: 3px solid #808080;
     font-family: 'Verdana', sans-serif;
-    font-size: 11px;
-    padding: 6px 12px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 25px;
+    width: 90%;
     color: #0000ee;
     text-decoration: underline;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px;
     cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
+
 
 .admin-subtext {
     font-size: 10px;
@@ -656,18 +666,27 @@
 }
 
 .nose-emoji {
-    font-size: 60px;
+    font-size: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -120px;
+    margin-left: -100px;
     display: inline-block;
     transition: transform 4s ease-in-out;
+    z-index: 0;
+    opacity: 0.1;
+    pointer-events: none;
 }
 
 .nose-inhale {
-    transform: translateY(-20px) scale(1.3);
+    transform: scale(1.5) translateY(-15px);
 }
 
 .nose-exhale {
-    transform: translateY(15px) scale(1);
+    transform: scale(1) translateY(10px);
 }
+
 
 @keyframes breatheAnim {
     0%, 100% { transform: scale(1); opacity: 0.5; }
@@ -781,140 +800,78 @@
 }
 
 
-.frutiger-overlay {
+.steam-achievement {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.3);
+    bottom: -100px;
+    right: 20px;
+    background: #1a1a1a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.frutiger-window {
-    width: 300px;
-    background: linear-gradient(180deg, rgba(240,248,255,0.85) 0%, rgba(215,235,249,0.95) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 0 0 1px rgba(110, 150, 200, 0.5);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    overflow: hidden;
-}
-
-.frutiger-titlebar {
-    height: 28px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(200,225,245,0.5) 40%, rgba(150,195,230,0.4) 45%, rgba(180,215,240,0.5) 100%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 6px 0 10px;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9);
-}
-
-.frutiger-title-text {
-    font-size: 12px;
-    color: #0f1e3d;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-.frutiger-close {
-    width: 38px;
-    height: 16px;
-    background: linear-gradient(180deg, #e8a0a0 0%, #c05050 45%, #a02020 50%, #d04040 100%);
-    border: 1px solid #601010;
-    border-radius: 3px;
-    box-shadow: inset 0 1px 1px rgba(255,200,200,0.8);
-    position: relative;
+    transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
+    user-select: none;
 }
 
-.frutiger-close::before, .frutiger-close::after {
-    content: '';
-    position: absolute;
-    top: 3px;
-    left: 17px;
-    width: 2px;
-    height: 8px;
-    background: white;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+.steam-achievement.show {
+    bottom: 20px;
 }
 
-.frutiger-close::before { transform: rotate(45deg); }
-.frutiger-close::after { transform: rotate(-45deg); }
-
-.frutiger-close:active {
-    background: linear-gradient(180deg, #a02020 0%, #c05050 100%);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+.steam-icon {
+    margin-right: 15px;
+    color: #66c0f4;
+    display: flex;
+    align-items: center;
 }
 
-.frutiger-content {
-    padding: 20px 15px;
+.steam-icon span {
+    font-size: 36px;
+}
+
+.steam-text-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.steam-title {
+    font-size: 10px;
+    color: #8f98a0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.steam-desc {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+.b-zbir {
+    background: #2b2d2f;
+    color: #e5e7eb;
+    border-radius: 6px;
+    padding: 15px 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
     display: flex;
     align-items: center;
     gap: 15px;
-    background: #ffffff;
+    width: 90%;
+    border: 1px solid #4b5563;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
-.frutiger-icon {
-    width: 32px;
-    height: 32px;
-    background: radial-gradient(circle at 30% 30%, #4facfe 0%, #00f2fe 100%);
-    border-radius: 50%;
-    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.7), 0 2px 4px rgba(0,0,0,0.2);
-    position: relative;
-    flex-shrink: 0;
+.b-zbir .add-icon-zbir {
+    margin-left: auto;
+    color: #9ca3af;
 }
-
-.frutiger-icon::after {
-    content: 'i';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-weight: bold;
-    font-family: 'Times New Roman', serif;
-    font-size: 22px;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
-}
-
-.frutiger-text {
-    font-size: 12px;
-    color: #000;
-    line-height: 1.4;
-}
-
-.frutiger-footer {
-    background: #f0f0f0;
-    padding: 10px 15px;
-    display: flex;
-    justify-content: flex-end;
-    border-top: 1px solid #dfdfdf;
-}
-
-.frutiger-btn {
-    background: linear-gradient(180deg, #fefefe 0%, #ebebeb 45%, #dddddd 50%, #cfcfcf 100%);
-    border: 1px solid #888;
-    border-radius: 3px;
-    padding: 3px 24px;
-    font-size: 12px;
-    color: #000;
-    cursor: pointer;
-    box-shadow: inset 0 1px 1px rgba(255,255,255,0.9), 0 1px 2px rgba(0,0,0,0.1);
-}
-
-.frutiger-btn:active {
-    background: linear-gradient(180deg, #cccccc 0%, #e6e6e6 100%);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
-    border-color: #555;
-}
-
 
 
         
@@ -922,21 +879,14 @@
 </head>
 <body>
     
-    <div class="frutiger-overlay" id="anon-alert">
-    <div class="frutiger-window">
-        <div class="frutiger-titlebar">
-            <span class="frutiger-title-text">Повідомлення Windows</span>
-            <div class="frutiger-close" id="close-x"></div>
-        </div>
-        <div class="frutiger-content">
-            <div class="frutiger-icon"></div>
-            <div class="frutiger-text">Всі ваші повідомлення абсолютно анонімні (навіть ми не знаємо хто ви)! Якщо хочете деанон — введіть нікнейм у спеціальне поле.</div>
-        </div>
-        <div class="frutiger-footer">
-            <div class="frutiger-btn" id="close-btn">ОК</div>
-        </div>
+  <div class="steam-achievement" id="anon-alert">
+    <div class="steam-icon"><span class="material-symbols-outlined">incognito</span></div>
+    <div class="steam-text-block">
+        <div class="steam-title">ACHIEVEMENT UNLOCKED</div>
+        <div class="steam-desc">Анонімність в мережі</div>
     </div>
 </div>
+
 
 
     <div class="top-header">
@@ -963,6 +913,7 @@
 </div>
 
 
+
 <div class="btn b-serious">
     <div class="serious-text-wrapper">
         <span class="normal-text">НАПИСАТИ</span>
@@ -985,6 +936,13 @@
             <span class="pet-sub">✍️ 0 підписів</span>
         </div>
     </div>
+    
+        <div class="btn b-zbir">
+        <span class="material-symbols-outlined">military_tech</span>
+        Треба опублікувати збір
+        <span class="material-symbols-outlined add-icon-zbir">add</span>
+    </div>
+
 
     <div class="btn b-photo">
         <span class="material-symbols-outlined">photo_library</span>
@@ -1212,7 +1170,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fab = document.getElementById('scroll-fab');
     const fabIcon = document.getElementById('fab-icon');
 
-     function smoothScrollTo(endY, duration) {
+        function smoothScrollTo(endY, duration) {
         const startY = window.scrollY;
         const distanceY = endY - startY;
         let startTime = null;
@@ -1237,6 +1195,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function checkScrollPosition() {
         const scrolledToBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
+        
+        if (fab) {
+            if (window.scrollY > 100) {
+                fab.classList.add('show');
+            } else {
+                fab.classList.remove('show');
+            }
+        }
+
         if (fabIcon) {
             if (scrolledToBottom) {
                 fabIcon.innerHTML = 'arrow_upward';
@@ -1247,6 +1214,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     window.addEventListener('scroll', checkScrollPosition);
+    
     if (fab) {
         fab.addEventListener('click', () => {
             const scrolledToBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10;
@@ -1259,18 +1227,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const anonAlert = document.getElementById('anon-alert');
+    if (anonAlert) {
+        setTimeout(() => {
+            anonAlert.classList.add('show');
+        }, 2000);
+
+        anonAlert.addEventListener('click', () => {
+            anonAlert.classList.remove('show');
+        });
+    }
+
+    if (typeof typeWriter === 'function') {
+        typeWriter();
+    }
 });
 
-const anonAlert = document.getElementById('anon-alert');
-const closeX = document.getElementById('close-x');
-const closeBtn = document.getElementById('close-btn');
-
-if (anonAlert) {
-    if (closeX) closeX.addEventListener('click', () => anonAlert.style.display = 'none');
-    if (closeBtn) closeBtn.addEventListener('click', () => anonAlert.style.display = 'none');
-}
-
-typeWriter();
 
 
     </script>
