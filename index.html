@@ -893,6 +893,21 @@ body, html {
     box-shadow: 0 4px 8px rgba(0,0,0,0.04) !important;
 }
 
+.header-main-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.anon-logo {
+    width: 38px;
+    height: auto;
+    /* кружечок */
+    /* background-color: #FAFAF5; */
+    /* border-radius: 50%; */
+    /* padding: 4px; */
+}
 
         
     </style>
@@ -903,10 +918,14 @@ body, html {
 
 
 
-    <div class="top-header">
+        <div class="top-header">
         <span class="header-handwritten">ВАЛКІВСЬКА</span>
-        ПРИЙМАЛЬНЯ
+        <div class="header-main-title">
+            <img src="anonface.PNG" class="anon-logo" alt="Анонім">
+            ПРИЙМАЛЬНЯ
+        </div>
         <div class="dropdown-links">
+
             <span class="hyperlink-cutout">ГЛЯНУТИ ЧАТІК</span>
             <span class="hyperlink-cutout">ГЛЯНУТИ БАЗАРЧИК</span>
         </div>
@@ -923,11 +942,12 @@ body, html {
 <div class="main-feed">
     
 <div class="btn b-story">
-    <div style="display: flex; align-items: center;">
+    <div style="display: flex; align-items: center; white-space: nowrap; overflow: hidden;">
         <span id="story-text"></span><span class="cursor">|</span>
     </div>
     <div class="story-submit">Написати</div>
 </div>
+
 
 
 
@@ -1073,7 +1093,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const baseStr = "Розказати ";
-    const words = ["історію...", "щось..."];
+    const words = ["про..", "щось..."];
     let wordIdx = 0;
     let charIdx = 0;
     let isDeleting = false;
