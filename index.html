@@ -24,10 +24,11 @@ body, html {
     overflow-x: hidden;
 }
 
-        .top-header {
+                .top-header {
             width: 100%;
-            background: #000;
-            color: #fff;
+          
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            color: #1a1a1a; 
             padding: 20px 15px;
             text-align: center;
             font-family: 'Space Grotesk', sans-serif;
@@ -37,35 +38,32 @@ body, html {
             position: relative;
             z-index: 10;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-bottom: 3px solid #6b4c10;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
        .header-handwritten {
-    font-family: 'Caveat', cursive;
-    font-size: 32px;
-    color: #DA7C5D;
-    letter-spacing: 2px;
-    transform: rotate(-6deg);
-    margin-bottom: -5px;
-    margin-left: -40px;
-}
+            font-family: 'Caveat', cursive;
+            font-size: 32px;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+            letter-spacing: 2px;
+            transform: rotate(-6deg);
+            margin-bottom: -5px;
+            margin-left: -40px;
+        }
 
-.header-main-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
+        .anon-logo {
+            width: 38px;
+            height: auto;
+            background-color: #FAFAF5;
+            border-radius: 50%;
+            padding: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
 
-.anon-logo {
-    width: 38px;
-    height: auto;
-    background-color: #FAFAF5;
-    border-radius: 50%;
-    padding: 4px;
-}
 
         .dropdown-links {
             display: flex;
@@ -969,18 +967,18 @@ body, html {
 
 
 
-        <div class="top-header">
+            <div class="top-header">
         <span class="header-handwritten">ВАЛКІВСЬКА</span>
         <div class="header-main-title">
             <img src="anonface.PNG" class="anon-logo" alt="Анонім">
             ПРИЙМАЛЬНЯ
         </div>
         <div class="dropdown-links">
-
             <span class="hyperlink-cutout">ГЛЯНУТИ ЧАТІК</span>
             <span class="hyperlink-cutout">ГЛЯНУТИ БАЗАРЧИК</span>
         </div>
     </div>
+
 
  <div class="tiktok-subtitle">
     <span>Що хочете опублікувати? Натисніть на будь-яку кнопку нижче 👇🏻</span>
@@ -1244,8 +1242,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (timeLeft <= 0) closeSilence();
                     }, 1000);
 
-                                     breatheMsg.innerText = 'Вдих';
+                                                         breatheMsg.innerText = 'Вдих';
                     noseIcon.className = 'nose-emoji nose-exhale';
+                    noseIcon.innerText = '👃🏻';
 
                     setTimeout(() => {
                         noseIcon.className = 'nose-emoji nose-inhale';
@@ -1255,11 +1254,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (breatheMsg.innerText === 'Вдих') {
                             breatheMsg.innerText = 'Виииидих';
                             noseIcon.className = 'nose-emoji nose-exhale';
+                            noseIcon.innerText = '😮‍💨';
                         } else {
                             breatheMsg.innerText = 'Вдих';
                             noseIcon.className = 'nose-emoji nose-inhale';
+                            noseIcon.innerText = '👃🏻';
                         }
                     }, 4000);
+
 
 
                 }, 2000);
