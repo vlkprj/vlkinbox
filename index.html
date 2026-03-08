@@ -63,23 +63,37 @@ body, html {
         }
 
 .hyperlink-cutout {
-    background: #fff;
-    color: #0000EE;
-    text-decoration: underline;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border: 1px dashed #999;
-    transform: rotate(-2deg);
+    font-family: 'Verdana', sans-serif;
+    font-size: 10px;
+    font-weight: bold;
     display: inline-block;
-}
+    cursor: pointer;
 }
 
+.hyperlink-cutout:nth-child(1) {
+    background: #c0c0c0;
+    color: #000080;
+    text-decoration: underline;
+    padding: 3px 8px;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    transform: rotate(-1deg);
+}
 
-        .hyperlink-cutout:nth-child(2) {
-            transform: rotate(1deg);
-        }
+.hyperlink-cutout:nth-child(2) {
+    background: #ffffcc;
+    color: #cc0000;
+    text-decoration: underline;
+    padding: 2px 6px;
+    border: 1px solid #999;
+    font-family: 'Times New Roman', serif;
+    font-size: 11px;
+    transform: rotate(2deg);
+    box-shadow: 1px 1px 0 #666;
+}
+
 
         .tiktok-subtitle {
     font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
@@ -138,19 +152,30 @@ body, html {
             box-shadow: 0 4px 8px rgba(0,0,0,0.04);
         }
 
-        .b-story {
+    .b-story {
     background: #fff;
     color: #000;
-    border-radius: 8px;
+    border-radius: 16px;
     font-family: 'Lora', serif;
-    font-size: 20px;
-    padding: 15px 25px;
-    width: 90%;
+    font-size: 15px;
+    padding: 18px 14px;
+    flex: 1;
+    min-height: 160px;
     border: 1px solid #e0e0e0;
-    min-height: 60px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.b-story:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
 }
 
 
@@ -167,8 +192,8 @@ body, html {
     color: #333;
     font-family: 'PT Serif', serif;
     padding: 20px;
-    width: 200px;
-    max-width: 90%;
+    width: flex: 1;
+    max-width: flex: 1;
     min-height: 200px;
     height: auto;
     display: flex;
@@ -574,8 +599,8 @@ body, html {
     font-family: 'Verdana', sans-serif;
     font-size: 16px;
     font-weight: bold;
-    padding: 15px 25px;
-    width: 90%;
+    padding: 10px 30px;
+    width: auto;
     color: #0000ee;
     text-decoration: underline;
     text-align: center;
@@ -797,7 +822,8 @@ body, html {
     background: #fff;
     color: #000;
     font-family: 'Space Grotesk', sans-serif;
-    border: 2px dashed #000;
+    border: 2px solid #e0e0e0;
+box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     border-radius: 12px;
     flex: 1;
     min-height: 120px;
@@ -891,8 +917,14 @@ body, html {
     padding: 6px 14px;
     border-radius: 16px;
     text-transform: uppercase;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    animation: pulseSubmit 2.5s ease-in-out infinite;
 }
+
+@keyframes pulseSubmit {
+    0%, 100% { box-shadow: 0 2px 6px rgba(0,0,0,0.2); transform: scale(1); }
+    50% { box-shadow: 0 4px 14px rgba(0,0,0,0.35); transform: scale(1.05); }
+}
+
 
 .b-complain {
     background: linear-gradient(135deg, #ffe0eb 0%, #ffc2d4 40%, #ffb3c6 60%, #ffe0eb 100%);
@@ -1021,7 +1053,7 @@ body, html {
     <div class="header-main-title">
         <img src="vlkhrld.png" alt="Герб" style="width:40px; height:auto; object-fit:contain;">
         <div style="display:flex; flex-direction:column; align-items:center; gap:0px;">
-            <span style="font-weight:400; font-size:16px; letter-spacing:6px; opacity:0.85;">ВАЛКІВСЬКА</span>
+            <span style="font-family:'Caveat',cursive; font-weight:700; font-size:24px; letter-spacing:3px; opacity:0.95;">Валківська</span>
             <span style="font-weight:900; font-size:28px; letter-spacing:6px;">ПРИЙМАЛЬНЯ</span>
         </div>
         <img src="anonface.PNG" alt="Анонім" style="width:40px; height:auto; object-fit:contain;">
@@ -1045,25 +1077,22 @@ body, html {
 
 <div class="main-feed">
     
-<div class="btn b-story">
-    <div style="display: flex; align-items: center; white-space: nowrap; overflow: hidden;">
-        <span id="story-text"></span><span class="cursor">|</span>
+<div class="row-container" style="align-items: stretch;">
+    <div class="btn b-story">
+        <div style="font-size:11px; color:#bbb; font-family:'Inter',sans-serif; font-weight:700; letter-spacing:1px;">РОЗКАЗАТИ</div>
+        <div><span id="story-text"></span><span class="cursor">|</span></div>
+        <div class="story-submit">Почати</div>
     </div>
-    <div class="story-submit">Почати</div>
+    <div class="btn b-serious">
+        <div class="serious-text-wrapper">
+            <span class="normal-text">НАПИСАТИ</span>
+            <span class="normal-text">ЩОСЬ</span>
+            <span class="word-serious">СЕРЙОЗН<span id="glitch-letter">Е</span></span>
+        </div>
+        <span class="material-symbols-outlined serious-plus">add</span>
+    </div>
 </div>
 
-
-
-
-
-<div class="btn b-serious">
-    <div class="serious-text-wrapper">
-        <span class="normal-text">НАПИСАТИ</span>
-        <span class="normal-text">ЩОСЬ</span>
-        <span class="word-serious">СЕРЙОЗН<span id="glitch-letter">Е</span></span>
-    </div>
-    <span class="material-symbols-outlined serious-plus">add</span>
-</div>
 
 
     <div class="btn b-petition">
@@ -1071,6 +1100,7 @@ body, html {
         <div class="pet-text">
             <span class="pet-title">Звернутись до місцевої влади</span>
             <span class="pet-sub">✍️ 0 підписів</span>
+            <span class="material-symbols-outlined" style="color:#ddd; margin-left:auto; flex-shrink:0;">chevron_right</span>
         </div>
     </div>
     
@@ -1090,6 +1120,7 @@ body, html {
         <div class="map-header">
             <span class="material-symbols-outlined icon-pin">location_on</span>
             <span style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: #000;">Додати вулицю</span>
+            <span class="material-symbols-outlined" style="color:#ccc; margin-left:auto; font-size:18px;">chevron_right</span>
         </div>
         <div class="map-content">
             <div class="map-title">ОТАКА ПРОБЛЄМА</div>
@@ -1103,6 +1134,7 @@ body, html {
         <div class="unpopular-action">
             <span class="material-symbols-outlined">edit_square</span>
         </div>
+        <div style="font-family:'Inter',sans-serif; font-size:13px; color:#ccc; font-style:italic; text-align:left;">Напишіть свою думку...</div>
     </div>
     <div class="reactions">
         <div class="react">👎 27</div>
@@ -1136,10 +1168,12 @@ body, html {
             <span class="material-symbols-outlined" style="font-size: 18px; font-weight: 900;">add</span>
         </div>
     </div>
-    <div class="btn b-idea">
-        <span class="material-symbols-outlined idea-icon-small">add</span>
-        <div class="idea-title-small">Є ІДЕЯ</div>
-    </div>
+   <div class="btn b-idea">
+    <span class="material-symbols-outlined idea-icon-small">add</span>
+    <div class="idea-title-small">Є ІДЕЯ</div>
+    <div id="idea-hint-text" style="font-family:'Inter',sans-serif; font-size:10px; color:#bbb; font-weight:500; min-height:14px;"></div>
+</div>
+
 </div>
 
 
@@ -1415,17 +1449,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
         const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('simulate-press');
-                setTimeout(() => {
-                    entry.target.classList.remove('simulate-press');
-                }, 200); 
-            }
-        });
-    }, {
-        rootMargin: '-50% 0px -50% 0px' 
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.pressing) {
+            entry.target.dataset.pressing = 'true';
+            entry.target.classList.add('simulate-press');
+            setTimeout(() => {
+                entry.target.classList.remove('simulate-press');
+                delete entry.target.dataset.pressing;
+            }, 400);
+        }
     });
+}, {
+    rootMargin: '-50% 0px -50% 0px'
+});
+
 
     document.querySelectorAll('.btn').forEach(btn => {
         observer.observe(btn);
