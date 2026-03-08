@@ -25,36 +25,22 @@ body, html {
     overflow-x: hidden;
 }
 
-                .top-header {
-            width: 100%;
-          
-            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            color: #1a1a1a; 
-            padding: 20px 15px;
-            text-align: center;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 900;
-            font-size: 26px;
-            letter-spacing: 5px;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            border-bottom: 3px solid #6b4c10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+               .top-header {
+    width: 100%;
+    background: #1D3561;
+    color: #fff;
+    padding: 18px 15px 14px 15px;
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 0 0 6px #B8962E, inset 0 0 0 9px #1D3561, inset 0 0 0 11px #B8962E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
 
-       .header-handwritten {
-            font-family: 'Caveat', cursive;
-            font-size: 32px;
-            color: #fff;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
-            letter-spacing: 2px;
-            transform: rotate(-6deg);
-            margin-bottom: -5px;
-            margin-left: -40px;
-        }
 
         .anon-logo {
             width: 38px;
@@ -78,12 +64,13 @@ body, html {
     color: #0000EE;
     text-decoration: underline;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 700;
     padding: 2px 8px;
     border: 1px dashed #999;
     transform: rotate(-2deg);
     display: inline-block;
-    max-width: 140px;
+}
 }
 
 
@@ -905,21 +892,64 @@ body, html {
 }
 
 .b-complain {
-    background: #fff4f6;
-    border: 1px dashed #ffa6b9;
-    border-radius: 24px;
-    color: #e8436b;
+    background: linear-gradient(135deg, #ffe0eb 0%, #ffc2d4 40%, #ffb3c6 60%, #ffe0eb 100%);
+    background-size: 200% 200%;
+    animation: shimmerComplain 3s ease infinite;
+    border: 2px solid #ff85a1;
+    border-radius: 30px;
+    color: #c2185b;
     font-family: 'Lora', serif;
     font-style: italic;
-    font-size: 20px;
+    font-size: 22px;
     width: 90%;
-    padding: 12px 20px;
+    padding: 16px 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    box-shadow: 0 4px 12px rgba(255, 166, 185, 0.15);
+    gap: 14px;
+    box-shadow: 0 6px 20px rgba(255, 133, 161, 0.45), inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 0 #d4607a;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+    position: relative;
+    overflow: hidden;
 }
+
+.b-complain::before {
+    content: '✨💅✨';
+    position: absolute;
+    top: -5px;
+    right: 15px;
+    font-size: 14px;
+    animation: floatGlitter 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.b-complain::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    animation: glitterSwipe 2.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmerComplain {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatGlitter {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    50% { transform: translateY(-4px) rotate(10deg); opacity: 0.7; }
+}
+
+@keyframes glitterSwipe {
+    0% { left: -75%; }
+    100% { left: 125%; }
+}
+
 
 .simulate-press {
     transform: scale(0.96) !important;
@@ -931,7 +961,9 @@ body, html {
     align-items: center;
     justify-content: center;
     gap: 12px;
+    line-height: 1.1;
 }
+
 
 .anon-logo {
     width: 38px;
@@ -968,26 +1000,30 @@ body, html {
 
 
 
-            <div class="top-header">
-        <span class="header-handwritten">ВАЛКІВСЬКА</span>
-        <div class="header-main-title">
-            <img src="anonface.PNG" class="anon-logo" alt="Анонім">
-            ПРИЙМАЛЬНЯ
+    <div class="top-header">
+    <div class="header-main-title">
+        <img src="vlkhrld.png" class="anon-logo" alt="Герб" style="width:38px; background:none; padding:0;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
+            <span style="font-weight:400; font-size:20px; letter-spacing:4px;">ВАЛКІВСЬКА</span>
+            <span style="font-weight:900; font-size:26px; letter-spacing:5px;">ПРИЙМАЛЬНЯ</span>
         </div>
-        <div class="dropdown-links">
-            <span class="hyperlink-cutout">ГЛЯНУТИ ЧАТІК</span>
-            <span class="hyperlink-cutout">ГЛЯНУТИ БАЗАРЧИК</span>
-        </div>
+        <span class="material-symbols-outlined" style="font-size:38px; color:#fff; font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 48;">psychology_alt</span>
     </div>
+    <div class="dropdown-links">
+        <span class="hyperlink-cutout">ГЛЯНУТИ ЧАТІК</span>
+        <span class="hyperlink-cutout">ГЛЯНУТИ БАЗАРЧИК</span>
+    </div>
+</div>
 
 
- <div class="tiktok-subtitle">
+
+<div class="anon-text" style="margin-top: 20px; margin-bottom: 10px;">
+    Всі ваші повідомлення абсолютно анонімні (навіть ми не знаємо хто ви)! Якщо хочете, щоб під публікацією було ваше імʼя — введіть його у спеціальне поле.
+</div>
+<div class="tiktok-subtitle">
     <span>Що хочете опублікувати? Натисніть на будь-яку кнопку нижче 👇🏻</span>
 </div>
 
-<div class="anon-text">
-    Всі ваші повідомлення абсолютно анонімні (навіть ми не знаємо хто ви)! Якщо хочете, щоб під публікацією було ваше імʼя — введіть його у спеціальне поле.
-</div>
 
 <div class="main-feed">
     
@@ -1060,8 +1096,9 @@ body, html {
 
 <div class="btn b-complain">
     <span>Поскаржитись</span>
-    <span style="font-size: 24px;">🎀</span>
+    <span style="font-size: 26px; filter: drop-shadow(0 0 4px rgba(255,100,150,0.7));">💅🏻</span>
 </div>
+
 
 <div class="row-container">
     <div class="btn b-capslock">
