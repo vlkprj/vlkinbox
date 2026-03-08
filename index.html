@@ -24,7 +24,7 @@ body, html {
     overflow-x: hidden;
 }
 
-   .top-header {
+.top-header {
     width: 100%;
     background: #1D3561;
     color: #fff;
@@ -40,19 +40,21 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
 }
 
 
 
+
         .anon-logo {
-            width: 38px;
-            height: auto;
-            background-color: #FAFAF5;
-            border-radius: 50%;
-            padding: 4px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        }
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    background-color: #FAFAF5;
+    border-radius: 50%;
+    padding: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
 
 
         .dropdown-links {
@@ -62,15 +64,10 @@ body, html {
             margin-top: 15px;
         }
 
-.hyperlink-cutout {
-    font-family: 'Verdana', sans-serif;
-    font-size: 10px;
-    font-weight: bold;
-    display: inline-block;
-    cursor: pointer;
-}
-
 .hyperlink-cutout:nth-child(1) {
+    position: absolute;
+    top: 15px;
+    left: 15px;
     background: #c0c0c0;
     color: #000080;
     text-decoration: underline;
@@ -83,6 +80,9 @@ body, html {
 }
 
 .hyperlink-cutout:nth-child(2) {
+    position: absolute;
+    top: 15px;
+    right: 15px;
     background: #ffffcc;
     color: #cc0000;
     text-decoration: underline;
@@ -93,6 +93,7 @@ body, html {
     transform: rotate(2deg);
     box-shadow: 1px 1px 0 #666;
 }
+
 
 
         .tiktok-subtitle {
@@ -160,7 +161,7 @@ body, html {
     font-size: 15px;
     padding: 18px 14px;
     flex: 1;
-    min-height: 160px;
+    aspect-ratio: 1 / 1;
     border: 1px solid #e0e0e0;
     display: flex;
     flex-direction: column;
@@ -171,6 +172,7 @@ body, html {
     transform: translateY(-4px);
     transition: transform 0.2s, box-shadow 0.2s;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .b-story:active {
@@ -192,10 +194,8 @@ body, html {
     color: #333;
     font-family: 'PT Serif', serif;
     padding: 20px;
-    width: flex: 1;
-    max-width: flex: 1;
-    min-height: 200px;
-    height: auto;
+    flex: 1;
+    aspect-ratio: 1 / 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -206,6 +206,7 @@ body, html {
     box-shadow: 0 12px 24px rgba(0,0,0,0.15);
     transform: translateY(-4px);
     transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
 }
 
 .serious-text-wrapper {
@@ -269,48 +270,60 @@ body, html {
             border: 1px solid #f0f0f0;
         }
 
-        .b-petition {
-            background: #fff;
-            color: #c23616;
-            border: 2px solid #c23616;
-            border-radius: 6px;
-            padding: 15px 20px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            width: 90%;
-            overflow: hidden;
-            box-shadow: 4px 4px 0px rgba(194, 54, 22, 0.2);
-        }
+.b-petition {
+    background: #fff;
+    color: #000;
+    border: 3px solid #000;
+    border-radius: 0;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    box-shadow: 6px 6px 0px #c23616;
+    transition: transform 0.1s, box-shadow 0.1s;
+}
 
-        .b-petition::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 4px;
-            background: #c23616;
-            width: 12%;
-        }
+.b-petition:active {
+    transform: translate(4px, 4px) !important;
+    box-shadow: 2px 2px 0px #c23616 !important;
+}
 
-        .pet-text {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
+.pet-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
 
-        .pet-title {
-            font-size: 16px;
-        }
+.pet-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
 
-        .pet-sub {
-            font-size: 11px;
-            color: #666;
-            font-weight: 400;
-            margin-top: 4px;
-        }
+.pet-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #c23616;
+    font-weight: 800;
+    margin-top: 4px;
+}
+
+.pet-action-go {
+    background: #c23616;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid #000;
+}
+
 
         .b-problem {
     background: #e8eaed;
@@ -1030,7 +1043,6 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 @media (max-width: 390px) {
     .header-main-title { font-size: 20px; }
     .tiktok-subtitle { font-size: 14px; padding: 0 10px; }
-    .b-serious { width: 90%; min-height: 160px; }
     .serious-text-wrapper .normal-text { font-size: 22px; }
     .serious-text-wrapper .word-serious { font-size: 22px; }
     .b-capslock .bottom { font-size: 22px; }
@@ -1049,20 +1061,20 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 
 
 
- <div class="top-header">
-    <div class="header-main-title">
-        <img src="vlkhrld.png" alt="Герб" style="width:40px; height:auto; object-fit:contain;">
+<div class="top-header">
+    <span class="hyperlink-cutout">ГЛЯНУТИ ЧАТІК</span>
+    <span class="hyperlink-cutout">ГЛЯНУТИ БАЗАРЧИК</span>
+    
+    <div class="header-main-title" style="margin-top: 18px;">
+        <img src="vlkhrld.png" alt="Герб" class="anon-logo">
         <div style="display:flex; flex-direction:column; align-items:center; gap:0px;">
             <span style="font-family:'Caveat',cursive; font-weight:700; font-size:24px; letter-spacing:3px; opacity:0.95;">Валківська</span>
             <span style="font-weight:900; font-size:28px; letter-spacing:6px;">ПРИЙМАЛЬНЯ</span>
         </div>
-        <img src="anonface.PNG" alt="Анонім" style="width:40px; height:auto; object-fit:contain;">
-    </div>
-    <div class="dropdown-links">
-        <span class="hyperlink-cutout">ГЛЯНУТИ ЧАТІК</span>
-        <span class="hyperlink-cutout">ГЛЯНУТИ БАЗАРЧИК</span>
+        <img src="anonface.PNG" alt="Анонім" class="anon-logo">
     </div>
 </div>
+
 
 
 
@@ -1096,14 +1108,18 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 
 
     <div class="btn b-petition">
-        <span class="material-symbols-outlined">edit_document</span>
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <span class="material-symbols-outlined" style="font-size: 32px; color: #000;">campaign</span>
         <div class="pet-text">
             <span class="pet-title">Звернутись до місцевої влади</span>
             <span class="pet-sub">✍️ 0 підписів</span>
-            <span class="material-symbols-outlined" style="color:#ddd; margin-left:auto; flex-shrink:0;">chevron_right</span>
         </div>
     </div>
-    
+    <div class="pet-action-go">
+        <span class="material-symbols-outlined">arrow_forward</span>
+    </div>
+</div>
+
 
 
     <div class="btn b-photo">
@@ -1118,10 +1134,11 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 
     <div class="btn b-problem">
         <div class="map-header">
-            <span class="material-symbols-outlined icon-pin">location_on</span>
-            <span style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: #000;">Додати вулицю</span>
-            <span class="material-symbols-outlined" style="color:#ccc; margin-left:auto; font-size:18px;">chevron_right</span>
-        </div>
+    <span class="material-symbols-outlined icon-pin">location_on</span>
+    <span style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: #000;">Обрати місце</span>
+    <span class="material-symbols-outlined" style="color:#ccc; margin-left:auto; font-size:18px;">chevron_right</span>
+</div>
+
         <div class="map-content">
             <div class="map-title">ОТАКА ПРОБЛЄМА</div>
             <div class="map-desc">[коли в місті щось пішло не так]</div>
@@ -1129,12 +1146,11 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     </div>
 
  <div class="btn b-unpopular">
-    <div class="unpopular-header">
-        <div class="post-text">НЕПОПУЛЯРНА ДУМКА</div>
-        <div class="unpopular-action">
+    <div class="unpopular-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+        <div style="font-family:'Inter',sans-serif; font-size:15px; color:#555; font-weight:600; text-align:left;">Напишіть свою <span style="font-style:italic; font-weight:800; color:#000;">НЕПОПУЛЯРНУ</span> думку...</div>
+        <div class="unpopular-action" style="border-left: none; padding-left: 0; color: #000;">
             <span class="material-symbols-outlined">edit_square</span>
         </div>
-        <div style="font-family:'Inter',sans-serif; font-size:13px; color:#ccc; font-style:italic; text-align:left;">Напишіть свою думку...</div>
     </div>
     <div class="reactions">
         <div class="react">👎 27</div>
@@ -1143,6 +1159,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         <div class="react">🤡 6</div>
     </div>
 </div>
+
 
  <div class="btn b-silence" id="btn-silence">
         <span class="material-symbols-outlined" id="icon-silence">volume_up</span>
