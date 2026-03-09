@@ -219,11 +219,48 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 600);
 
 
-    if (typeof typeWriter === 'function') {
-        typeWriter();
+const words = ["щось..", "про.."];
+let wordIdx = 0;
+let charIdx = 0;
+let isDeleting = false;
+const storyEl = document.getElementById('story-text');
+
+function typeWriter() {
+    if (!storyEl) return;
+    const currentWord = words[wordIdx];
+    if (isDeleting) {
+        storyEl.innerText = currentWord.substring(0, charIdx - 1);
+        charIdx--;
+    } else {
+        storyEl.innerText = currentWord.substring(0, charIdx + 1);
+        charIdx++;
     }
-    
-        let isInitialLoad = true;
+    let speed = isDeleting ? 40 : 120;
+    if (!isDeleting && charIdx === currentWord.length) {
+        speed = 2000;
+        isDeleting = true;
+    } else if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        wordIdx = (wordIdx + 1) % words.length;
+        speed = 500;
+    }
+    setTimeout(typeWriter, speed);
+}
+typeWriter();
+
+document.querySelectorAll('.react').forEach(btn => {
+    btn.addEventListener('click', function() {
+        if (this.classList.contains('clicked')) return;
+        this.classList.add('clicked');
+        let parts = this.innerText.split(' ');
+        let count = parseInt(parts[1]) + 1;
+        this.innerText = parts[0] + ' ' + count;
+        this.style.background = '#e7f3ff';
+        this.style.color = '#1877f2';
+    });
+});
+
+let isInitialLoad = true;
 setTimeout(() => { isInitialLoad = false; }, 800);
 
 const observer = new IntersectionObserver((entries) => {
@@ -246,23 +283,6 @@ document.querySelectorAll('.btn').forEach(btn => {
 });
 
 const themeToggle = document.getElementById('theme-toggle');
-const themeStatus = document.getElementById('theme-status');
-const lcdTime = document.getElementById('lcd-time');
-
-function updateLCDTime() {
-    if (!lcdTime) return;
-    const now = new Date();
-    const hh = String(now.getHours()).padStart(2, '0');
-    const mm = String(now.getMinutes()).padStart(2, '0');
-    lcdTime.innerText = `${hh}:${mm}`;
-}
-
-setInterval(updateLCDTime, 1000);
-updateLCDTime();
-
-//перемикач//
-const themeToggle = document.getElementById('theme-toggle');
-
 if (themeToggle) {
     themeToggle.addEventListener('change', (e) => {
         if (e.target.checked) {
@@ -272,7 +292,7 @@ if (themeToggle) {
         }
     });
 }
-//перемикач всьо//
+
 
 
 });
