@@ -273,6 +273,27 @@ if (rumorEl) {
 //чутки канєц//
 
 
+const gachaBtn = document.getElementById('gacha-btn');
+const gachaText = document.getElementById('gacha-text');
+
+if (gachaBtn && gachaText) {
+    const trashDrops = ["Нє", "МІМО", "", "ФІГНЯ", "СПРОБУЙ ЩЕ РАЗ", "СУМНО"];
+    
+    gachaBtn.addEventListener('click', () => {
+        const roll = Math.random();
+        
+        if (roll > 0.96) {
+            gachaBtn.classList.add('jackpot-mode');
+            gachaText.innerText = "🌟 ТИ ОБРАНЕЦЬ 🌟";
+        } else {
+            gachaBtn.classList.remove('jackpot-mode');
+            const randomTrash = trashDrops[Math.floor(Math.random() * trashDrops.length)];
+            gachaText.innerText = randomTrash;
+        }
+    });
+}
+
+
 const complainPhrases = ["на вонючу рибу в магазині", "на яму", "на життя", "на ще щось", "на паліїв", "на ціни"];
 let complainIdx = 0;
 const popEl = document.getElementById('complain-pop');
