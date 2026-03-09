@@ -147,26 +147,28 @@ body, html {
 @keyframes blink { 50% { opacity: 0; } }
 
 
-    .tiktok-subtitle {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-    font-weight: 700;
-    font-size: 16px;
+.tiktok-subtitle {
     text-align: center;
-    line-height: 1.5;
-    margin-top: 25px;
-    margin-bottom: 45px;
+    margin: 25px auto 25px auto;
     padding: 0 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #666;
+    line-height: 1.4;
 }
 
+.tiktok-subtitle span {
+    background: none;
+    color: inherit;
+    text-shadow: none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-box-decoration-break: auto;
+    box-decoration-break: auto;
+}
 
-        .tiktok-subtitle span {
-            background-color: #000;
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 8px;
-            box-decoration-break: clone;
-            -webkit-box-decoration-break: clone;
-        }
 
 .anon-text {
     font-family: 'Inter', sans-serif;
