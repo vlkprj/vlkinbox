@@ -1222,9 +1222,44 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     75% { transform: translateY(-4px) rotate(3deg); }
 }
 
-/* чутки */
+/* чутки канєц */
 
+/* понити враппер */
+.complain-wrapper {
+    position: relative;
+    width: 90%;
+    margin: 0 auto 15px auto;
+    z-index: 1;
+}
 
+.complain-wrapper .b-complain {
+    width: 100%;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.complain-pop-text {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 900;
+    color: #ff6b81;
+    text-transform: uppercase;
+    z-index: 1;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.complain-pop-text.pop-up {
+    top: -22px;
+    opacity: 1;
+}
+/*поскардитись попап*/
 
 
 @media (max-width: 390px) {
