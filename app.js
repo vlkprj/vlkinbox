@@ -6,38 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 800);
     }
 
-    const baseStr = "Розказати ";
-    const words = ["про..", "щось..."];
-    let wordIdx = 0;
-    let charIdx = 0;
-    let isDeleting = false;
-    const storyEl = document.getElementById('story-text');
-
-    function typeWriter() {
-        if (!storyEl) return;
-        const currentWord = words[wordIdx];
-
-        if (isDeleting) {
-            storyEl.innerText = baseStr + currentWord.substring(0, charIdx - 1);
-            charIdx--;
-        } else {
-            storyEl.innerText = baseStr + currentWord.substring(0, charIdx + 1);
-            charIdx++;
-        }
-
-        let speed = isDeleting ? 40 : 120;
-
-        if (!isDeleting && charIdx === currentWord.length) {
-            speed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && charIdx === 0) {
-            isDeleting = false;
-            wordIdx = (wordIdx + 1) % words.length;
-            speed = 500;
-        }
-        setTimeout(typeWriter, speed);
-    }
-
     const hints = ["як зробити місто краще", "а давайте…", "можна ж було б…", "як покращити…"];
     const hintEl = document.getElementById('idea-hint-text');
     if (hintEl) {
@@ -47,18 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
             hintEl.innerText = hints[hintIdx];
         }, 2000);
     }
-
-    document.querySelectorAll('.react').forEach(btn => {
-        btn.addEventListener('click', function() {
-            if (this.classList.contains('clicked')) return;
-            this.classList.add('clicked');
-            let parts = this.innerText.split(' ');
-            let count = parseInt(parts[1]) + 1;
-            this.innerText = parts[0] + ' ' + count;
-            this.style.background = '#e7f3ff';
-            this.style.color = '#1877f2';
-        });
-    });
 
     const silenceBtn = document.getElementById('btn-silence');
     const overlay = document.getElementById('silence-overlay');
@@ -290,3 +246,5 @@ if (themeToggle) {
         }
     });
 }
+
+});
