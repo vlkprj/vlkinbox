@@ -247,6 +247,20 @@ document.querySelectorAll('.btn').forEach(btn => {
 
 const themeToggle = document.getElementById('theme-toggle');
 const themeStatus = document.getElementById('theme-status');
+const lcdTime = document.getElementById('lcd-time');
+
+function updateLCDTime() {
+    if (!lcdTime) return;
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+    lcdTime.innerText = `${hh}:${mm}`;
+}
+
+setInterval(updateLCDTime, 1000);
+updateLCDTime();
+
+//перемикач//
 if (themeToggle) {
     themeToggle.addEventListener('change', (e) => {
         if (e.target.checked) {
@@ -258,6 +272,7 @@ if (themeToggle) {
         }
     });
 }
+//перемикач всьо//
 
 
 });
