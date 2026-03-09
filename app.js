@@ -247,19 +247,49 @@ if (themeToggle) {
     });
 }
 
-//КП ВОДА// 
-const kpBtn = document.getElementById('kp-voda-btn');
-const stream = document.getElementById('water-stream');
+const doorBtn = document.getElementById('secret-door');
+if (doorBtn) {
+    let isAnimating = false;
+    doorBtn.addEventListener('click', () => {
+        if (isAnimating) return;
+        
+        const roll = Math.random();
+        isAnimating = true;
 
-if (kpBtn && stream) {
-    kpBtn.addEventListener('click', () => {
-        stream.classList.toggle('flowing');
+        if (roll > 0.95) { // 5% шанс
+            doorBtn.innerText = '🗝️';
+            
+            //  водоспад зірок
+            for(let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const p = document.createElement('div');
+                    p.className = 'star-particle';
+                    p.innerText = Math.random() > 0.5 ? '💫' : '✨';
+                    p.style.left = (Math.random() * 90 + 5) + 'vw';
+                    p.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    document.body.appendChild(p);
+                    setTimeout(() => p.remove(), 2500);
+                }, i * 40);
+            }
+            
+            // тут шось придумати
+            setTimeout(() => {
+                alert("🚨 ВІТАЮ! ТИ ЗНАЙШОВ КЛЮЧ! 🚨\n\nВін відкриває двері в нікуди. Але ти можеш цим пишатися. Роби скріншот, бо тобі ніхто не повірить.");
+                doorBtn.innerText = '🚪';
+                isAnimating = false;
+            }, 1500);
+            
+        } else {
+            // Невдача
+            doorBtn.innerText = '🔒';
+            setTimeout(() => {
+                doorBtn.innerText = '🚪';
+                isAnimating = false;
+            }, 400);
+        }
     });
 }
 
-//КП ВОДА вьсо//
-
-//чутки//
 const rumorPhrases = ["А ви чули, шо...", "А ви бачили...?", "А ЦЕ ПРАВДА, ШО..", "Кажуть, шо..."];
 let rumorIdx = 0;
 const rumorEl = document.getElementById('rumors-dynamic-text');
@@ -270,28 +300,9 @@ if (rumorEl) {
         rumorEl.innerText = rumorPhrases[rumorIdx];
     }, 2000);
 }
+
 //чутки канєц//
 
-
-const gachaBtn = document.getElementById('gacha-btn');
-const gachaText = document.getElementById('gacha-text');
-
-if (gachaBtn && gachaText) {
-    const trashDrops = ["Нє", "МІМО", "", "ФІГНЯ", "СПРОБУЙ ЩЕ РАЗ", "СУМНО"];
-    
-    gachaBtn.addEventListener('click', () => {
-        const roll = Math.random();
-        
-        if (roll > 0.96) {
-            gachaBtn.classList.add('jackpot-mode');
-            gachaText.innerText = "🌟 ТИ ОБРАНЕЦЬ 🌟";
-        } else {
-            gachaBtn.classList.remove('jackpot-mode');
-            const randomTrash = trashDrops[Math.floor(Math.random() * trashDrops.length)];
-            gachaText.innerText = randomTrash;
-        }
-    });
-}
 
 
 const complainPhrases = ["на вонючу рибу в магазині", "на яму", "на життя", "на ще щось", "на паліїв", "на ціни"];
