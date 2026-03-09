@@ -89,10 +89,9 @@ body, html {
 
 .link-right {
     right: 15px;
-    transform: rotate(2deg);
-    background: #ffffcc;
-    color: #cc0000;
+    transform: rotate(-1deg);
 }
+
 
 
         .tiktok-subtitle {
