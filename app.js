@@ -259,7 +259,21 @@ if (kpBtn && stream) {
 
 //КП ВОДА вьсо//
 
-const complainPhrases = ["на вонючу рибу", "на яму на дорозі", "на життя", "на сусідів", "на ціни"];
+//чутки//
+const rumorPhrases = ["А ви чули, шо...", "А ви бачили...?", "А ЦЕ ПРАВДА, ШО..", "Кажуть, шо..."];
+let rumorIdx = 0;
+const rumorEl = document.getElementById('rumors-dynamic-text');
+
+if (rumorEl) {
+    setInterval(() => {
+        rumorIdx = (rumorIdx + 1) % rumorPhrases.length;
+        rumorEl.innerText = rumorPhrases[rumorIdx];
+    }, 2000);
+}
+//чутки канєц//
+
+
+const complainPhrases = ["на вонючу рибу в магазині", "на яму", "на життя", "на ще щось", "на паліїв", "на ціни"];
 let complainIdx = 0;
 const popEl = document.getElementById('complain-pop');
 
