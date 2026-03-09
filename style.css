@@ -56,17 +56,14 @@ body, html {
 
 
 .valk-word {
-    font-family: 'PT Serif', serif;
-    font-style: italic;
+    font-family: 'Shafarik', serif;
     font-weight: 400;
-    font-size: 22px;
-    color: #e6b9a6; 
-    text-transform: lowercase;
-    letter-spacing: -0.5px;
-    margin-bottom: -6px;
-    position: relative;
-    z-index: 2;
+    font-size: 38px;
+    color: #fff; 
+    letter-spacing: 2px;
+    margin-bottom: -4px;
 }
+
 
 
 .theme-switch-wrapper {
