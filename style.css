@@ -1182,6 +1182,48 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
 }
 
+/*чутки*/
+
+.b-rumors {
+    background: #000;
+    color: #fff;
+    border: 2px solid #FFDA59;
+    border-radius: 12px;
+    padding: 16px;
+    width: 90%;
+    margin: 0 auto 15px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 4px 4px 0px #FFDA59;
+    animation: rumorWalk 0.8s infinite ease-in-out;
+    transform-origin: bottom center;
+}
+
+.rumors-header {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #FFDA59;
+}
+
+#rumors-dynamic-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 4px;
+    color: #fff;
+}
+
+@keyframes rumorWalk {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-4px) rotate(-3deg); }
+    75% { transform: translateY(-4px) rotate(3deg); }
+}
+
+/* чутки */
+
 
 
 
