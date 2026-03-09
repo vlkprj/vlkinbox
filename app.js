@@ -247,4 +247,16 @@ if (themeToggle) {
     });
 }
 
+//КП ВОДА// 
+const kpBtn = document.getElementById('kp-voda-btn');
+const stream = document.getElementById('water-stream');
+
+if (kpBtn && stream) {
+    kpBtn.addEventListener('click', () => {
+        stream.classList.toggle('flowing');
+    });
+}
+
+//КП ВОДА//
+
 });
