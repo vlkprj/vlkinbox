@@ -256,10 +256,9 @@ if (doorBtn) {
         const roll = Math.random();
         isAnimating = true;
 
-        if (roll > 0.95) { // 5% шанс
+        if (roll > 0.95) { 
             doorBtn.innerText = '🗝️';
             
-            //  водоспад зірок
             for(let i = 0; i < 40; i++) {
                 setTimeout(() => {
                     const p = document.createElement('div');
@@ -272,14 +271,23 @@ if (doorBtn) {
                 }, i * 40);
             }
             
-            // тут шось придумати
             setTimeout(() => {
                 alert("🚨 ВІТАЮ! ТИ ЗНАЙШОВ КЛЮЧ! 🚨\n\nВін відкриває двері в нікуди. Але ти можеш цим пишатися. Роби скріншот, бо тобі ніхто не повірить.");
                 doorBtn.innerText = '🚪';
                 isAnimating = false;
             }, 1500);
             
-        } else const rumorsWrap = document.getElementById('rumors-btn-wrap');
+        } else {
+            doorBtn.innerText = '🔒';
+            setTimeout(() => {
+                doorBtn.innerText = '🚪';
+                isAnimating = false;
+            }, 400);
+        }
+    });
+}
+
+const rumorsWrap = document.getElementById('rumors-btn-wrap');
 const rumorsDesc = document.getElementById('rumors-dynamic-text');
 
 if (rumorsWrap && rumorsDesc) {
@@ -303,11 +311,6 @@ if (rumorsWrap && rumorsDesc) {
     }, 4000); 
 }
 
-
-//чутки канєц//
-
-
-
 const complainPhrases = ["на вонючу рибу в магазині", "на яму", "на життя", "на ще щось", "на паліїв", "на ціни"];
 let complainIdx = 0;
 const popEl = document.getElementById('complain-pop');
@@ -322,6 +325,5 @@ if (popEl) {
         }, 500);
     }, 3000);
 }
-
 
 });
