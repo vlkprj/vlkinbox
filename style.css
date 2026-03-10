@@ -183,12 +183,14 @@ body, html {
 .rumors-container {
     position: relative;
     width: 140px;
+    height: 150px; 
     margin: 0 auto 40px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
 }
+
 
 
 .b-rumors-pillow {
@@ -281,7 +283,7 @@ body, html {
 .rumors-container.is-button-mode .rumor-arm { opacity: 0; }
 
 .rumors-container.is-button-mode .orbit-ear {
-    animation: earFly 1s cubic-bezier(0.45, 0, 0.55, 1) forwards;
+    animation: earFly 2.5s ease-in-out forwards;
 }
 
 /* Анімації */
@@ -299,10 +301,10 @@ body, html {
 
 @keyframes earFly {
     0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
-    15% { opacity: 1; transform: translate(-30px, -40px) scale(1.2); }
-    50% { transform: translate(70px, -70px) scale(1.5) rotate(180deg); }
-    85% { opacity: 1; transform: translate(160px, -10px) scale(1) rotate(360deg); }
-    100% { opacity: 0; transform: translate(140px, 0) scale(0.5) rotate(360deg); }
+    15% { opacity: 1; transform: translate(-40px, -20px) scale(1.2); }
+    50% { transform: translate(60px, -80px) scale(1.4) rotate(180deg); }
+    85% { opacity: 1; transform: translate(140px, -10px) scale(1) rotate(360deg); }
+    100% { opacity: 0; transform: translate(120px, 0) scale(0.5) rotate(360deg); }
 }
 
 
