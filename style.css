@@ -1311,6 +1311,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 .complain-wrapper {
     position: relative;
     width: 90%;
-    margin: 0 auto 35px auto; 
+    margin: 0 auto 45px auto; 
     z-index: 1;
 }
+
