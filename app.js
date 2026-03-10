@@ -279,27 +279,30 @@ if (doorBtn) {
                 isAnimating = false;
             }, 1500);
             
-        } else {
-            // Невдача
-            doorBtn.innerText = '🔒';
-            setTimeout(() => {
-                doorBtn.innerText = '🚪';
-                isAnimating = false;
-            }, 400);
-        }
-    });
-}
+        } else const rumorsWrap = document.getElementById('rumors-btn-wrap');
+const rumorsDesc = document.getElementById('rumors-dynamic-text');
 
-const rumorPhrases = ["А ви чули, шо...", "А ви бачили...?", "А ЦЕ ПРАВДА, ШО..", "Кажуть, шо..."];
-let rumorIdx = 0;
-const rumorEl = document.getElementById('rumors-dynamic-text');
+if (rumorsWrap && rumorsDesc) {
+    const rumorPhrases = ["А ви чули, шо...", "А ви бачили….?", "А ЦЕ ПРАВДА, ШО..", "Кажуть, шо..."];
+    const actionPhrases = ["НАПИСАТИ", "ЗАПИТАТИ"];
+    let rIdx = 0;
+    let aIdx = 0;
 
-if (rumorEl) {
     setInterval(() => {
-        rumorIdx = (rumorIdx + 1) % rumorPhrases.length;
-        rumorEl.innerText = rumorPhrases[rumorIdx];
-    }, 2000);
+        rumorsWrap.classList.toggle('is-button-mode');
+        
+        if (rumorsWrap.classList.contains('is-button-mode')) {
+            aIdx = (aIdx + 1) % actionPhrases.length;
+            rumorsDesc.innerText = actionPhrases[aIdx];
+            rumorsDesc.style.color = '#000';
+        } else {
+            rIdx = (rIdx + 1) % rumorPhrases.length;
+            rumorsDesc.innerText = rumorPhrases[rIdx];
+            rumorsDesc.style.color = '#888';
+        }
+    }, 4000); 
 }
+
 
 //чутки канєц//
 
