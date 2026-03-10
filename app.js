@@ -287,12 +287,15 @@ if (doorBtn) {
     });
 }
 
+//чутки ходять//
 const rumorsWrap = document.getElementById('rumors-btn-wrap');
 const rumorsDesc = document.getElementById('rumors-dynamic-text');
+const rumorsTitle = document.getElementById('rumors-title');
 
-if (rumorsWrap && rumorsDesc) {
+if (rumorsWrap && rumorsDesc && rumorsTitle) {
     const rumorPhrases = ["А ви чули, шо...", "А ви бачили….?", "А ЦЕ ПРАВДА, ШО..", "Кажуть, шо..."];
     const actionPhrases = ["НАПИСАТИ", "ЗАПИТАТИ"];
+    const emojis = ["😮", "👀", "🫢", "🤔", "👂"];
     let rIdx = 0;
     let aIdx = 0;
 
@@ -300,16 +303,33 @@ if (rumorsWrap && rumorsDesc) {
         rumorsWrap.classList.toggle('is-button-mode');
         
         if (rumorsWrap.classList.contains('is-button-mode')) {
+         
             aIdx = (aIdx + 1) % actionPhrases.length;
             rumorsDesc.innerText = actionPhrases[aIdx];
-            rumorsDesc.style.color = '#000';
+            
+           
+            let scrambleCount = 0;
+            const scrambleInt = setInterval(() => {
+                scrambleCount++;
+                let str = "";
+                for(let i=0; i<4; i++) str += emojis[Math.floor(Math.random() * emojis.length)];
+                rumorsTitle.innerText = str;
+                
+                if (scrambleCount > 6) {
+                    clearInterval(scrambleInt);
+                    rumorsTitle.innerText = "ЧУТКИ";
+                }
+            }, 100);
+
         } else {
+           
             rIdx = (rIdx + 1) % rumorPhrases.length;
             rumorsDesc.innerText = rumorPhrases[rIdx];
-            rumorsDesc.style.color = '#888';
+            rumorsTitle.innerText = "ЧУТКИ";
         }
-    }, 4000); 
+    }, 4500); 
 }
+//чутки пішли//
 
 const complainPhrases = ["на вонючу рибу в магазині", "на яму", "на життя", "на ще щось", "на паліїв", "на ціни"];
 let complainIdx = 0;
