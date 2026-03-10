@@ -299,39 +299,47 @@ if (rumorsWrap && rumorsDesc && rumorsTitle) {
     let rIdx = 0;
     let aIdx = 0;
 
-    setInterval(() => {
-        rumorsWrap.classList.toggle('is-button-mode');
+    function runRumorsCycle() {
+ 
+        rumorsWrap.classList.add('is-button-mode');
+        aIdx = (aIdx + 1) % actionPhrases.length;
+        rumorsDesc.innerText = actionPhrases[aIdx];
         
-        if (rumorsWrap.classList.contains('is-button-mode')) {
-         
-            aIdx = (aIdx + 1) % actionPhrases.length;
-            rumorsDesc.innerText = actionPhrases[aIdx];
-            
-           
-            let scrambleCount = 0;
-            const scrambleInt = setInterval(() => {
-                scrambleCount++;
-                let str = "";
-                for(let i=0; i<3; i++) str += emojis[Math.floor(Math.random() * emojis.length)];
-                rumorsTitle.innerText = str;
-                
-                if (scrambleCount > 8) {
-                    clearInterval(scrambleInt);
-                    rumorsTitle.innerText = "ЧУТКИ";
-                }
-            }, 250);
 
-        } else {
+        let scrambleCount = 0;
+        const scrambleInt = setInterval(() => {
+            scrambleCount++;
+            let str = "";
+            for(let i=0; i<3; i++) str += emojis[Math.floor(Math.random() * emojis.length)];
+            rumorsTitle.innerText = str;
+            
+            if (scrambleCount > 8) {
+                clearInterval(scrambleInt);
+                rumorsTitle.innerText = "ЧУТКИ";
+            }
+        }, 250);
+
+        
+        setTimeout(() => {
            
+            rumorsWrap.classList.remove('is-button-mode');
             rIdx = (rIdx + 1) % rumorPhrases.length;
             rumorsDesc.innerText = rumorPhrases[rIdx];
             rumorsTitle.innerText = "ЧУТКИ";
-        }
-    }, 4500); 
+            
+         
+            setTimeout(runRumorsCycle, 4000);
+            
+        }, 6000);
+    }
+
+    
+    setTimeout(runRumorsCycle, 4000);
 }
+
 //чутки пішли//
 
-const complainPhrases = ["на вонючу рибу в магазині", "на яму", "на життя", "на ще щось", "на паліїв", "на ціни"];
+const complainPhrases = ["🚰на відсутність води", "на сусідів 🏘️", "🐟 на вонючу рибу в магазині", "на 🕳️ яму", "на життя 😫", "на ще щось", "🔥 на паліїв 🔥", "💸🏷️на ціни"];
 let complainIdx = 0;
 const popEl = document.getElementById('complain-pop');
 
@@ -343,7 +351,7 @@ if (popEl) {
             popEl.innerText = complainPhrases[complainIdx];
             popEl.classList.add('pop-up');
         }, 500);
-    }, 3000);
+    }, 2000);
 }
 
 });
