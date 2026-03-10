@@ -120,7 +120,7 @@ body, html {
 .standard-toggle input:checked + .slider:before { transform: translateX(20px); }
 
 
-/* Зменшені і притиснуті лінки */
+/* лінки */
 .hyperlink-cutout {
     position: absolute;
     bottom: -12px;
@@ -133,7 +133,7 @@ body, html {
     border-right: 2px solid #808080;
     border-bottom: 2px solid #808080;
     font-family: 'Verdana', sans-serif;
-    font-size: 10px; /* Зменшили шрифт */
+    font-size: 10px; 
     font-weight: bold;
     display: inline-block;
     cursor: pointer;
@@ -141,8 +141,10 @@ body, html {
     z-index: 20;
     white-space: nowrap;
 }
-.link-left { left: 2px; transform: rotate(-4deg); } /* Притисли до краю */
-.link-right { right: 2px; transform: rotate(4deg); } /* Притисли до краю */
+
+.link-left { left: 10px; transform: rotate(-4deg); } 
+.link-right { right: 10px; transform: rotate(4deg); } 
+
 
 /* Двері */
 .secret-door-btn {
@@ -161,7 +163,7 @@ body, html {
     transform: translateX(-50%) scale(0.85);
 }
 
-/* Анімація для зірок, коли вибив джекпот */
+
 .star-particle {
     position: fixed;
     top: -10%;
@@ -175,9 +177,9 @@ body, html {
 }
 
 /* ЧУТКИ*/
-.rumors-walking-container {
+.rumors-container {
     position: relative;
-    width: 140px;
+    width: 150px;
     margin: 0 auto 40px auto;
     display: flex;
     flex-direction: column;
@@ -185,12 +187,22 @@ body, html {
     cursor: pointer;
 }
 
+.rumor-ear {
+    position: absolute;
+    top: -12px;
+    font-size: 26px;
+    z-index: 1;
+    transition: top 0.4s, opacity 0.4s;
+}
+.ear-left { left: 10px; transform: rotate(-20deg); }
+.ear-right { right: 10px; transform: rotate(20deg) scaleX(-1); }
+
 .b-rumors-pillow {
     background: #FAFAF5;
     border: 3px solid #000;
-    border-radius: 35px 35px 25px 25px;
+    border-radius: 40px 40px 30px 30px;
     width: 100%;
-    height: 120px;
+    height: 110px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -200,15 +212,16 @@ body, html {
     z-index: 2;
     transform-origin: bottom center;
     animation: pillowSway 0.5s infinite alternate ease-in-out;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .rumors-header {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 24px;
-    font-weight: 900;
-    letter-spacing: 2px;
+    font-family: 'Rubik Doodle Shadow', cursive;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 1px;
     color: #FF6B81;
-    text-shadow: 1px 1px 0px #000;
+    line-height: 1;
 }
 
 #rumors-dynamic-text {
@@ -216,45 +229,51 @@ body, html {
     font-size: 11px;
     font-weight: 800;
     color: #888;
-    margin-top: 4px;
+    margin-top: 6px;
     text-align: center;
 }
 
 .sneaker-legs {
     position: absolute;
-    bottom: -20px;
+    bottom: -22px;
     display: flex;
-    gap: 35px;
+    gap: 45px;
     z-index: 1;
+    transition: all 0.4s;
 }
 
-.sneaker {
-    font-size: 38px;
-    filter: drop-shadow(0px 4px 0px rgba(0,0,0,0.4));
-}
+.sneaker { font-size: 38px; filter: drop-shadow(0px 4px 0px rgba(0,0,0,0.4)); }
+.sneaker.left { animation: stepLeft 0.5s infinite alternate ease-in-out; }
+.sneaker.right { animation: stepRight 0.5s infinite alternate ease-in-out; }
 
-.sneaker.left {
-    animation: stepLeft 0.5s infinite alternate ease-in-out;
-}
 
-.sneaker.right {
-    animation: stepRight 0.5s infinite alternate ease-in-out;
+.rumors-container.is-button-mode .b-rumors-pillow {
+    animation: none;
+    transform: none;
+    border-radius: 16px;
+    background: #FFDA59;
+    box-shadow: 0px 8px 0px #000;
 }
+.rumors-container.is-button-mode .b-rumors-pillow:active {
+    transform: translateY(6px);
+    box-shadow: 0px 2px 0px #000;
+}
+.rumors-container.is-button-mode .rumor-ear { top: 20px; opacity: 0; }
+.rumors-container.is-button-mode .sneaker-legs { opacity: 0; transform: translateY(-20px); }
 
 @keyframes pillowSway {
     0% { transform: skewX(-6deg) rotate(-6deg); }
     100% { transform: skewX(6deg) rotate(6deg); }
 }
-
 @keyframes stepLeft {
     0% { transform: translateY(0) scaleY(0.85); }
     100% { transform: translateY(-16px) scaleY(1.1); }
 }
-
 @keyframes stepRight {
     0% { transform: translateY(-16px) scaleY(1.1); }
     100% { transform: translateY(0) scaleY(0.85); }
 }
+
 
 
 
@@ -1280,4 +1299,18 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     .btn { padding: 12px 15px; }
     .row-container { gap: 10px; }
     .breathe-msg { margin-top: 180px; }
+}
+
+.neutral-divider {
+    border: none;
+    border-top: 2px dotted #ccc;
+    width: 60%;
+    margin: 15px auto;
+}
+
+.complain-wrapper {
+    position: relative;
+    width: 90%;
+    margin: 0 auto 35px auto; 
+    z-index: 1;
 }
