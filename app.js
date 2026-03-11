@@ -250,42 +250,98 @@ if (themeToggle) {
 const doorBtn = document.getElementById('secret-door');
 if (doorBtn) {
     let isAnimating = false;
-    doorBtn.addEventListener('click', () => {
+    let hasTappedOnce = false;
+    let predChance = 0.15;
+    let artChance = 0.15;
+
+    const frequentBubbles = ["шо?", "та шо?", "по голові собі постукай", "закрито", "перерва", "пізніше", "👀", "🔒", "нє"];
+    const rareBubbles = ["Спробуй ще", "👊🏻", "🙄", "👁️", "може завтра?", "буває", "шо там?", "хммм 🧐", "не в цей раз", "без сюрпризів", "знову ти?", "еххх", "хух", "Міша, всьо х*йня, давай по новой", "шо такоє, хто ето", "та таке", "іди пороби шось може, нє?", "знову нє", "астанавітєсь", "це ж було вже"];
+    
+    const names = ["Юля", "Каріна", "Лєна", "Свєта", "Аня", "Настя", "Даша", "Оксана", "Марина"];
+    const predictions = [
+        "Зірки кажуть, що сьогодні тобі пощастить, якщо по дорозі в Посад ти посміхнешся дівчині, яка буде йти назустріч і балакати по телефону.",
+        "Зірки кажуть, що зараз твої плани на цей місяць виглядають так само перспективно, як недобудова ДК в центрі.",
+        "Зірки кажуть, що тобі треба терміново вийти прогулятись через парк Сонечко — там ти обовʼязково побачиш щось, що надихне тебе на щось нове.",
+        "Зірки кажуть, що сьогодні краще утриматись від непроханих коментарів в сторону інших людей.",
+        "Зірки кажуть, що {NAME} оцінила твій сьогоднішній лук на 0/10.",
+        "Зірки кажуть: якщо сьогодні ви натрапите на алкаша поблизу музею, уважно прислухайтесь до того, що він намагається сказати — іноді Всесвіт говорить через дуже неочікуваних спікерів.",
+        "Зірки кажуть, що сьогодні хтось біля Посаду подивиться на тебе так, ніби ти винен йому гроші. І знаєш, можливо, ти дійсно винен.",
+        "Зірки кажуть: «Ми бачили твою історію пошуку. МДА….»",
+        "Зірки кажуть, що {NUM1} і {NUM2} — це твої щасливі числа сьогодні."
+    ];
+
+    doorBtn.addEventListener('click', (e) => {
         if (isAnimating) return;
         
-        const roll = Math.random();
-        isAnimating = true;
+        if (!hasTappedOnce) {
+            showBubble("тут може випасти передбачення, артефакт або ачівка, але не в цей раз і не тобі, спробуй ще", e.clientX, e.clientY);
+            hasTappedOnce = true;
+            return;
+        }
 
-        if (roll > 0.95) { 
-            doorBtn.innerText = '🗝️';
-            
-            for(let i = 0; i < 40; i++) {
-                setTimeout(() => {
-                    const p = document.createElement('div');
-                    p.className = 'star-particle';
-                    p.innerText = Math.random() > 0.5 ? '💫' : '✨';
-                    p.style.left = (Math.random() * 90 + 5) + 'vw';
-                    p.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                    document.body.appendChild(p);
-                    setTimeout(() => p.remove(), 2500);
-                }, i * 40);
-            }
-            
-            setTimeout(() => {
-                alert("🚨 ВІТАЮ! ТИ ЗНАЙШОВ КЛЮЧ! 🚨\n\nВін відкриває двері в нікуди. Але ти можеш цим пишатися. Роби скріншот, бо тобі ніхто не повірить.");
-                doorBtn.innerText = '🚪';
-                isAnimating = false;
-            }, 1500);
-            
+        isAnimating = true;
+        doorBtn.style.transform = 'translateX(-50%) scale(0.85)';
+        setTimeout(() => { doorBtn.style.transform = 'translateX(-50%) scale(1)'; }, 100);
+
+        const roll = Math.random();
+
+        if (roll < predChance) {
+            showPrediction();
+            setTimeout(() => { isAnimating = false; }, 1000);
+        } else if (roll < predChance + artChance) {
+            showBubble("Тут буде артефакт (в розробці)", e.clientX, e.clientY);
+            setTimeout(() => { isAnimating = false; }, 500);
         } else {
-            doorBtn.innerText = '🔒';
-            setTimeout(() => {
-                doorBtn.innerText = '🚪';
-                isAnimating = false;
-            }, 400);
+            const isSpecial = Math.random();
+            if (isSpecial > 0.95) {
+                predChance += 0.05;
+                showBubble("🔮 шанс на випадіння передбачення збільшився на 5%", e.clientX, e.clientY);
+            } else if (isSpecial > 0.90) {
+                artChance += 0.05;
+                showBubble("🗝️ шанс знайти артефакт збільшився на 5%", e.clientX, e.clientY);
+            } else {
+                const arr = Math.random() > 0.3 ? frequentBubbles : rareBubbles;
+                const txt = arr[Math.floor(Math.random() * arr.length)];
+                showBubble(txt, e.clientX, e.clientY);
+            }
+            setTimeout(() => { isAnimating = false; }, 300);
         }
     });
+
+    function showBubble(text, x, y) {
+        const b = document.createElement('div');
+        b.className = 'door-bubble';
+        b.innerText = text;
+        const rect = doorBtn.getBoundingClientRect();
+        b.style.left = (rect.left + rect.width / 2) + 'px';
+        b.style.top = (rect.top - 20) + 'px';
+        document.body.appendChild(b);
+        setTimeout(() => b.remove(), 2000);
+    }
+
+    function showPrediction() {
+        let text = predictions[Math.floor(Math.random() * predictions.length)];
+        text = text.replace('{NAME}', names[Math.floor(Math.random() * names.length)]);
+        text = text.replace('{NUM1}', Math.floor(Math.random() * 100));
+        text = text.replace('{NUM2}', Math.floor(Math.random() * 100));
+
+        const card = document.createElement('div');
+        card.className = 'prediction-card';
+        card.innerHTML = `
+            <div class="prediction-card-title">🌟Тобі випало передбачення!🌟</div>
+            <div class="prediction-card-text">${text}</div>
+        `;
+        document.body.appendChild(card);
+        
+        card.addEventListener('click', () => {
+            card.remove();
+        });
+        setTimeout(() => {
+            if(document.body.contains(card)) card.remove();
+        }, 6000);
+    }
 }
+
 
 //чутки ходять//
 const rumorsWrap = document.getElementById('rumors-btn-wrap');
@@ -352,6 +408,38 @@ if (popEl) {
             popEl.classList.add('pop-up');
         }, 500);
     }, 2000);
+}
+const submitOverlay = document.getElementById('submit-overlay');
+const closeSubmitBtn = document.getElementById('close-submit');
+
+const mailboxButtons = ['.b-story', '.b-serious', '.b-petition', '.b-complain', '.b-zbir', '.b-idea', '.b-photo', '.side-tag'];
+const holeButtons = ['.b-unpopular', '.b-capslock', '.b-meme', '.b-shopopalo', '.b-atmosphere', '.b-admins', '.rumors-container'];
+
+mailboxButtons.forEach(sel => {
+    const el = document.querySelector(sel);
+    if(el) {
+        el.addEventListener('click', () => {
+            submitOverlay.className = 'submit-overlay mailbox-mode';
+            submitOverlay.style.display = 'flex';
+        });
+    }
+});
+
+holeButtons.forEach(sel => {
+    const el = document.querySelector(sel);
+    if(el) {
+        el.addEventListener('click', () => {
+            submitOverlay.className = 'submit-overlay hole-mode';
+            submitOverlay.style.display = 'flex';
+        });
+    }
+});
+
+if(closeSubmitBtn) {
+    closeSubmitBtn.addEventListener('click', () => {
+        submitOverlay.style.display = 'none';
+        submitOverlay.className = 'submit-overlay';
+    });
 }
 
 });
