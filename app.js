@@ -1,4 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
+    const miniEmojis = ["🤨", "🙄", "🥱", "🤖", "👊🏻", "🫵🏻", "👁️", "👀", "💥", "🥁", "📸", "🔒", "👁️‍🗨️"];
+
+const valkyArtifacts = [
+  "Свищик 🐴", "Слива 🫐", "Труба біля стадіону 🏟️", "Герб 🛡️", 
+  "Декомунізований танк 🚜", "Каменюка 🪨", 
+  "Дім Хмари 🏚️", "Труба для КП Вода 🚰", "артефакт у розробці ⏳", 
+  "артефакт у розробці ⏳", "артефакт у розробці ⏳", "артефакт у розробці ⏳", 
+  "артефакт у розробці ⏳", "артефакт у розробці ⏳", "артефакт у розробці ⏳"
+];
+
+const achievements = {
+  15: "Досягнення #1:\nЯкийсь підозрілий тіп біля дверей. Ви постукали у двері Валківської Приймальні 15 разів. Ми вже подзвонили куди треба 🧐",
+  50: "Досягнення #2:\nВи постукали у двері Валківської Приймальні 50 разів. Через тебе вже всі собаки на сусідніх вулицях розгавкались. Задовбав, чесне слово, йди додому.",
+  100: "Досягнення #3:\nДятел Вуді, бл*%#\nВи постукали у двері Валківської Приймальні 100 раз.",
+  200: "Досягнення #4:\nЦе не досягнення, це діагноз. Ви постукали у двері Валківської Приймальні 200 раз.",
+  250: "Досягнення #5:\nСвідок Єгови чи просто на лічильник глянути?\nВи постукали у двері Валківської Приймальні 250 раз.",
+  300: "Досягнення #6:\nЗадротіще. Ви постукали у двері Валківської Приймальні 300 раз. Ваш приз — ви можете додати власний валківський артефакт у додаток. Сфоткайте щось у місті (якийсь камінець, кущ, стіну, вікно, кота, урну тощо) і розкажіть де і коли ви це побачили. Відправляти сюди: @valkyshobot 👈🏻",
+  523: "Досягнення #7:\nБандіт. На 523 раз Ви вибили нахер двері Валківської Приймальні. Тепер ставте нові.",
+  777: "Досягнення #8:\nЛегенда ✨\nВи легендарно постукали у двері легендарної Валківської Приймальні легендарні 777 раз. Легендарно безглуздо🎰. Нагадаємо на всяк випадок, шо тут нема фріспінів, грошей вам за це ніхто не дасть, джекпоту не буде 👋🏻",
+  888: "Досягнення #9:\nМамин езотерик 🔮\nВи постукали у двері Валківської Приймальні 888 разів — згідно нумерології це число нескінченного багатства і успіху, а також кількість разів, коли можна було зупинитись і зайнятись чимось кориснішим.",
+  1000: "Досягнення #10:\nВи постукали у двері Валківської Приймальні 1000 разів. Ваш приз — ви можете додати три власних валківських артефактів у цей додаток. Сфоткайте щось у місті. Відправляти сюди: @valkyshobot 👈🏻",
+  2000: "Досягнення #11:\nБотяра якийсь.\nВи постукали у двері Валківської Приймальні 2000 раз. Ну ви або зовсім таво або проходьте капчу. Ми ще не придумали приз.",
+  2222: "Досягнення #12:\nАномалія. Ви абсолютно унікальні. Цього не мало статися. Ви постукали у двері Валківської Приймальні рівно 2222 рази. Ми цього не планували. Доведеться придумувати ще щось.",
+  5000: "Досягнення #13:\nHEEEEERE'S JOHNNY! 🪓\nВи постукали у двері Валківської Приймальні 5000 разів. Ви офіційно зловили шизу як Джек Ніколсон у «Сяйві». Візьміть вже сокиру і розрубайте цей фронтенд к хєрам.",
+  8000: "Досягнення #14:\nЛістинг скасовується 📉\nВи постукали у двері Валківської Приймальні 8000 раз. Бро реально думає, шо це якась тапалка в Телеграмі і зараз з дверей посиплеться кріпта? Дропу не буде, розходимось, ти затапав своє життя в нуль, хомʼячок",
+  9999: "Досягнення #15:\nВиклик санітарів 🚑\nЧо ви до*бались до цих дверей? Ви постукали у двері Валківської Приймальні 9999 раз — це ненормально. За вами вже виїхала бригада. Будь ласка, просто покладіть телефон на підлогу, відійдіть від нього на три кроки і не робіть різких рухів",
+  10000: "Досягнення #16:\nGOAT. Найпотужніша потужність. Рівень наполегливості — БОГ. 👑\nВи постукали у двері Валківської Приймальні 10000 раз. Далі нічого немає, чесно! Ніяких феєрверків, фанфар чи скрімерів — справжня велич завжди тиха і трохи меланхолійна. Це кінець шляху. Хай щастить! Ваш приз — додати 5 власних артефактів. Відправляти сюди: @valkyshobot 👈🏻"
+};
+
+let doorClicks = 0;
+
     const glitchLetter = document.getElementById('glitch-letter');
     if (glitchLetter) {
         setInterval(() => {
@@ -247,16 +279,38 @@ if (themeToggle) {
     });
 }
 
+function showAchievementCard(text) {
+    const card = document.createElement('div');
+    card.className = 'achievement-card';
+    card.innerHTML = `
+        <span class="achievement-close" onclick="this.parentElement.remove()">✕</span>
+        <div>${text.replace(/\n/g, '<br><br>')}</div>
+    `;
+    document.body.appendChild(card);
+}
+
+function showDoorBubble(event, emoji) {
+    const doorEl = event.currentTarget;
+    const rect = doorEl.getBoundingClientRect();
+    const bubble = document.createElement('div');
+    bubble.className = 'door-bubble';
+    bubble.innerText = emoji;
+    bubble.style.left = `${rect.left + rect.width / 2}px`;
+    bubble.style.top = `${rect.top}px`;
+    document.body.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 2000);
+}
+
+function showPredictionPopup(text) {
+    const card = document.createElement('div');
+    card.className = 'prediction-card';
+    card.innerHTML = `<div class="prediction-card-text">${text}</div>`;
+    document.body.appendChild(card);
+    setTimeout(() => card.remove(), 6000);
+}
+
 const doorBtn = document.getElementById('secret-door');
 if (doorBtn) {
-    let isAnimating = false;
-    let hasTappedOnce = false;
-    let predChance = 0.15;
-    let artChance = 0.15;
-
-    const frequentBubbles = ["шо?", "та шо?", "по голові собі постукай", "закрито", "перерва", "пізніше", "👀", "🔒", "нє"];
-    const rareBubbles = ["Спробуй ще", "👊🏻", "🙄", "👁️", "може завтра?", "буває", "шо там?", "хммм 🧐", "не в цей раз", "без сюрпризів", "знову ти?", "еххх", "хух", "Міша, всьо х*йня, давай по новой", "шо такоє, хто ето", "та таке", "іди пороби шось може, нє?", "знову нє", "астанавітєсь", "це ж було вже"];
-    
     const names = ["Юля", "Каріна", "Лєна", "Свєта", "Аня", "Настя", "Даша", "Оксана", "Марина"];
     const predictions = [
         "Зірки кажуть, що сьогодні тобі пощастить, якщо по дорозі в Посад ти посміхнешся дівчині, яка буде йти назустріч і балакати по телефону.",
@@ -270,77 +324,46 @@ if (doorBtn) {
         "Зірки кажуть, що {NUM1} і {NUM2} — це твої щасливі числа сьогодні."
     ];
 
-    doorBtn.addEventListener('click', (e) => {
-        if (isAnimating) return;
-        
-        if (!hasTappedOnce) {
-            showBubble("тут може випасти передбачення, артефакт або ачівка, але не в цей раз і не тобі, спробуй ще", e.clientX, e.clientY);
-            hasTappedOnce = true;
-            return;
-        }
-
-        isAnimating = true;
-        doorBtn.style.transform = 'translateX(-50%) scale(0.85)';
-        setTimeout(() => { doorBtn.style.transform = 'translateX(-50%) scale(1)'; }, 100);
-
-        const roll = Math.random();
-
-        if (roll < predChance) {
-            showPrediction();
-            setTimeout(() => { isAnimating = false; }, 1000);
-        } else if (roll < predChance + artChance) {
-            showBubble("Тут буде артефакт (в розробці)", e.clientX, e.clientY);
-            setTimeout(() => { isAnimating = false; }, 500);
-        } else {
-            const isSpecial = Math.random();
-            if (isSpecial > 0.95) {
-                predChance += 0.05;
-                showBubble("🔮 шанс на випадіння передбачення збільшився на 5%", e.clientX, e.clientY);
-            } else if (isSpecial > 0.90) {
-                artChance += 0.05;
-                showBubble("🗝️ шанс знайти артефакт збільшився на 5%", e.clientX, e.clientY);
-            } else {
-                const arr = Math.random() > 0.3 ? frequentBubbles : rareBubbles;
-                const txt = arr[Math.floor(Math.random() * arr.length)];
-                showBubble(txt, e.clientX, e.clientY);
-            }
-            setTimeout(() => { isAnimating = false; }, 300);
-        }
-    });
-
-    function showBubble(text, x, y) {
-        const b = document.createElement('div');
-        b.className = 'door-bubble';
-        b.innerText = text;
-        const rect = doorBtn.getBoundingClientRect();
-        b.style.left = (rect.left + rect.width / 2) + 'px';
-        b.style.top = (rect.top - 20) + 'px';
-        document.body.appendChild(b);
-        setTimeout(() => b.remove(), 2000);
-    }
-
-    function showPrediction() {
+    function getPrediction() {
         let text = predictions[Math.floor(Math.random() * predictions.length)];
         text = text.replace('{NAME}', names[Math.floor(Math.random() * names.length)]);
         text = text.replace('{NUM1}', Math.floor(Math.random() * 100));
         text = text.replace('{NUM2}', Math.floor(Math.random() * 100));
-
-        const card = document.createElement('div');
-        card.className = 'prediction-card';
-        card.innerHTML = `
-            <div class="prediction-card-title">🌟Тобі випало передбачення!🌟</div>
-            <div class="prediction-card-text">${text}</div>
-        `;
-        document.body.appendChild(card);
-        
-        card.addEventListener('click', () => {
-            card.remove();
-        });
-        setTimeout(() => {
-            if(document.body.contains(card)) card.remove();
-        }, 6000);
+        return text;
     }
+
+    doorBtn.addEventListener('click', (event) => {
+        doorClicks++;
+
+        if (achievements[doorClicks]) {
+            showAchievementCard(achievements[doorClicks]);
+            
+            if (doorClicks === 523) {
+                doorBtn.classList.add('door-falling');
+                setTimeout(() => { 
+                    doorBtn.innerText = '◼️'; 
+                    doorBtn.classList.remove('door-falling'); 
+                }, 1000);
+            }
+            return; 
+        }
+
+        const rng = Math.random() * 100;
+
+        if (rng < 8) { 
+            const randomArtifact = valkyArtifacts[Math.floor(Math.random() * valkyArtifacts.length)];
+            showPredictionPopup(`Знайдено артефакт:<br><br><b>${randomArtifact}</b>`); 
+        } 
+        else if (rng >= 8 && rng < 50) { 
+            showPredictionPopup(`🔮 ${getPrediction()}`); 
+        } 
+        else { 
+            const randomEmoji = miniEmojis[Math.floor(Math.random() * miniEmojis.length)];
+            showDoorBubble(event, randomEmoji);
+        }
+    });
 }
+
 
 
 //чутки ходять//
