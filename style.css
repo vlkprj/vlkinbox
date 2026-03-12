@@ -1448,7 +1448,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 
 /*передбачення картки кінець*/
 
-/*сабміт кінець*/
+/*сабміт початок*/
 .submit-overlay {
     position: fixed;
     top: 0;
@@ -1458,75 +1458,366 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     z-index: 2000;
     display: none;
     flex-direction: column;
+    overflow: hidden;
 }
+
 .submit-video-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    background-size: cover;
-    background-position: center;
+    object-fit: cover;
+    z-index: 0;
 }
-.submit-overlay.mailbox-mode .submit-video-bg {
-    background-color: #ffffff;
+
+.submit-overlay.mailbox-mode {
+    background: #FAFAF5;
 }
-.submit-overlay.hole-mode .submit-video-bg {
-    background-color: #010D0D;
+
+.submit-overlay.hole-mode {
+    background: #080C0C;
 }
+
 .submit-header {
-    padding: 20px;
+    position: relative;
+    z-index: 10;
+    padding: 20px 20px 0 20px;
     display: flex;
     justify-content: flex-end;
 }
+
 .close-submit {
-    color: #fff;
-    font-size: 32px;
+    font-size: 28px;
     cursor: pointer;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    color: #888;
+    transition: color 0.2s;
 }
-.submit-overlay.mailbox-mode .close-submit {
+
+.submit-overlay.hole-mode .close-submit {
+    color: #555;
+}
+
+.close-submit:active {
     color: #000;
-    text-shadow: none;
 }
+
+.submit-overlay.hole-mode .close-submit:active {
+    color: #fff;
+}
+
 .submit-content {
+    position: relative;
+    z-index: 10;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px 24px 30px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.submit-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    max-width: 400px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.submit-overlay.mailbox-mode .submit-toolbar {
+    background: rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+.submit-overlay.hole-mode .submit-toolbar {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.toolbar-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.15s;
+}
+
+.submit-overlay.mailbox-mode .toolbar-btn {
+    color: #444;
+}
+
+.submit-overlay.hole-mode .toolbar-btn {
+    color: #888;
+}
+
+.toolbar-btn:hover {
+    background: rgba(128,128,128,0.15);
+}
+
+.toolbar-btn.active {
+    background: rgba(128,128,128,0.2);
+}
+
+.toolbar-select {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    padding: 4px 4px;
+    border-radius: 6px;
+    outline: none;
+    flex: 1;
+}
+
+.submit-overlay.mailbox-mode .toolbar-select {
+    color: #444;
+}
+
+.submit-overlay.hole-mode .toolbar-select {
+    color: #777;
+}
+
+.submit-overlay.hole-mode .toolbar-select option {
+    background: #1a1a1a;
+    color: #ccc;
+}
+
+.submit-editor {
+    width: 100%;
+    max-width: 400px;
+    min-height: 180px;
+    max-height: 280px;
+    overflow-y: auto;
+    border-radius: 16px;
+    padding: 18px 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    outline: none;
+    box-sizing: border-box;
+    word-wrap: break-word;
+}
+
+.submit-overlay.mailbox-mode .submit-editor {
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(0,0,0,0.1);
+    color: #1a1a1a;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+.submit-overlay.hole-mode .submit-editor {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #e0e0e0;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+.submit-editor:empty::before {
+    content: attr(data-placeholder);
+    pointer-events: none;
+}
+
+.submit-overlay.mailbox-mode .submit-editor:empty::before {
+    color: #bbb;
+}
+
+.submit-overlay.hole-mode .submit-editor:empty::before {
+    color: #444;
+}
+
+.submit-attached-preview {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.attach-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid rgba(128,128,128,0.2);
+}
+
+.submit-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.submit-anon-badge {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.submit-overlay.mailbox-mode .submit-anon-badge {
+    background: rgba(0,0,0,0.06);
+    color: #888;
+}
+
+.submit-overlay.hole-mode .submit-anon-badge {
+    background: rgba(255,255,255,0.06);
+    color: #666;
+}
+
+.submit-name-input {
+    flex: 1;
+    background: none;
+    border: none;
+    border-bottom: 1px solid;
+    padding: 6px 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    outline: none;
+    border-radius: 0;
+}
+
+.submit-overlay.mailbox-mode .submit-name-input {
+    border-color: rgba(0,0,0,0.15);
+    color: #444;
+}
+
+.submit-overlay.hole-mode .submit-name-input {
+    border-color: rgba(255,255,255,0.1);
+    color: #888;
+}
+
+.submit-name-input::placeholder {
+    color: #aaa;
+}
+
+.submit-action-btn {
+    padding: 14px 40px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.submit-overlay.mailbox-mode .submit-action-btn {
+    background: #1a1a1a;
+    color: #FFDA59;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.submit-overlay.hole-mode .submit-action-btn {
+    background: rgba(255,255,255,0.08);
+    color: #e0e0e0;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.submit-action-btn:active {
+    transform: scale(0.97);
+}
+
+.submit-sent-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
+    padding: 40px;
+    text-align: center;
 }
-.submit-textarea {
-    width: 100%;
-    max-width: 400px;
-    height: 200px;
-    background: rgba(255,255,255,0.9);
-    border: 2px solid #000;
-    border-radius: 12px;
-    padding: 15px;
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    resize: none;
+
+.submit-overlay.mailbox-mode .submit-sent-screen {
+    background: #FAFAF5;
 }
-.submit-overlay.hole-mode .submit-textarea {
-    background: rgba(0,0,0,0.6);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.3);
+
+.submit-overlay.hole-mode .submit-sent-screen {
+    background: #080C0C;
 }
-.submit-action-btn {
-    padding: 15px 40px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 18px;
-    font-weight: 900;
-    background: #FFDA59;
-    border: 2px solid #000;
-    border-radius: 30px;
+
+.close-sent {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
     cursor: pointer;
-    box-shadow: 4px 4px 0px #000;
+    color: #888;
 }
+
+.sent-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 1.3;
+}
+
+.submit-overlay.mailbox-mode .sent-text {
+    color: #1a1a1a;
+}
+
+.submit-overlay.hole-mode .sent-text {
+    color: #e0e0e0;
+}
+
+.sent-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #888;
+}
+
+.sent-link {
+    color: #1a1a1a;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.submit-overlay.hole-mode .sent-link {
+    color: #e0e0e0;
+}
+
+.sent-spinner {
+    color: #888;
+}
+
+.sent-spinner .spinning {
+    font-size: 32px;
+    display: inline-block;
+    animation: spinIcon 1.2s linear infinite;
+}
+
+@keyframes spinIcon {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 400px) {
+    .submit-content { padding: 10px 16px 24px 16px; }
+    .submit-editor { min-height: 140px; font-size: 15px; }
+    .sent-text { font-size: 17px; }
+}
+
 /*сабміт кінець*/
 
 /*ачівки і артефакти кінець*/
