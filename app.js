@@ -279,58 +279,6 @@ if (themeToggle) {
     });
 }
 
-function showAchievementCard(text) {
-    const card = document.createElement('div');
-    card.className = 'achievement-card';
-    card.innerHTML = `
-        <span class="achievement-close" onclick="this.parentElement.remove()">✕</span>
-        <div>${text.replace(/\n/g, '<br><br>')}</div>
-    `;
-    document.body.appendChild(card);
-}
-
-function showDoorBubble(event, emoji) {
-    const doorEl = event.currentTarget;
-    const rect = doorEl.getBoundingClientRect();
-    const bubble = document.createElement('div');
-    bubble.className = 'door-bubble';
-    bubble.innerText = emoji;
-    bubble.style.left = `${rect.left + rect.width / 2}px`;
-    bubble.style.top = `${rect.top}px`;
-    document.body.appendChild(bubble);
-    setTimeout(() => bubble.remove(), 2000);
-}
-
-function showPredictionPopup(text) {
-    const card = document.createElement('div');
-    card.className = 'prediction-card';
-    card.innerHTML = `<div class="prediction-card-text">${text}</div>`;
-    document.body.appendChild(card);
-    setTimeout(() => card.remove(), 6000);
-}
-
-const doorBtn = document.getElementById('secret-door');
-if (doorBtn) {
-    const names = ["Юля", "Каріна", "Лєна", "Свєта", "Аня", "Настя", "Даша", "Оксана", "Марина"];
-    const predictions = [
-        "Зірки кажуть, що сьогодні тобі пощастить, якщо по дорозі в Посад ти посміхнешся дівчині, яка буде йти назустріч і балакати по телефону.",
-        "Зірки кажуть, що зараз твої плани на цей місяць виглядають так само перспективно, як недобудова ДК в центрі.",
-        "Зірки кажуть, що тобі треба терміново вийти прогулятись через парк Сонечко — там ти обовʼязково побачиш щось, що надихне тебе на щось нове.",
-        "Зірки кажуть, що сьогодні краще утриматись від непроханих коментарів в сторону інших людей.",
-        "Зірки кажуть, що {NAME} оцінила твій сьогоднішній лук на 0/10.",
-        "Зірки кажуть: якщо сьогодні ви натрапите на алкаша поблизу музею, уважно прислухайтесь до того, що він намагається сказати — іноді Всесвіт говорить через дуже неочікуваних спікерів.",
-        "Зірки кажуть, що сьогодні хтось біля Посаду подивиться на тебе так, ніби ти винен йому гроші. І знаєш, можливо, ти дійсно винен.",
-        "Зірки кажуть: «Ми бачили твою історію пошуку. МДА….»",
-        "Зірки кажуть, що {NUM1} і {NUM2} — це твої щасливі числа сьогодні."
-    ];
-
-    function getPrediction() {
-        let text = predictions[Math.floor(Math.random() * predictions.length)];
-        text = text.replace('{NAME}', names[Math.floor(Math.random() * names.length)]);
-        text = text.replace('{NUM1}', Math.floor(Math.random() * 100));
-        text = text.replace('{NUM2}', Math.floor(Math.random() * 100));
-        return text;
-    }
 
 function showAchievementCard(text) {
     const card = document.createElement('div');
