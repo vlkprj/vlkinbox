@@ -322,14 +322,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showAchievementCard(text) {
-        const card = document.createElement('div');
-        card.className = 'achievement-card';
-        card.innerHTML = `
-            <span class="achievement-close" onclick="this.parentElement.remove()">✕</span>
-            <div>${text.replace(/\n/g, '<br><br>')}</div>
-        `;
-        document.body.appendChild(card);
-    }
+    const lines = text.split('\n');
+    const titleLine = lines[0] || '';
+    const numberMatch = titleLine.match(/Досягнення #(\d+)/);
+    const number = numberMatch ? numberMatch[1] : '';
+    const titleText = titleLine.replace(/Досягнення #\d+:\n?/, '').replace(/Досягнення #\d+/, '');
+    const descText = lines.slice(1).join(' ');
+
+    const card = document.createElement('div');
+    card.className = 'achievement-card';
+    card.innerHTML = `
+        <div class="card-plastic-wrap">
+            <span class="achievement-close" onclick="this.closest('.achievement-card').remove()">✕</span>
+            <div class="card-inner">
+                <div class="card-image-area">
+                    <span class="card-image-placeholder">🏆</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-number">Досягнення #${number}</div>
+                    <div class="card-title">${titleText || descText.substring(0, 40)}</div>
+                    <div class="card-desc">${descText}</div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(card);
+}
 
     function showDoorBubble(event, text) {
         const doorEl = event.currentTarget;
@@ -344,12 +362,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showPredictionPopup(text) {
+    const isArtifact = text.includes('артефакт');
+
+    if (isArtifact) {
+        const nameMatch = text.match(/<b>(.*?)<\/b>/);
+        const artifactName = nameMatch ? nameMatch[1] : text;
+
         const card = document.createElement('div');
-        card.className = 'prediction-card';
-        card.innerHTML = `<div class="prediction-card-text">${text}</div>`;
+        card.className = 'artifact-card';
+        card.innerHTML = `
+            <div class="artifact-plastic-wrap">
+                <span class="achievement-close" onclick="this.closest('.artifact-card').remove()">✕</span>
+                <div class="artifact-inner">
+                    <div class="artifact-image-area">
+                        <span class="artifact-image-placeholder">🗿</span>
+                    </div>
+                    <div class="artifact-body">
+                        <div class="artifact-label">Артефакт знайдено</div>
+                        <div class="artifact-name">${artifactName}</div>
+                    </div>
+                </div>
+            </div>
+        `;
         document.body.appendChild(card);
-        setTimeout(() => card.remove(), 6000);
+        setTimeout(() => card.remove(), 8000);
+        return;
     }
+
+    const card = document.createElement('div');
+    card.className = 'prediction-card';
+    card.innerHTML = `<div class="prediction-card-text">${text}</div>`;
+    document.body.appendChild(card);
+    setTimeout(() => card.remove(), 6000);
+}
+
 
     const doorBtn = document.getElementById('secret-door');
     if (doorBtn) {
