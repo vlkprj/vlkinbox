@@ -318,7 +318,8 @@ function closeSubmitOverlay() {
 }
 
 const mailboxButtons = ['.b-story', '.b-serious', '.b-petition', '.b-complain', '.b-zbir', '.b-idea', '.b-photo', '.side-tag'];
-const holeButtons = ['.b-unpopular', '.b-meme', '.b-shopopalo', '.b-admins', '.rumors-container'];
+const holeButtons = ['.b-unpopular', '.b-meme', '.b-shopopalo', '.b-admins', '.rumors-container', '.b-problem'];
+
 
 
 mailboxButtons.forEach(sel => {
