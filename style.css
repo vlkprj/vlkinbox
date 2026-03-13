@@ -2490,3 +2490,31 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
+
+.close-sent-btn {
+    margin-top: 10px;
+    padding: 12px 36px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: #1a1a1a;
+    color: #FFDA59;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+}
+
+.close-sent-btn:active {
+    transform: scale(0.97);
+}
+
+.submit-overlay.hole-mode .close-sent-btn,
+.atmo-overlay .close-sent-btn {
+    background: rgba(255,255,255,0.08);
+    color: #e0e0e0;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
