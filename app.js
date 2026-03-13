@@ -323,6 +323,7 @@ const holeButtons = ['.b-unpopular', '.b-shopopalo', '.b-admins', '.rumors-conta
 
 
 
+
 mailboxButtons.forEach(sel => {
     const el = document.querySelector(sel);
     if (el) el.addEventListener('click', () => openSubmitOverlay('mailbox'));
@@ -389,6 +390,79 @@ if (submitActionBtn) {
     });
 }
 //сабміт кінець//
+
+const atmoOverlay = document.getElementById('atmo-overlay');
+const closeAtmoBtn = document.getElementById('close-atmo');
+const atmoActionBtn = document.getElementById('atmo-action-btn');
+const atmoContent = document.getElementById('atmo-content');
+const atmoSentScreen = document.getElementById('atmo-sent-screen');
+const closeAtmoSent = document.getElementById('close-atmo-sent');
+const atmoGrid = document.getElementById('atmo-grid');
+
+function openAtmoOverlay() {
+    atmoOverlay.style.display = 'flex';
+    atmoContent.style.display = 'flex';
+    atmoSentScreen.style.display = 'none';
+    atmoGrid.querySelectorAll('.atmo-slot-img').forEach(img => {
+        img.style.display = 'none';
+        img.src = '';
+    });
+    atmoGrid.querySelectorAll('.atmo-slot-inner').forEach(inner => {
+        inner.style.display = 'flex';
+    });
+    atmoGrid.querySelectorAll('.atmo-file-input').forEach(inp => inp.value = '');
+}
+
+function closeAtmoOverlay() {
+    atmoOverlay.style.display = 'none';
+}
+
+const atmoBtnEl = document.querySelector('.b-atmosphere');
+if (atmoBtnEl) atmoBtnEl.addEventListener('click', openAtmoOverlay);
+
+if (closeAtmoBtn) closeAtmoBtn.addEventListener('click', closeAtmoOverlay);
+if (closeAtmoSent) closeAtmoSent.addEventListener('click', closeAtmoOverlay);
+
+if (atmoGrid) {
+    atmoGrid.querySelectorAll('.atmo-slot').forEach(slot => {
+        const input = slot.querySelector('.atmo-file-input');
+        const img = slot.querySelector('.atmo-slot-img');
+        const inner = slot.querySelector('.atmo-slot-inner');
+
+        slot.addEventListener('click', () => input.click());
+
+        input.addEventListener('change', () => {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                img.src = e.target.result;
+                img.style.display = 'block';
+                inner.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+
+    document.querySelectorAll('.atmo-frame-pick').forEach(pick => {
+        pick.addEventListener('click', () => {
+            document.querySelectorAll('.atmo-frame-pick').forEach(p => p.classList.remove('active'));
+            pick.classList.add('active');
+            const frame = pick.dataset.frame;
+            atmoGrid.querySelectorAll('.atmo-slot').forEach(slot => {
+                slot.dataset.frame = frame;
+            });
+        });
+    });
+}
+
+if (atmoActionBtn) {
+    atmoActionBtn.addEventListener('click', () => {
+        atmoContent.style.display = 'none';
+        atmoSentScreen.style.display = 'flex';
+    });
+}
+
 const photoOverlay = document.getElementById('photo-overlay');
 const closePhotoBtn = document.getElementById('close-photo');
 const photoActionBtn = document.getElementById('photo-action-btn');
