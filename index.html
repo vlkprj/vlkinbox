@@ -248,26 +248,39 @@
 
     <div class="submit-content" id="submit-content">
 
-        <div class="submit-toolbar" id="submit-toolbar">
-            <button class="toolbar-btn" data-cmd="bold" title="Жирний">
-                <b>B</b>
-            </button>
-            <button class="toolbar-btn" data-cmd="italic" title="Курсив">
-                <i>I</i>
-            </button>
-            <select class="toolbar-select" id="font-select">
-                <option value="Inter">Inter</option>
-                <option value="Vollkorn">Vollkorn</option>
-                <option value="PT Serif">PT Serif</option>
-                <option value="Lora">Lora</option>
-                <option value="Space Grotesk">Space Grotesk</option>
-                <option value="Roboto">Roboto</option>
-            </select>
-            <button class="toolbar-btn" id="attach-btn" title="Прикріпити файл">
-                <span class="material-symbols-outlined" style="font-size:18px;">attach_file</span>
+            <div class="submit-toolbar" id="submit-toolbar">
+            <button class="toolbar-attach-btn" id="attach-btn" title="Прикріпити файл">
+                <span class="material-symbols-outlined">attach_file</span>
             </button>
             <input type="file" id="attach-input" accept="image/*" style="display:none;">
+            <div class="toolbar-divider"></div>
+            <button class="toolbar-btn" data-cmd="bold" title="Жирний"><b>B</b></button>
+            <button class="toolbar-btn" data-cmd="italic" title="Курсив"><i>I</i></button>
+            <div class="toolbar-divider"></div>
+            <div class="toolbar-font-box" id="toolbar-font-box">
+                <span class="toolbar-font-label">Шрифт →</span>
+                <select class="toolbar-select" id="font-select">
+                    <option value="Inter">Inter</option>
+                    <option value="Vollkorn">Vollkorn</option>
+                    <option value="PT Serif">PT Serif</option>
+                    <option value="Lora">Lora</option>
+                    <option value="Space Grotesk">Grotesk</option>
+                </select>
+            </div>
         </div>
+        <div class="submit-colors-row" id="submit-colors-row">
+            <span class="colors-label">Текст:</span>
+            <div class="color-dot text-color-dot active" data-color="#222221" style="background:#222221;" title="Основний"></div>
+            <div class="color-dot text-color-dot" data-color="#B24A3B" style="background:#B24A3B;" title="Червоний"></div>
+            <div class="color-dot text-color-dot" data-color="#4282AA" style="background:#4282AA;" title="Синій"></div>
+            <div class="color-dot text-color-dot" data-color="#D97757" style="background:#D97757;" title="Помаранчевий"></div>
+            <div class="toolbar-divider"></div>
+            <span class="colors-label">Фон:</span>
+            <div class="color-dot bg-color-dot active" data-color="#FAF8F4" style="background:#FAF8F4; border: 1px solid #ddd;" title="Світлий"></div>
+            <div class="color-dot bg-color-dot" data-color="#262624" style="background:#262624;" title="Темний"></div>
+            <div class="color-dot bg-color-dot" data-color="#FFFFFF" style="background:#FFFFFF; border: 1px solid #ddd;" title="Білий"></div>
+        </div>
+
 
         <div class="submit-editor" id="submit-editor" contenteditable="true" data-placeholder="Пиши сюди..."></div>
 
