@@ -299,14 +299,18 @@ function openSubmitOverlay(mode) {
     submitOverlay.style.display = 'flex';
     submitContent.style.display = 'flex';
     submitSentScreen.style.display = 'none';
+    submitVideo.style.display = 'block';
+    document.body.classList.add('submit-open');
 
     const src = mode === 'mailbox' ? 'skrynka.mp4' : 'blackhole.mp4';
     submitVideo.src = src;
     submitVideo.load();
     submitVideo.pause();
     submitVideo.currentTime = 0;
+    submitEditor.innerHTML = '';
     submitEditor.focus();
 }
+
 
 function closeSubmitOverlay() {
     submitOverlay.style.display = 'none';
@@ -315,7 +319,10 @@ function closeSubmitOverlay() {
     attachPreview.innerHTML = '';
     submitVideo.pause();
     submitVideo.src = '';
+    submitVideo.style.display = 'block';
+    document.body.classList.remove('submit-open');
 }
+
 
 const mailboxButtons = ['.b-story', '.b-serious', '.b-petition', '.b-complain', '.b-zbir', '.b-idea', '.b-photo', '.side-tag'];
 const holeButtons = ['.b-unpopular', '.b-shopopalo', '.b-admins', '.rumors-container', '.b-problem'];
@@ -411,11 +418,15 @@ function openAtmoOverlay() {
         inner.style.display = 'flex';
     });
     atmoGrid.querySelectorAll('.atmo-file-input').forEach(inp => inp.value = '');
+    document.body.classList.add('submit-open');
 }
+
 
 function closeAtmoOverlay() {
     atmoOverlay.style.display = 'none';
+    document.body.classList.remove('submit-open');
 }
+
 
 const atmoBtnEl = document.querySelector('.b-atmosphere');
 if (atmoBtnEl) atmoBtnEl.addEventListener('click', openAtmoOverlay);
@@ -483,11 +494,15 @@ function openPhotoOverlay(mode) {
     photoDropInner.style.display = 'flex';
     photoFileInput.value = '';
     photoOverlayTitle.innerText = mode === 'meme' ? 'ВІДПРАВИТИ МЕМ' : 'ВІДПРАВИТИ ФОТО';
+    document.body.classList.add('submit-open');
 }
+
 
 function closePhotoOverlay() {
     photoOverlay.style.display = 'none';
+    document.body.classList.remove('submit-open');
 }
+
 
 const photoBtnEl = document.querySelector('.b-photo');
 const memeBtnEl = document.querySelector('.b-meme');
@@ -535,13 +550,17 @@ function openCapsOverlay() {
     capsContent.style.display = 'flex';
     capsSentScreen.style.display = 'none';
     capsEditor.value = '';
+    document.body.classList.add('submit-open');
     capsEditor.focus();
 }
+
 
 function closeCapsOverlay() {
     capsOverlay.style.display = 'none';
     capsEditor.value = '';
+    document.body.classList.remove('submit-open');
 }
+
 
 const capsBtn = document.querySelector('.b-capslock');
 if (capsBtn) capsBtn.addEventListener('click', openCapsOverlay);
