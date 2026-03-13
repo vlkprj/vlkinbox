@@ -351,11 +351,11 @@ holeButtons.forEach(sel => {
 if (closeSubmitBtn) closeSubmitBtn.addEventListener('click', closeSubmitOverlay);
 
 if (closeSentBtn) closeSentBtn.addEventListener('click', closeSubmitOverlay);
-if (previewSendBtn) {
-    submitOverlay.addEventListener('click', (e) => {
-        if (e.target === submitOverlay) closeSubmitOverlay();
-    });
-}
+
+submitOverlay.addEventListener('click', (e) => {
+    if (e.target === submitOverlay) closeSubmitOverlay();
+});
+
 
 document.querySelectorAll('.toolbar-btn[data-cmd]').forEach(btn => {
     btn.addEventListener('mousedown', (e) => {
