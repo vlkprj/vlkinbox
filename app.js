@@ -336,7 +336,7 @@ function closeSubmitOverlay() {
 
 
 
-const mailboxButtons = ['.b-story', '.b-serious', '.b-petition', '.b-complain', '.b-zbir', '.b-idea', '.b-photo', '.side-tag'];
+const mailboxButtons = ['.b-story', '.b-serious', '.b-petition', '.b-complain', '.b-zbir', '.b-idea', '.b-photo', '.side-tag', '.b-write-main', '.b-thank'];
 const holeButtons = ['.b-unpopular', '.b-shopopalo', '.b-admins', '.rumors-container', '.b-problem'];
 
 
@@ -378,6 +378,8 @@ if (fontSelect) {
     });
 }
 
+const attachPreviewInline = document.getElementById('attach-preview-inline');
+
 if (attachBtn && attachInput) {
     attachBtn.addEventListener('click', () => attachInput.click());
     attachInput.addEventListener('change', () => {
@@ -385,15 +387,17 @@ if (attachBtn && attachInput) {
         if (!file) return;
         const reader = new FileReader();
         reader.onload = (e) => {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            img.className = 'attach-thumb';
-            attachPreview.appendChild(img);
+            if (attachPreviewInline) {
+                attachPreviewInline.innerHTML = '';
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.className = 'attach-thumb-full';
+                attachPreviewInline.appendChild(img);
+            }
         };
         reader.readAsDataURL(file);
     });
 }
-
 const textColorDots = document.querySelectorAll('.text-color-dot');
 const bgColorDots = document.querySelectorAll('.bg-color-dot');
 
@@ -464,7 +468,11 @@ const previewSendBtn = document.getElementById('preview-send-btn');
 if (submitActionBtn) {
     submitActionBtn.addEventListener('click', () => {
         const nameVal = document.getElementById('submit-name').value.trim();
-        previewPostCard.innerHTML = submitEditor.innerHTML || '<span style="color:#bbb">— порожньо —</span>';
+        let previewHTML = submitEditor.innerHTML || '';
+        if (attachPreviewInline && attachPreviewInline.innerHTML) {
+            previewHTML += attachPreviewInline.innerHTML;
+        }
+        previewPostCard.innerHTML = previewHTML || '<span style="color:#bbb">— порожньо —</span>';
         previewPostCard.style.background = currentBgColor || '#fff';
         previewPostCard.style.color = currentTextColor || '#1a1a1a';
         previewMetaLine.innerText = nameVal ? `від: ${nameVal}` : '👤 Анонімно';
@@ -535,22 +543,19 @@ const atmoActionBtn = document.getElementById('atmo-action-btn');
 const atmoContent = document.getElementById('atmo-content');
 const atmoSentScreen = document.getElementById('atmo-sent-screen');
 const closeAtmoSent = document.getElementById('close-atmo-sent');
-const atmoGrid = document.getElementById('atmo-grid');
+const atmoStage = document.getElementById('atmo-stage');
 
 function openAtmoOverlay() {
     lastScrollY = window.scrollY;
     atmoOverlay.style.display = 'flex';
     atmoContent.style.display = 'flex';
     atmoSentScreen.style.display = 'none';
-    atmoGrid.querySelectorAll('.atmo-slot-img').forEach(img => {
-        img.style.display = 'none';
-        img.src = '';
-    });
-    atmoGrid.querySelectorAll('.atmo-slot-inner').forEach(inner => {
-        inner.style.display = 'flex';
-    });
-    atmoGrid.querySelectorAll('.atmo-file-input').forEach(inp => inp.value = '');
     document.body.classList.add('submit-open');
+    currentAtmoLayout = 'single-polaroid';
+    document.querySelectorAll('.atmo-layout-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.layout === 'single-polaroid');
+    });
+    renderAtmoStage(currentAtmoLayout);
 }
 
 
@@ -568,38 +573,84 @@ if (atmoBtnEl) atmoBtnEl.addEventListener('click', openAtmoOverlay);
 if (closeAtmoBtn) closeAtmoBtn.addEventListener('click', closeAtmoOverlay);
 if (closeAtmoSent) closeAtmoSent.addEventListener('click', closeAtmoOverlay);
 
-if (atmoGrid) {
-    atmoGrid.querySelectorAll('.atmo-slot').forEach(slot => {
-        const input = slot.querySelector('.atmo-file-input');
-        const img = slot.querySelector('.atmo-slot-img');
-        const inner = slot.querySelector('.atmo-slot-inner');
+let currentAtmoLayout = 'single-polaroid';
 
-        slot.addEventListener('click', () => input.click());
-
-        input.addEventListener('change', () => {
-            const file = input.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                img.src = e.target.result;
-                img.style.display = 'block';
-                inner.style.display = 'none';
-            };
-            reader.readAsDataURL(file);
-        });
+function buildAtmoSlot(isPolaroid, captionEnabled) {
+    const slot = document.createElement('div');
+    slot.className = isPolaroid ? 'atmo-polaroid-slot' : 'atmo-square-slot';
+    
+    const inner = document.createElement('div');
+    inner.className = 'atmo-slot-placeholder';
+    inner.innerHTML = `<span class="material-symbols-outlined" style="font-size:36px; color:#ccc;">add_photo_alternate</span>`;
+    
+    const img = document.createElement('img');
+    img.className = 'atmo-slot-img-fill';
+    img.style.display = 'none';
+    
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.style.display = 'none';
+    
+    slot.appendChild(inner);
+    slot.appendChild(img);
+    slot.appendChild(input);
+    
+    if (isPolaroid && captionEnabled) {
+        const cap = document.createElement('input');
+        cap.type = 'text';
+        cap.className = 'atmo-polaroid-caption';
+        cap.placeholder = 'підпис...';
+        slot.appendChild(cap);
+    }
+    
+    slot.addEventListener('click', (e) => {
+        if (e.target.tagName === 'INPUT' && e.target.type === 'text') return;
+        input.click();
     });
-
-    document.querySelectorAll('.atmo-frame-pick').forEach(pick => {
-        pick.addEventListener('click', () => {
-            document.querySelectorAll('.atmo-frame-pick').forEach(p => p.classList.remove('active'));
-            pick.classList.add('active');
-            const frame = pick.dataset.frame;
-            atmoGrid.querySelectorAll('.atmo-slot').forEach(slot => {
-                slot.dataset.frame = frame;
-            });
-        });
+    
+    input.addEventListener('change', () => {
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            img.src = ev.target.result;
+            img.style.display = 'block';
+            inner.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
     });
+    
+    return slot;
 }
+
+function renderAtmoStage(layout) {
+    if (!atmoStage) return;
+    atmoStage.innerHTML = '';
+    atmoStage.className = 'atmo-stage atmo-stage--' + layout;
+    
+    if (layout === 'single-polaroid') {
+        atmoStage.appendChild(buildAtmoSlot(true, true));
+    } else if (layout === 'two-polaroid') {
+        atmoStage.appendChild(buildAtmoSlot(true, true));
+        atmoStage.appendChild(buildAtmoSlot(true, true));
+        atmoStage.style.display = 'flex';
+        atmoStage.style.gap = '10px';
+    } else if (layout === 'single-square') {
+        atmoStage.appendChild(buildAtmoSlot(false, false));
+    } else if (layout === 'grid-four') {
+        for (let i = 0; i < 4; i++) atmoStage.appendChild(buildAtmoSlot(false, false));
+    }
+}
+
+document.querySelectorAll('.atmo-layout-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.atmo-layout-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentAtmoLayout = btn.dataset.layout;
+        renderAtmoStage(currentAtmoLayout);
+    });
+});
 
 if (atmoActionBtn) {
     atmoActionBtn.addEventListener('click', () => {
@@ -630,6 +681,11 @@ function openPhotoOverlay(mode) {
     photoFileInput.value = '';
     photoOverlayTitle.innerText = mode === 'meme' ? 'ВІДПРАВИТИ МЕМ' : 'ВІДПРАВИТИ ФОТО';
     document.body.classList.add('submit-open');
+    const captionWrap = document.getElementById('photo-caption-wrap');
+    if (captionWrap) captionWrap.style.display = 'none';
+    if (mode === 'photo') {
+        setTimeout(() => photoFileInput.click(), 200);
+    }
 }
 
 
@@ -662,6 +718,8 @@ if (photoFileInput) {
             photoPreviewImg.src = e.target.result;
             photoPreviewImg.style.display = 'block';
             photoDropInner.style.display = 'none';
+            const captionWrap = document.getElementById('photo-caption-wrap');
+            if (captionWrap) captionWrap.style.display = 'block';
         };
         reader.readAsDataURL(file);
     });
