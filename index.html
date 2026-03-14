@@ -52,6 +52,11 @@
 
 
 <div class="main-feed">
+        <div class="btn b-write-main">
+        НАПИСАТИ
+        <span class="material-symbols-outlined">arrow_forward</span>
+    </div>
+
     <!--серйозно розказати-->
 <div class="row-container" style="align-items: stretch;">
    <div class="btn b-story">
@@ -106,6 +111,14 @@
         <span class="material-symbols-outlined">photo_library</span>
         ВІДПРАВИТИ ФОТО
     </div>
+    
+    <div class="btn b-thank">
+    <svg class="heart-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 21C12 21 3 14.5 3 8.5C3 5.46 5.46 3 8.5 3C10.24 3 11.82 3.8 12.87 5.07C13.18 4.7 13.55 4.38 13.97 4.12C14.88 3.4 16.01 3 17.15 3C19.86 3 22 5.14 22 7.85C22 14.5 12 21 12 21Z" fill="#B24A3B" stroke="#B24A3B" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+    подякувати
+</div>
+
 
 <!--ПОСКАРЖИТИСЬ-->
 <div class="complain-wrapper">
@@ -246,55 +259,60 @@
         <span class="material-symbols-outlined close-submit" id="close-submit">close</span>
     </div>
 
-    <div class="submit-content" id="submit-content">
+       <div class="submit-content" id="submit-content">
 
-            <div class="submit-toolbar" id="submit-toolbar">
-            <button class="toolbar-attach-btn" id="attach-btn" title="Прикріпити файл">
-                <span class="material-symbols-outlined">attach_file</span>
-            </button>
-            <input type="file" id="attach-input" accept="image/*" style="display:none;">
-            <div class="toolbar-divider"></div>
-            <button class="toolbar-btn" data-cmd="bold" title="Жирний"><b>B</b></button>
-            <button class="toolbar-btn" data-cmd="italic" title="Курсив"><i>I</i></button>
-            <div class="toolbar-divider"></div>
-            <div class="toolbar-font-box" id="toolbar-font-box">
-                <span class="toolbar-font-label">Шрифт →</span>
-                <select class="toolbar-select" id="font-select">
-                    <option value="Inter">Inter</option>
-                    <option value="Vollkorn">Vollkorn</option>
-                    <option value="PT Serif">PT Serif</option>
-                    <option value="Lora">Lora</option>
-                    <option value="Space Grotesk">Grotesk</option>
-                </select>
+        <div class="submit-editor-wrap">
+            <div class="editor-top-bar">
+                <button class="toolbar-attach-btn" id="attach-btn" title="Прикріпити файл">
+                    <span class="material-symbols-outlined" style="font-size:20px;">attach_file</span>
+                </button>
+                <input type="file" id="attach-input" accept="image/*" style="display:none;">
+            </div>
+            <div class="submit-editor" id="submit-editor" contenteditable="true" data-placeholder="Пиши сюди..."></div>
+            <div id="attach-preview-inline" class="attach-preview-inline" style="padding: 0 14px 10px;"></div>
+            <div class="editor-bottom-bar">
+                <button class="toolbar-btn" data-cmd="bold" title="Жирний"><b>B</b></button>
+                <button class="toolbar-btn" data-cmd="italic" title="Курсив"><i style="font-family:serif;">i</i></button>
+                <div class="toolbar-divider"></div>
+                <div class="toolbar-font-box" id="toolbar-font-box">
+                    <span class="toolbar-font-label">Шрифт</span>
+                    <select class="toolbar-select" id="font-select">
+                        <option value="Inter">Inter</option>
+                        <option value="Vollkorn">Vollkorn</option>
+                        <option value="PT Serif">PT Serif</option>
+                        <option value="Lora">Lora</option>
+                        <option value="Space Grotesk">Grotesk</option>
+                    </select>
+                </div>
+                <div class="toolbar-divider"></div>
+                <span class="colors-label" style="font-size:10px; white-space:nowrap;">Текст</span>
+                <div class="color-dot text-color-dot active" data-color="#222221" style="background:#222221;"></div>
+                <div class="color-dot text-color-dot" data-color="#B24A3B" style="background:#B24A3B;"></div>
+                <div class="color-dot text-color-dot" data-color="#4282AA" style="background:#4282AA;"></div>
+                <div class="color-dot text-color-dot" data-color="#D97757" style="background:#D97757;"></div>
+                <div class="toolbar-divider"></div>
+                <span class="colors-label" style="font-size:10px; white-space:nowrap;">Фон</span>
+                <div class="color-dot bg-color-dot active" data-color="#FAF8F4" style="background:#FAF8F4; border:1px solid #ddd;"></div>
+                <div class="color-dot bg-color-dot" data-color="#262624" style="background:#262624;"></div>
+                <div class="color-dot bg-color-dot" data-color="#FFFFFF" style="background:#FFFFFF; border:1px solid #ddd;"></div>
             </div>
         </div>
-        <div class="submit-colors-row" id="submit-colors-row">
-            <span class="colors-label">Текст:</span>
-            <div class="color-dot text-color-dot active" data-color="#222221" style="background:#222221;" title="Основний"></div>
-            <div class="color-dot text-color-dot" data-color="#B24A3B" style="background:#B24A3B;" title="Червоний"></div>
-            <div class="color-dot text-color-dot" data-color="#4282AA" style="background:#4282AA;" title="Синій"></div>
-            <div class="color-dot text-color-dot" data-color="#D97757" style="background:#D97757;" title="Помаранчевий"></div>
-            <div class="toolbar-divider"></div>
-            <span class="colors-label">Фон:</span>
-            <div class="color-dot bg-color-dot active" data-color="#FAF8F4" style="background:#FAF8F4; border: 1px solid #ddd;" title="Світлий"></div>
-            <div class="color-dot bg-color-dot" data-color="#262624" style="background:#262624;" title="Темний"></div>
-            <div class="color-dot bg-color-dot" data-color="#FFFFFF" style="background:#FFFFFF; border: 1px solid #ddd;" title="Білий"></div>
+
+        <div class="anon-identity-block">
+            <div class="anon-icon-wrap">
+                <span class="material-symbols-outlined" style="font-size:18px;">shield_person</span>
+            </div>
+            <div class="anon-text-block">
+                <span class="anon-label">Анонімно</span>
+                <span class="anon-sublabel">Ми не знаємо хто ти</span>
+            </div>
+            <input class="submit-name-input" id="submit-name" type="text" placeholder="або вкажи нік">
         </div>
 
-
-        <div class="submit-editor" id="submit-editor" contenteditable="true" data-placeholder="Пиши сюди..."></div>
-
-        <div class="submit-attached-preview" id="attach-preview"></div>
-
-        <div class="submit-meta" id="submit-meta">
-            <span class="submit-anon-badge">👤 Анонімно</span>
-            <input class="submit-name-input" id="submit-name" type="text" placeholder="або вкажи імʼя (необовʼязково)">
-        </div>
-
-                <button class="submit-action-btn" id="submit-action-btn">ПЕРЕГЛЯНУТИ</button>
-
+        <button class="submit-action-btn" id="submit-action-btn">ПЕРЕГЛЯНУТИ</button>
 
     </div>
+
     <div class="submit-preview-screen" id="submit-preview-screen">
         <div class="preview-header">
             <span class="preview-label">ПОПЕРЕДНІЙ ПЕРЕГЛЯД</span>
@@ -327,56 +345,42 @@
     </div>
     <div class="submit-content" id="atmo-content">
         <div class="caps-label">ПОКАЗАТИ АТМОСФЕРУ</div>
-        <div class="atmo-frames-row">
-            <div class="atmo-frame-pick active" data-frame="polaroid" title="Поларойд">🟦</div>
-            <div class="atmo-frame-pick" data-frame="round" title="Кругла">⭕</div>
-            <div class="atmo-frame-pick" data-frame="wide" title="Широка">▬</div>
-            <div class="atmo-frame-pick" data-frame="torn" title="Рвана">📄</div>
+
+        <div class="atmo-layout-row">
+            <button class="atmo-layout-btn active" data-layout="single-polaroid" title="Один поларойд">
+                <span style="font-size:22px;">🟦</span>
+                <span>Поларойд</span>
+            </button>
+            <button class="atmo-layout-btn" data-layout="two-polaroid" title="Два поларойди">
+                <span style="font-size:22px;">🟦🟦</span>
+                <span>×2</span>
+            </button>
+            <button class="atmo-layout-btn" data-layout="single-square" title="Один квадрат">
+                <span style="font-size:22px;">⬜</span>
+                <span>Квадрат</span>
+            </button>
+            <button class="atmo-layout-btn" data-layout="grid-four" title="Сітка 4">
+                <span style="font-size:22px;">⊞</span>
+                <span>Сітка</span>
+            </button>
         </div>
-        <div class="atmo-grid" id="atmo-grid">
-            <div class="atmo-slot" data-idx="0">
-                <input type="file" accept="image/*" class="atmo-file-input">
-                <div class="atmo-slot-inner">
-                    <span class="material-symbols-outlined atmo-plus">add</span>
-                </div>
-                <img class="atmo-slot-img" style="display:none;">
-            </div>
-            <div class="atmo-slot" data-idx="1">
-                <input type="file" accept="image/*" class="atmo-file-input">
-                <div class="atmo-slot-inner">
-                    <span class="material-symbols-outlined atmo-plus">add</span>
-                </div>
-                <img class="atmo-slot-img" style="display:none;">
-            </div>
-            <div class="atmo-slot" data-idx="2">
-                <input type="file" accept="image/*" class="atmo-file-input">
-                <div class="atmo-slot-inner">
-                    <span class="material-symbols-outlined atmo-plus">add</span>
-                </div>
-                <img class="atmo-slot-img" style="display:none;">
-            </div>
-            <div class="atmo-slot" data-idx="3">
-                <input type="file" accept="image/*" class="atmo-file-input">
-                <div class="atmo-slot-inner">
-                    <span class="material-symbols-outlined atmo-plus">add</span>
-                </div>
-                <img class="atmo-slot-img" style="display:none;">
-            </div>
-        </div>
+
+        <div class="atmo-stage" id="atmo-stage"></div>
+
         <div class="submit-meta">
             <span class="submit-anon-badge">👤 Анонімно</span>
             <input class="submit-name-input" id="atmo-name" type="text" placeholder="підпис або нікнейм (необовʼязково)">
         </div>
         <button class="submit-action-btn" id="atmo-action-btn">ВІДПРАВИТИ</button>
     </div>
-  <div class="submit-sent-screen" id="atmo-sent-screen">
+    <div class="submit-sent-screen" id="atmo-sent-screen">
         <div class="sent-text">ВІДПРАВЛЕНО У ВАЛКІВСЬКУ ПРИЙМАЛЬНЮ</div>
         <div class="sent-sub">Очікуйте вашу публікацію на <a href="https://t.me/valkyoperatyvno" target="_blank" class="sent-link">каналі</a></div>
         <div class="sent-spinner"><span class="material-symbols-outlined spinning">autorenew</span></div>
         <button class="close-sent-btn" id="close-atmo-sent">Закрити</button>
     </div>
-
 </div>
+
 
 
 <div class="submit-overlay photo-overlay" id="photo-overlay">
@@ -389,22 +393,27 @@
             <input type="file" id="photo-file-input" accept="image/*" style="display:none;">
             <div class="photo-drop-inner" id="photo-drop-inner">
                 <span class="material-symbols-outlined photo-plus-icon">add</span>
-                <span class="photo-drop-hint">Натисніть +, щоб додати зображення</span>
+                <span class="photo-drop-hint" id="photo-drop-hint">Натисніть +, щоб додати зображення</span>
             </div>
             <img id="photo-preview-img" class="photo-preview-img" style="display:none;">
         </div>
+        <div id="photo-caption-wrap" style="display:none; width:100%; max-width:400px;">
+            <input class="submit-name-input" id="photo-caption" type="text" placeholder="Підпис до фото (необовʼязково)" style="width:100%; padding:10px 14px; border-radius:10px; font-size:14px; box-sizing:border-box; border:1px solid #ddd; font-family:'Inter',sans-serif;">
+        </div>
         <div class="submit-meta">
             <span class="submit-anon-badge">👤 Анонімно</span>
-            <input class="submit-name-input" id="photo-name" type="text" placeholder="підпис або нікнейм (необовʼязково)">
+            <input class="submit-name-input" id="photo-name" type="text" placeholder="нікнейм (необовʼязково)">
         </div>
         <button class="submit-action-btn" id="photo-action-btn">ВІДПРАВИТИ</button>
     </div>
-  <div class="submit-sent-screen" id="photo-sent-screen">
+    <div class="submit-sent-screen" id="photo-sent-screen">
         <div class="sent-text">ВІДПРАВЛЕНО У ВАЛКІВСЬКУ ПРИЙМАЛЬНЮ</div>
         <div class="sent-sub">Очікуйте вашу публікацію на <a href="https://t.me/valkyoperatyvno" target="_blank" class="sent-link">каналі</a></div>
         <div class="sent-spinner"><span class="material-symbols-outlined spinning">autorenew</span></div>
         <button class="close-sent-btn" id="close-photo-sent">Закрити</button>
     </div>
+</div>
+
 
 </div>
 
