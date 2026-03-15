@@ -361,8 +361,6 @@ const buttonPlaceholders = {
     '.b-problem': 'Розказуйте-показуйте. Де, шо і коли'
 };
 
-const mailboxButtons = ['.b-story', '.b-serious', '.b-petition', '.b-complain', '.b-zbir', '.b-idea', '.b-photo', '.side-tag', '.b-write-main', '.b-thank'];
-const holeButtons = ['.b-unpopular', '.b-shopopalo', '.b-admins', '.rumors-container', '.b-problem'];
 
 mailboxButtons.forEach(sel => {
     const el = document.querySelector(sel);
