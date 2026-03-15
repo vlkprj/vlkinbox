@@ -513,26 +513,24 @@ if (previewEditBtn) {
 if (previewSendBtn) {
     previewSendBtn.addEventListener('click', () => {
         const mode = submitOverlay.classList.contains('mailbox-mode') ? 'mailbox' : 'hole';
-        
-        
+
         previewMetaLine.style.opacity = '0';
         document.getElementById('preview-edit-btn').style.opacity = '0';
         previewSendBtn.style.opacity = '0';
         const previewLabel = document.querySelector('.preview-label');
         if (previewLabel) previewLabel.style.opacity = '0';
-        
+
         previewPostCard.classList.add(`fly-to-${mode}`);
+
         
-        submitVideo.play();
+        submitPreviewScreen.style.display = 'none';
+        submitVideo.style.display = 'block';
         submitVideo.style.filter = 'blur(0px) brightness(0.8)';
-        submitVideo.style.transition = 'filter 1s ease';
-        
+        submitVideo.play();
+
         const finishSend = () => {
-            submitPreviewScreen.style.display = 'none';
             submitVideo.style.display = 'none';
             submitSentScreen.style.display = 'flex';
-            
-            
             previewPostCard.classList.remove(`fly-to-${mode}`);
             previewMetaLine.style.opacity = '1';
             const editBtn = document.getElementById('preview-edit-btn');
@@ -542,15 +540,12 @@ if (previewSendBtn) {
         };
 
         submitVideo.onended = finishSend;
-
-        
         setTimeout(() => {
-            if (submitSentScreen.style.display !== 'flex') {
-                finishSend();
-            }
+            if (submitSentScreen.style.display !== 'flex') finishSend();
         }, 8000);
     });
 }
+
 
 
 
