@@ -812,19 +812,20 @@ if (capsPreviewSendBtn) {
 }
 
 
-function showDoorBubble(event, text) {
+function showDoorBubble(event, text, customDuration) {
     const doorEl = event.currentTarget;
     const rect = doorEl.getBoundingClientRect();
     const bubble = document.createElement('div');
     bubble.className = 'door-bubble';
     bubble.innerText = text;
     bubble.style.left = `${rect.left + rect.width / 2}px`;
-    bubble.style.top = `${rect.top + window.scrollY}px`;
-    bubble.style.position = 'fixed';
     bubble.style.top = `${rect.top}px`;
+    bubble.style.position = 'fixed';
     document.body.appendChild(bubble);
-    setTimeout(() => bubble.remove(), 2500);
+    const duration = customDuration || Math.max(2500, text.length * 60);
+    setTimeout(() => bubble.remove(), duration);
 }
+
 
     function showPredictionPopup(text) {
     const isArtifact = text.includes('артефакт');
@@ -1004,40 +1005,42 @@ const getArtifactText = (count) => `\n\n📸 **Ти відкрив(ла) мож�
         let doorClicks = 0;
         let hasTappedOnce = false;
         let lastPredictionAt = -10;
+        let recentBubbles = []; 
 
-        doorBtn.addEventListener('click', (event) => {
+
+            doorBtn.addEventListener('click', (event) => {
             if (!hasTappedOnce) {
-                showDoorBubble(event, "тут може випасти передбачення, артефакт або ачівка, але не в цей раз і не тобі, спробуй ще");
+                showDoorBubble(event, "тут може випасти передбачення, артефакт або ачівка, але не в цей раз і не тобі, спробуй ще", 6000);
                 hasTappedOnce = true;
                 return;
             }
 
+
             doorClicks++;
 
-            if (doorClicks === 2) {
-                bagBtn.classList.add('visible');
-            }
-
-            if (achievements[doorClicks]) {
-                showAchievementCard(achievements[doorClicks]);
-                
-                const achText = achievements[doorClicks];
-                const achLines = achText.split('\n');
-                addToLoot('achievements', {
-                    title: achLines[0] || 'Досягнення',
-                    preview: achLines[1] ? achLines[1].substring(0, 60) + '...' : '',
-                    full: achLines.slice(1).join('<br>')
-                });
-
-                if (doorClicks === 523) {
-                    doorBtn.classList.add('door-falling');
+                            if (doorClicks === 523) {
+                    doorBtn.classList.add('door-epic-falling');
                     setTimeout(() => {
-                        doorBtn.innerText = '◼️';
-                        doorBtn.classList.remove('door-falling');
-                    }, 1000);
+                        doorBtn.classList.remove('door-epic-falling');
+                        doorBtn.innerText = '🕳️';
+                        doorBtn.classList.add('door-broken-hole');
+                    }, 1200);
                 }
                 return;
             }
+
+            
+            if (doorClicks > 523 && doorClicks <= 528) {
+                if (doorClicks === 528) {
+                    doorBtn.classList.remove('door-broken-hole');
+                    doorBtn.innerText = '🚪';
+                    showDoorBubble(event, "ці міцніші", 4000);
+                } else {
+                    showDoorBubble(event, "Ти вибив двері, пам'ятаєш?", 2000);
+                }
+                return;
+            }
+
 
             const rng = Math.random() * 100;
             const predictionCooldown = 36;
