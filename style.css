@@ -1705,18 +1705,38 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .submit-overlay.mailbox-mode .submit-name-input {
-    border-color: rgba(0,0,0,0.15);
-    color: #444;
+    color: #1a1a1a;
 }
 
 .submit-overlay.hole-mode .submit-name-input {
-    border-color: rgba(255,255,255,0.1);
-    color: #888;
+    color: #e0e0e0;
+}
+
+.submit-name-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 8px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    outline: none;
+    border-radius: 0;
+}
+
+.submit-overlay.mailbox-mode .submit-name-input {
+    color: #1a1a1a;
+}
+
+.submit-overlay.hole-mode .submit-name-input {
+    color: #e0e0e0;
 }
 
 .submit-name-input::placeholder {
-    color: #aaa;
+    color: #888;
+    font-weight: 500;
 }
+
 
 .submit-action-btn {
     padding: 14px 40px;
@@ -2266,10 +2286,11 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     max-width: 400px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    border-radius: 12px;
+    gap: 12px;
+    padding: 8px 16px;
+    border-radius: 16px;
     box-sizing: border-box;
+    margin-top: 4px;
 }
 
 .submit-overlay.mailbox-mode .anon-identity-block {
