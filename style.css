@@ -3278,3 +3278,37 @@ body.submit-open {
 }
 
 
+.submit-preview-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 15;                    
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 24px;
+    background: transparent;
+    overflow-y: auto;
+}
+
+.submit-preview-screen .preview-header {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.submit-overlay.hole-mode .preview-post-card {
+    background: rgba(255,255,255,0.95) !important;
+    color: #1a1a1a !important;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+
+
+.preview-meta-line {
+    margin-top: 8px;
+    opacity: 1 !important; /* на випадок якщо opacity залишився 0 */
+}
