@@ -295,7 +295,7 @@ const attachPreview = document.getElementById('attach-preview');
 const fontSelect = document.getElementById('font-select');
 let lastScrollY = 0;
 
-function openSubmitOverlay(mode, placeholderText) {
+function openSubmitOverlay(mode, placeholderText, defaultFont) {
     lastScrollY = window.scrollY;
     submitOverlay.className = `submit-overlay ${mode}-mode`;
     submitOverlay.style.display = 'flex';
@@ -315,6 +315,8 @@ function openSubmitOverlay(mode, placeholderText) {
     submitVideo.currentTime = 0;
     submitEditor.innerHTML = '';
     submitEditor.setAttribute('data-placeholder', placeholderText || 'Пиши сюди...');
+    submitEditor.style.fontFamily = defaultFont || 'Inter, sans-serif';
+    if (fontSelect) fontSelect.value = defaultFont || 'Inter';
     submitEditor.focus();
     currentBgColor = '#FAF8F4';
     currentTextColor = '#222221';
@@ -322,6 +324,7 @@ function openSubmitOverlay(mode, placeholderText) {
     bgColorDots.forEach(d => d.classList.toggle('active', d.dataset.color === '#FAF8F4'));
     applyEditorColors();
 }
+
 
 
 
@@ -363,16 +366,36 @@ const buttonPlaceholders = {
     '.b-problem': 'Розказуйте-показуйте. Де, шо і коли'
 };
 
+const buttonFonts = {
+    '.b-write-main': 'Fira Sans Extra Condensed',
+    '.b-story': 'Vollkorn',
+    '.b-serious': 'Philosopher',
+    '.b-petition': 'Vollkorn',
+    '.side-tag': 'Inter',
+    '.rumors-container': 'Balsamiq Sans',
+    '.b-thank': 'Fira Sans Extra Condensed',
+    '.b-complain': 'Oswald',
+    '.b-problem': 'Fira Sans Extra Condensed',
+    '.b-unpopular': 'Dela Gothic One',
+    '.b-zbir': 'Space Grotesk',
+    '.b-idea': 'Oswald',
+    '.b-shopopalo': 'Balsamiq Sans',
+    '.b-admins': 'Fira Sans Extra Condensed',
+};
+
+
+
 
 mailboxButtons.forEach(sel => {
     const el = document.querySelector(sel);
-    if (el) el.addEventListener('click', () => openSubmitOverlay('mailbox', buttonPlaceholders[sel]));
+    if (el) el.addEventListener('click', () => openSubmitOverlay('mailbox', buttonPlaceholders[sel], buttonFonts[sel]));
 });
 
 holeButtons.forEach(sel => {
     const el = document.querySelector(sel);
-    if (el) el.addEventListener('click', () => openSubmitOverlay('hole', buttonPlaceholders[sel]));
+    if (el) el.addEventListener('click', () => openSubmitOverlay('hole', buttonPlaceholders[sel], buttonFonts[sel]));
 });
+
 
 if (closeSubmitBtn) closeSubmitBtn.addEventListener('click', closeSubmitOverlay);
 
