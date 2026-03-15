@@ -512,22 +512,45 @@ if (previewEditBtn) {
 
 if (previewSendBtn) {
     previewSendBtn.addEventListener('click', () => {
-        submitPreviewScreen.style.display = 'none';
-        submitVideo.style.filter = 'blur(0px) brightness(0.6)';
-        submitVideo.style.transition = 'filter 1s ease';
+        const mode = submitOverlay.classList.contains('mailbox-mode') ? 'mailbox' : 'hole';
+        
+        
+        previewMetaLine.style.opacity = '0';
+        document.getElementById('preview-edit-btn').style.opacity = '0';
+        previewSendBtn.style.opacity = '0';
+        document.querySelector('.preview-label').style.opacity = '0';
+        
+        
+        previewPostCard.classList.add(`fly-to-${mode}`);
+        
         submitVideo.play();
-        submitVideo.onended = () => {
+        submitVideo.style.filter = 'blur(0px) brightness(0.8)';
+        submitVideo.style.transition = 'filter 1s ease';
+        
+        const finishSend = () => {
+            submitPreviewScreen.style.display = 'none';
             submitVideo.style.display = 'none';
             submitSentScreen.style.display = 'flex';
+            
+            
+            previewPostCard.classList.remove(`fly-to-${mode}`);
+            previewMetaLine.style.opacity = '1';
+            document.getElementById('preview-edit-btn').style.opacity = '1';
+            previewSendBtn.style.opacity = '1';
+            document.querySelector('.preview-label').style.opacity = '1';
         };
+
+        submitVideo.onended = finishSend;
+
+        
         setTimeout(() => {
             if (submitSentScreen.style.display !== 'flex') {
-                submitVideo.style.display = 'none';
-                submitSentScreen.style.display = 'flex';
+                finishSend();
             }
         }, 8000);
     });
 }
+
 
 
 //сабміт кінець//
