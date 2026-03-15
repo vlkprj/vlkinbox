@@ -295,7 +295,7 @@ const attachPreview = document.getElementById('attach-preview');
 const fontSelect = document.getElementById('font-select');
 let lastScrollY = 0;
 
-function openSubmitOverlay(mode) {
+function openSubmitOverlay(mode, placeholderText) {
     lastScrollY = window.scrollY;
     submitOverlay.className = `submit-overlay ${mode}-mode`;
     submitOverlay.style.display = 'flex';
@@ -312,8 +312,8 @@ function openSubmitOverlay(mode) {
     submitVideo.pause();
     submitVideo.currentTime = 0;
     submitEditor.innerHTML = '';
+    submitEditor.setAttribute('data-placeholder', placeholderText || 'Пиши сюди...');
     submitEditor.focus();
-    
     currentBgColor = '#FAF8F4';
     currentTextColor = '#222221';
     textColorDots.forEach(d => d.classList.toggle('active', d.dataset.color === '#222221'));
@@ -345,14 +345,33 @@ const holeButtons = ['.b-unpopular', '.b-shopopalo', '.b-admins', '.rumors-conta
 
 
 
+const buttonPlaceholders = {
+    '.b-write-main': 'Ну пишіть',
+    '.b-story': 'Ну розказуйте',
+    '.b-serious': 'Пишіть щось, тільки серйозне',
+    '.b-petition': 'Це ж не офіційне звернення, ви ж розумієте? Але вони побачать, не сумнівайтеся 👀',
+    '.b-complain': 'Шо там вже сталося? Розказуйте-показуйте. Матюкатись можна.',
+    '.b-zbir': 'Додайте будь ласка всю важливу інформацію, офіційний (якщо є) запит, контакти і посилання, а також текст збору. Ми перевіримо і обовʼязково опублікуємо',
+    '.b-idea': 'Цікаво-цікаво. Розказуйте',
+    '.b-thank': 'Кому і за шо дякувати будете? Пишіть ❤️',
+    '.b-unpopular': 'Ага, тобто хочете срач розпочати? Ну, давайте, пишіть вже свою непопулярну думку.',
+    '.b-shopopalo': 'Пишіть своє шопопало, але майте на увазі, що якщо шопопалість вашого шопопала буде тумач, ми не гарантуємо, що опублікуємо це на каналі',
+    '.b-admins': 'Бляяя, ну ми ж казали, шо ця кнопка чисто для прілічія. Ну пишіть вже, шо вже поробиш',
+    '.rumors-container': 'Ну розказуйте шо чули, шо бачили. Чи ви запитати? Пишіть',
+    '.b-problem': 'Розказуйте-показуйте. Де, шо і коли'
+};
+
+const mailboxButtons = ['.b-story', '.b-serious', '.b-petition', '.b-complain', '.b-zbir', '.b-idea', '.b-photo', '.side-tag', '.b-write-main', '.b-thank'];
+const holeButtons = ['.b-unpopular', '.b-shopopalo', '.b-admins', '.rumors-container', '.b-problem'];
+
 mailboxButtons.forEach(sel => {
     const el = document.querySelector(sel);
-    if (el) el.addEventListener('click', () => openSubmitOverlay('mailbox'));
+    if (el) el.addEventListener('click', () => openSubmitOverlay('mailbox', buttonPlaceholders[sel]));
 });
 
 holeButtons.forEach(sel => {
     const el = document.querySelector(sel);
-    if (el) el.addEventListener('click', () => openSubmitOverlay('hole'));
+    if (el) el.addEventListener('click', () => openSubmitOverlay('hole', buttonPlaceholders[sel]));
 });
 
 if (closeSubmitBtn) closeSubmitBtn.addEventListener('click', closeSubmitOverlay);
@@ -363,7 +382,6 @@ submitOverlay.addEventListener('click', (e) => {
     if (e.target === submitOverlay) closeSubmitOverlay();
 });
 
-
 document.querySelectorAll('.toolbar-btn[data-cmd]').forEach(btn => {
     btn.addEventListener('mousedown', (e) => {
         e.preventDefault();
@@ -372,6 +390,7 @@ document.querySelectorAll('.toolbar-btn[data-cmd]').forEach(btn => {
         submitEditor.focus();
     });
 });
+
 
 if (fontSelect) {
     fontSelect.addEventListener('change', () => {
