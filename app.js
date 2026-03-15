@@ -1017,18 +1017,6 @@ const getArtifactText = (count) => `\n\n📸 **Ти відкрив(ла) мож�
 
 
             doorClicks++;
-
-                            if (doorClicks === 523) {
-                    doorBtn.classList.add('door-epic-falling');
-                    setTimeout(() => {
-                        doorBtn.classList.remove('door-epic-falling');
-                        doorBtn.innerText = '🕳️';
-                        doorBtn.classList.add('door-broken-hole');
-                    }, 1200);
-                }
-                
-
-            
                             if (doorClicks === 523) {
                     doorBtn.classList.add('door-epic-falling');
                     setTimeout(() => {
