@@ -536,7 +536,7 @@ if (previewEditBtn) {
 if (previewSendBtn) {
     previewSendBtn.addEventListener('click', () => {
         const mode = submitOverlay.classList.contains('mailbox-mode') ? 'mailbox' : 'hole';
-
+        submitPreviewScreen.style.background = 'transparent';
         previewMetaLine.style.opacity = '0';
         document.getElementById('preview-edit-btn').style.opacity = '0';
         previewSendBtn.style.opacity = '0';
@@ -556,6 +556,7 @@ if (previewSendBtn) {
 
         setTimeout(() => {
             submitPreviewScreen.style.display = 'none';
+            submitPreviewScreen.style.background = '';
             submitVideo.style.zIndex = '';
             previewPostCard.classList.remove(`fly-to-${mode}`);
             previewMetaLine.style.opacity = '1';
