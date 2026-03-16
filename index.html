@@ -259,6 +259,7 @@
     </div>
 
     <div class="submit-content" id="submit-content">
+                <div class="submit-hint-text" id="submit-hint-text"></div>
         <div class="submit-editor-wrap">
             <div class="submit-editor" id="submit-editor" contenteditable="true" data-placeholder="Пиши сюди..."></div>
             <div id="attach-preview-inline" class="attach-preview-inline" style="padding: 0 14px 10px;"></div>
@@ -337,6 +338,7 @@
 
 
 <div class="submit-overlay atmo-overlay" id="atmo-overlay">
+        <video class="submit-video-bg" id="atmo-video" playsinline muted preload="auto"></video>
     <div class="submit-header">
         <span class="material-symbols-outlined close-submit" id="close-atmo">close</span>
     </div>
@@ -373,13 +375,14 @@
     <div class="submit-sent-screen" id="atmo-sent-screen">
         <div class="sent-text">ВІДПРАВЛЕНО У ВАЛКІВСЬКУ ПРИЙМАЛЬНЮ</div>
         <div class="sent-sub">Очікуйте вашу публікацію на <a href="https://t.me/valkyoperatyvno" target="_blank" class="sent-link">каналі</a></div>
-        <div class="sent-spinner"><span class="material-symbols-outlined spinning">autorenew</span></div>
+        <div class="sent-spinner"><svg class="mini-spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg></div>
         <button class="close-sent-btn" id="close-atmo-sent">Закрити</button>
     </div>
 </div>
 
 
 <div class="submit-overlay photo-overlay" id="photo-overlay">
+        <video class="submit-video-bg" id="photo-video" playsinline muted preload="auto"></video>
     <div class="submit-header">
         <span class="material-symbols-outlined close-submit" id="close-photo">close</span>
     </div>
@@ -412,6 +415,7 @@
 
 
 <div class="submit-overlay caps-overlay" id="caps-overlay">
+        <video class="submit-video-bg" id="caps-video" playsinline muted preload="auto"></video>
     <div class="submit-header">
         <span class="material-symbols-outlined close-submit" id="close-caps">close</span>
     </div>
@@ -438,7 +442,7 @@
     <div class="submit-sent-screen" id="caps-sent-screen">
         <div class="sent-text">ВІДПРАВЛЕНО У ВАЛКІВСЬКУ ПРИЙМАЛЬНЮ</div>
         <div class="sent-sub">Очікуйте вашу публікацію на <a href="https://t.me/valkyoperatyvno" target="_blank" class="sent-link">каналі</a></div>
-        <div class="sent-spinner"><span class="material-symbols-outlined spinning">autorenew</span></div>
+        <div class="sent-spinner"><svg class="mini-spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg></div>
         <button class="close-sent-btn" id="close-caps-sent">Закрити</button>
     </div>
 </div>
