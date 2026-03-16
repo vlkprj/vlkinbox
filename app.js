@@ -1,4 +1,4 @@
-А document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
     const glitchLetter = document.getElementById('glitch-letter');
     if (glitchLetter) {
