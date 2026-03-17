@@ -320,18 +320,30 @@ function openSubmitOverlay(mode, placeholderText, defaultFont) {
     submitVideo.load();
     submitVideo.pause();
     submitVideo.currentTime = 0;
+    
     submitEditor.innerHTML = '';
-       submitEditor.setAttribute('data-placeholder', 'Пишіть сюди...');
+    submitEditor.setAttribute('data-placeholder', 'Пишіть сюди...');
+    
+    const appliedFont = defaultFont || 'Inter, sans-serif';
+    submitEditor.style.fontFamily = appliedFont;
+    
+    if (fontSelect) {
+        Array.from(fontSelect.options).forEach(opt => {
+            if (appliedFont.includes(opt.value)) {
+                fontSelect.value = opt.value;
+            }
+        });
+    }
+
     const hintEl = document.getElementById('submit-hint-text');
     if (hintEl) {
         hintEl.innerText = placeholderText || '';
-        hintEl.style.fontFamily = defaultFont || 'Inter, sans-serif';
-        hintEl.style.color = mode === 'hole' ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.38)';
+        hintEl.style.fontFamily = appliedFont;
+        hintEl.style.color = mode === 'hole' ? '#ccc' : '#fff';
         hintEl.classList.remove('vanish');
         void hintEl.offsetWidth;
-        setTimeout(() => hintEl.classList.add('vanish'), 15000);
+        setTimeout(() => hintEl.classList.add('vanish'), 3500);
     }
-
 
     currentBgColor = '#FAF8F4';
     currentTextColor = '#222221';
@@ -339,6 +351,7 @@ function openSubmitOverlay(mode, placeholderText, defaultFont) {
     bgColorDots.forEach(d => d.classList.toggle('active', d.dataset.color === '#FAF8F4'));
     applyEditorColors();
 }
+
 
 
 
@@ -602,16 +615,20 @@ const atmoStage = document.getElementById('atmo-stage');
 
 function openAtmoOverlay() {
     lastScrollY = window.scrollY;
+    atmoOverlay.className = `submit-overlay atmo-overlay mailbox-mode`;
     atmoOverlay.style.display = 'flex';
     atmoContent.style.display = 'flex';
     atmoSentScreen.style.display = 'none';
     document.body.classList.add('submit-open');
+
     currentAtmoLayout = 'single-polaroid';
     document.querySelectorAll('.atmo-layout-btn').forEach(b => {
         b.classList.toggle('active', b.dataset.layout === 'single-polaroid');
     });
+
     renderAtmoStage(currentAtmoLayout);
 }
+
 
 
 function closeAtmoOverlay() {
@@ -747,20 +764,27 @@ const photoPreviewImg = document.getElementById('photo-preview-img');
 const photoDropInner = document.getElementById('photo-drop-inner');
 const photoOverlayTitle = document.getElementById('photo-overlay-title');
 
-function openPhotoOverlay(mode) {
+function openPhotoOverlay(type, mode) {
     lastScrollY = window.scrollY;
+    photoOverlay.className = `submit-overlay photo-overlay ${mode}-mode`;
     photoOverlay.style.display = 'flex';
     photoContent.style.display = 'flex';
     photoSentScreen.style.display = 'none';
     photoPreviewImg.style.display = 'none';
     photoDropInner.style.display = 'flex';
     photoFileInput.value = '';
-    photoOverlayTitle.innerText = mode === 'meme' ? 'ВІДПРАВИТИ МЕМ' : 'ВІДПРАВИТИ ФОТО';
+    photoOverlayTitle.innerText = type === 'meme' ? 'ВІДПРАВИТИ МЕМ' : 'ВІДПРАВИТИ ФОТО';
     document.body.classList.add('submit-open');
     const captionWrap = document.getElementById('photo-caption-wrap');
     if (captionWrap) captionWrap.style.display = 'none';
     
+    const photoVideo = document.getElementById('photo-video');
+    if(photoVideo) {
+        photoVideo.src = mode === 'hole' ? 'blackhole.mp4' : 'skrynka.mp4';
+        photoVideo.load();
+    }
 }
+
 
 
 function closePhotoOverlay() {
@@ -773,8 +797,9 @@ function closePhotoOverlay() {
 
 const photoBtnEl = document.querySelector('.b-photo');
 const memeBtnEl = document.querySelector('.b-meme');
-if (photoBtnEl) photoBtnEl.addEventListener('click', () => openPhotoOverlay('photo'));
-if (memeBtnEl) memeBtnEl.addEventListener('click', () => openPhotoOverlay('meme'));
+if (photoBtnEl) photoBtnEl.addEventListener('click', () => openPhotoOverlay('photo', 'mailbox'));
+if (memeBtnEl) memeBtnEl.addEventListener('click', () => openPhotoOverlay('meme', 'hole'));
+
 
 if (closePhotoBtn) closePhotoBtn.addEventListener('click', closePhotoOverlay);
 if (closePhotoSent) closePhotoSent.addEventListener('click', closePhotoOverlay);
