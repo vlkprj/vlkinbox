@@ -3582,3 +3582,78 @@ body.submit-open {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
 }
+
+.b-write-main {
+    background: #fff !important;
+    color: #000 !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+}
+.b-write-main .write-icon {
+    color: #000 !important;
+}
+
+.submit-action-btn, .close-sent-btn {
+    background: #fff !important;
+    color: #000 !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+}
+
+.submit-content {
+    justify-content: flex-start !important;
+    padding-top: 15vh !important;
+}
+
+.submit-editor {
+    font-size: 22px !important;
+    min-height: 180px !important;
+}
+
+.toolbar-attach-btn {
+    background: transparent !important;
+    border: none !important;
+}
+
+.submit-hint-text {
+    transition: opacity 0.5s ease-out, filter 0.5s ease-out, letter-spacing 0.5s ease-out;
+}
+
+.submit-hint-text.vanish {
+    opacity: 0 !important;
+    filter: blur(6px) !important;
+    letter-spacing: 5px !important;
+    animation: none !important;
+}
+
+.submit-overlay.hole-mode .anon-identity-block .submit-name-input,
+.submit-overlay.hole-mode .submit-meta .submit-name-input,
+.submit-overlay.hole-mode .anon-label,
+.submit-overlay.hole-mode .submit-anon-badge {
+    color: #ccc !important;
+}
+.submit-overlay.hole-mode .anon-identity-block .submit-name-input::placeholder,
+.submit-overlay.hole-mode .submit-meta .submit-name-input::placeholder {
+    color: rgba(255,255,255,0.4) !important;
+}
+
+.submit-overlay.mailbox-mode .anon-identity-block .submit-name-input,
+.submit-overlay.mailbox-mode .submit-meta .submit-name-input,
+.submit-overlay.mailbox-mode .anon-label,
+.submit-overlay.mailbox-mode .submit-anon-badge {
+    color: #fff !important;
+}
+.submit-overlay.mailbox-mode .anon-identity-block .submit-name-input::placeholder,
+.submit-overlay.mailbox-mode .submit-meta .submit-name-input::placeholder {
+    color: rgba(255,255,255,0.6) !important;
+}
+
+.photo-overlay .close-submit,
+.atmo-overlay .close-submit {
+    color: #888;
+    opacity: 1;
+}
+
+.submit-overlay.hole-mode .submit-video-bg {
+    filter: brightness(0.45);
+}
