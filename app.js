@@ -531,6 +531,66 @@ bgColorDots.forEach(dot => {
     });
 });
 
+// Генератор карточок
+function generateValkyCardsHTML(rawText, photosArr, bgColor, textColor, font) {
+    let html = '';
+    
+    const headerHTML = `
+        <div class="valky-card-header">
+            <img src="anonface.PNG" alt="Анонім">
+            <span>Валківська Приймальня</span>
+        </div>
+    `;
+    
+    let chunks = [];
+    if (rawText.trim().length > 0) {
+        const words = rawText.split(' ');
+        let currentChunk = '';
+        words.forEach(w => {
+            if ((currentChunk + ' ' + w).length > 550) {
+                chunks.push(currentChunk);
+                currentChunk = w;
+            } else {
+                currentChunk += (currentChunk ? ' ' : '') + w;
+            }
+        });
+        if (currentChunk) chunks.push(currentChunk);
+    } else if (photosArr.length === 0) {
+        chunks.push("— порожньо —");
+    }
+
+    chunks.forEach((chunk, idx) => {
+        let fontClass = 'fs-small';
+        if (chunk.length < 80) fontClass = 'fs-huge';
+        else if (chunk.length < 200) fontClass = 'fs-large';
+        else if (chunk.length < 400) fontClass = 'fs-medium';
+
+        const showHeader = (idx === 0) ? headerHTML : '';
+        const showArrow = (idx < chunks.length - 1) ? '<div class="valky-card-arrow">→</div>' : '';
+
+        html += `
+            <div class="valky-card" style="background:${bgColor}; color:${textColor}; font-family:${font};">
+                ${showHeader}
+                <div class="valky-card-body ${fontClass}">${chunk}</div>
+                ${showArrow}
+            </div>
+        `;
+    });
+
+  
+    photosArr.slice(0, 5).forEach(src => {
+        html += `
+            <div class="valky-card" style="background:${bgColor}; color:${textColor};">
+                ${headerHTML}
+                <img src="${src}" class="valky-card-photo">
+            </div>
+        `;
+    });
+
+    return html;
+}
+
+//генератор карточок всьо
 
 if (submitActionBtn) {
     submitActionBtn.addEventListener('click', () => {
