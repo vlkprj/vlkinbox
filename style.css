@@ -761,53 +761,7 @@ body, html {
         }
 
 
-   .b-idea {
-    background: #fff;
-    color: #000;
-    font-family: 'Space Grotesk', sans-serif;
-    border: 2px dashed #000;
-    border-radius: 12px;
-    width: 90%;
-    padding: 12px 15px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-}
-
-.b-idea .idea-icon {
-    font-size: 24px;
-    color: #27ae60;
-    background: #eafaf1;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-.b-idea .idea-text-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.b-idea .idea-title {
-    font-weight: 900;
-    font-size: 16px;
-}
-
-.b-idea .idea-hint {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: #7f8c8d;
-    height: 14px;
-    font-weight: 500;
-} 
-
-
+/*Атмосфера*/ 
 .b-atmosphere {
     background: #fff;
     padding: 10px 10px 40px 10px;
@@ -842,6 +796,7 @@ body, html {
     margin-top: 15px;
 }
 
+/*написати адмінам*/ 
 .b-admins {
     background: #e0e0e0;
     border-top: 3px solid #ffffff;
