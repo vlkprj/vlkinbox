@@ -157,18 +157,6 @@ body, html {
 }
 
 
-.star-particle {
-    position: fixed;
-    top: -10%;
-    font-size: 24px;
-    z-index: 9999;
-    pointer-events: none;
-    animation: fall 2.5s linear forwards;
-}
-@keyframes fall {
-    to { transform: translateY(110vh) rotate(360deg); }
-}
-
 /* ЧУТКИ*/
 .rumors-container {
     position: relative;
@@ -314,9 +302,6 @@ body, html {
 
 
 
-
-/* хедер їбаний всьо */
-
 .cursor { font-weight: bold; animation: blink 1s step-end infinite; color: #888; }
 @keyframes blink { 50% { opacity: 0; } }
 
@@ -380,7 +365,7 @@ body, html {
     box-shadow: 0 4px 8px rgba(0,0,0,0.04);
 }
 
-
+/* розказати + написати серйозно*/ 
 .b-story, .b-serious {
     flex: 1;
     aspect-ratio: 1 / 1;
@@ -487,7 +472,7 @@ body, html {
     50% { transform: scale(1.15); opacity: 1; }
 }
 
-
+/*промовчати*/
         .b-silence {
             background: #f5f5f5;
             color: #555;
@@ -503,6 +488,7 @@ body, html {
             transition: opacity 0.3s;
         }
 
+/* відправити фото*/ 
         .b-photo {
             background: #fff;
             color: #007aff;
@@ -517,6 +503,7 @@ body, html {
             border: 1px solid #f0f0f0;
         }
 
+/* шановна міськрада */ 
 .b-petition {
     background: #fff;
     color: #c23616;
@@ -563,7 +550,7 @@ body, html {
 }
 
 
-
+/*отака проблєма*/ 
         .b-problem {
     background: #e8eaed;
     background-image: radial-gradient(#d5d7db 1px, transparent 1px);
@@ -612,7 +599,7 @@ body, html {
     font-weight: 500;
 }
 
-
+/*непопулярна думка*/ 
         .b-unpopular {
     background: #fff;
     color: #000;
@@ -683,6 +670,7 @@ body, html {
     align-items: center;
 }
 
+/*капслок */ 
     .b-capslock {
         background: #dcdcdc;
         color: #333;
@@ -711,7 +699,8 @@ body, html {
             font-weight: 900;
             animation: glitchCaps 0.5s infinite;
         }
-
+        
+        /* Шопопало */
         .b-shopopalo {
             background: #f0f2f5;
             border-radius: 20px;
@@ -835,7 +824,7 @@ body, html {
 }
 
 
-
+/* Інше */ 
 .side-tag {
     position: fixed;
     right: 0;
@@ -855,7 +844,7 @@ body, html {
     transform: translateZ(0); 
 }
 
-
+/*дихальні вправи */ 
 .silence-overlay {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: rgba(255, 255, 255, 0.92);
@@ -1013,6 +1002,7 @@ body, html {
     justify-content: center;
 }
 
+/* відправити мем */ 
 .b-meme {
     background: #dfe6e9;
     color: #000;
@@ -1030,6 +1020,7 @@ body, html {
     border: 1px solid #b2bec3;
 }
 
+/* ідея */ 
 .b-idea {
     background: #fff;
     color: #000;
@@ -1064,7 +1055,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     font-size: 16px;
 }
 
-
+/*капслок*/ 
 .b-capslock {
     background: #dcdcdc;
     color: #333;
@@ -1083,6 +1074,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     height: auto;
 }
 
+/* збір */ 
 .b-zbir {
     background: #fff;
     color: #000;
@@ -1137,7 +1129,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     50% { box-shadow: 0 4px 14px rgba(0,0,0,0.35); transform: scale(1.05); }
 }
 
-
+/*поскаржитись */ 
 .b-complain {
     background: linear-gradient(135deg, #ffe0eb 0%, #ffc2d4 40%, #ffb3c6 60%, #ffe0eb 100%);
     background-size: 200% 200%;
@@ -1249,7 +1241,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 
 
 
-/* понити враппер */
+/* поскаржитись враппер */
 .complain-wrapper {
     position: relative;
     width: 90%;
@@ -1284,7 +1276,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     top: -22px;
     opacity: 1;
 }
-/*поскардитись попап*/
+/*поскаржитись попап*/
 
 
 @media (max-width: 390px) {
@@ -1323,7 +1315,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
  
 
-/*баблз*/
+/*текстові бабло з дверей*/
 .door-bubble {
     position: fixed;
     background: #fff;
@@ -2110,9 +2102,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     font-size: 20px;
 }
 
-
-
-
+/* подякувати */ 
 .b-thank {
     background: #fff;
     border: 2px solid #B24A3B;
@@ -2121,7 +2111,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif; 
     font-weight: 700;
     font-size: 15px;
     color: #B24A3B;
