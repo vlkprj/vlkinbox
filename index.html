@@ -263,31 +263,33 @@
         <div class="submit-editor-wrap">
             <div class="submit-editor" id="submit-editor" contenteditable="true" data-placeholder="Пишіть сюди..."></div>
             <div id="attach-preview-inline" class="attach-preview-inline"></div>
-            <div class="editor-toolbar-row">
+                        <div class="editor-toolbar-row">
                 <button class="toolbar-attach-btn" id="attach-btn">
                     <span class="material-symbols-outlined" style="font-size:20px;">attach_file</span>
                 </button>
                 <input type="file" id="attach-input" accept="image/*" style="display:none;">
-                <div class="toolbar-divider"></div>
-                <button class="toolbar-btn" data-cmd="bold"><b>B</b></button>
-                <button class="toolbar-btn" data-cmd="italic"><i style="font-family:serif;">i</i></button>
-                <div class="toolbar-divider"></div>
-                <div class="toolbar-font-box" id="toolbar-font-box">
-                    <span class="toolbar-font-label">Шрифт</span>
-                    <select class="toolbar-select" id="font-select">
-                        <option value="Inter">Inter</option>
-                        <option value="Vollkorn">Vollkorn</option>
-                        <option value="PT Serif">PT Serif</option>
-                        <option value="Lora">Lora</option>
-                        <option value="Space Grotesk">Grotesk</option>
-                        <option value="Oswald">Oswald</option>
-                        <option value="Philosopher">Philosopher</option>
-                        <option value="Dela Gothic One">Dela Gothic</option>
-                        <option value="Bad Script">Bad Script</option>
-                        <option value="Balsamiq Sans">Balsamiq</option>
-                        <option value="Viaoda Libre">Viaoda</option>
-                        <option value="Fira Sans Extra Condensed">Fira Sans</option>
-                    </select>
+                
+                <div class="toolbar-right-group" style="display: flex; align-items: center; gap: 4px; margin-left: auto;">
+                    <button class="toolbar-btn" data-cmd="bold"><b>B</b></button>
+                    <button class="toolbar-btn" data-cmd="italic"><i style="font-family:serif;">i</i></button>
+                    <div class="toolbar-divider"></div>
+                    <div class="toolbar-font-box" id="toolbar-font-box">
+                        <span class="toolbar-font-label">Шрифт</span>
+                        <select class="toolbar-select" id="font-select">
+                            <option value="Inter">Inter</option>
+                            <option value="Vollkorn">Vollkorn</option>
+                            <option value="PT Serif">PT Serif</option>
+                            <option value="Lora">Lora</option>
+                            <option value="Space Grotesk">Grotesk</option>
+                            <option value="Oswald">Oswald</option>
+                            <option value="Philosopher">Philosopher</option>
+                            <option value="Dela Gothic One">Dela Gothic</option>
+                            <option value="Bad Script">Bad Script</option>
+                            <option value="Balsamiq Sans">Balsamiq</option>
+                            <option value="Viaoda Libre">Viaoda</option>
+                            <option value="Fira Sans Extra Condensed">Fira Sans</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="editor-colors-row">
