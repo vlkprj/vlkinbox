@@ -2226,84 +2226,99 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     color: #e0e0e0;
 }
 
-.anon-identity-block {
+.anon-block {
     width: 100%;
     max-width: 400px;
     display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 16px;
-    border-radius: 16px;
-    box-sizing: border-box;
-    margin-top: 4px;
-}
-
-.submit-overlay.mailbox-mode .anon-identity-block {
-    background: rgba(0,0,0,0.04);
-    border: 1px solid rgba(0,0,0,0.08);
-}
-
-.submit-overlay.hole-mode .anon-identity-block {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-}
-
-.anon-icon-wrap {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-.submit-overlay.mailbox-mode .anon-icon-wrap {
-    background: rgba(0,0,0,0.06);
-    color: #888;
-}
-
-.submit-overlay.hole-mode .anon-icon-wrap {
-    background: rgba(255,255,255,0.08);
-    color: #666;
-}
-
-.anon-text-block {
-    display: flex;
     flex-direction: column;
-    flex: 1;
-    min-width: 0;
+    gap: 8px;
+    margin-top: 10px;
 }
 
-.anon-label {
+.anon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    color: #1a1a1a;
+    border-radius: 30px;
+    padding: 7px 14px 7px 10px;
     font-family: 'Inter', sans-serif;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    width: fit-content;
+    pointer-events: none;
+    user-select: none;
 }
 
-.submit-overlay.mailbox-mode .anon-label {
-    color: #B24A3B;
+.anon-badge .material-symbols-outlined {
+    font-size: 18px;
+    color: #1a1a1a;
 }
 
-.submit-overlay.hole-mode .anon-label {
-    color: #888;
-}
-
-.anon-sublabel {
+.anon-name-input-field {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(220, 220, 220, 0.35);
+    border: 1px solid rgba(180, 180, 180, 0.4);
+    border-radius: 12px;
+    padding: 11px 14px;
     font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    margin-top: 1px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    outline: none;
+    box-sizing: border-box;
+    transition: background 0.2s, border-color 0.2s;
 }
 
-.submit-overlay.mailbox-mode .anon-sublabel {
-    color: #aaa;
+.anon-name-input-field::placeholder {
+    color: rgba(255,255,255,0.55);
 }
 
-.submit-overlay.hole-mode .anon-sublabel {
-    color: #555;
+.anon-name-input-field:focus {
+    background: rgba(220, 220, 220, 0.5);
+    border-color: rgba(255,255,255,0.4);
 }
+
+.submit-overlay.mailbox-mode .anon-name-input-field {
+    background: rgba(0, 0, 0, 0.045);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #1a1a1a;
+}
+
+.submit-overlay.mailbox-mode .anon-name-input-field::placeholder {
+    color: rgba(0,0,0,0.38);
+}
+
+.submit-overlay.mailbox-mode .anon-name-input-field:focus {
+    background: rgba(0,0,0,0.07);
+    border-color: rgba(0,0,0,0.2);
+}
+
+.caps-overlay .anon-name-input-field {
+    background: rgba(0,0,0,0.07);
+    border: 1px solid rgba(0,0,0,0.12);
+    color: #333;
+}
+
+.caps-overlay .anon-name-input-field::placeholder {
+    color: rgba(0,0,0,0.35);
+}
+
+.photo-overlay .anon-name-input-field,
+.atmo-overlay .anon-name-input-field {
+    background: rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.1);
+    color: #1a1a1a;
+}
+
+.photo-overlay .anon-name-input-field::placeholder,
+.atmo-overlay .anon-name-input-field::placeholder {
+    color: rgba(0,0,0,0.38);
+}
+
 
 .attach-preview-inline {
     width: 100%;
@@ -3884,36 +3899,7 @@ body.submit-open {
 }
 
 
-.submit-overlay.mailbox-mode .anon-toggle-block {
-    background: #ffffff !important;
-    border: 1px solid #d1d1d1 !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-.submit-overlay.mailbox-mode .anon-label-text {
-    color: #1a1a1a !important;
-}
-.submit-overlay.mailbox-mode .anon-shield-icon {
-    color: #1D3561 !important;
-}
-.submit-overlay.mailbox-mode .anon-slider {
-    background-color: #d1d1d1 !important;
-}
-.submit-overlay.mailbox-mode .anon-input-row .submit-name-input {
-    background: #f5f5f5 !important;
-    color: #000 !important;
-    border: 1px solid #ccc !important;
-}
-.submit-overlay.mailbox-mode .anon-input-row .submit-name-input::placeholder {
-    color: #888 !important;
-}
 
-
-input:checked + .anon-slider {
-    background-color: #27ae60 !important;
-}
-input:checked + .anon-slider:before {
-    transform: translateX(20px) !important;
-}
 
 
 .preview-label, .preview-edit-btn, .atmo-overlay-title, .photo-overlay-title {
