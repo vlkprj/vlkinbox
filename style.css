@@ -1435,8 +1435,20 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     z-index: 10;
     padding: 20px 20px 0 20px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.submit-overlay-title {
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
 
 .close-submit {
     font-size: 28px;
