@@ -689,7 +689,12 @@ if (submitActionBtn) {
 
         previewPostCard.innerHTML = generateValkyCardsHTML(rawText, photosArr, bg, tc, font, nameVal);
         if (previewMetaLine) previewMetaLine.style.display = 'none';
-        
+        const swipeHint = document.getElementById('preview-swipe-hint');
+if (swipeHint) {
+    const cardCount = previewPostCard.querySelectorAll('.valky-card').length;
+    swipeHint.innerText = cardCount > 1 ? `${cardCount} картки · свайп →` : '';
+}
+
         submitContent.style.display = 'none';
         submitPreviewScreen.style.display = 'flex';
     });
