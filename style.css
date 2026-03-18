@@ -3921,3 +3921,31 @@ body.submit-open {
     animation: flyUpMailbox 1s cubic-bezier(0.5, 0, 0.2, 1) forwards !important;
 }
 
+/*каунтер*/ 
+.char-counter-wrap {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    flex-shrink: 0;
+    transition: color 0.2s;
+}
+
+.submit-overlay.hole-mode .char-counter-wrap {
+    color: rgba(255,255,255,0.25);
+}
+
+.char-counter-wrap.over-limit {
+    color: #e74c3c;
+}
+
+.char-counter-wrap.over-limit::after {
+    content: '+';
+    font-size: 10px;
+    margin-left: 2px;
+    color: #e74c3c;
+}
+/*каунтер всьо*/ 
