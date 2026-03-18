@@ -345,7 +345,18 @@ submitEditor.addEventListener('paste', (e) => {
 
 submitEditor.addEventListener('input', () => {
     submitEditor.style.fontFamily = submitEditor.dataset.activeFont || 'Inter, sans-serif';
+    const len = submitEditor.innerText.replace(/\n$/, '').length;
+    const counter = document.getElementById('char-counter');
+    const counterWrap = document.getElementById('char-counter-wrap');
+    if (!counter || !counterWrap) return;
+    counter.innerText = len;
+    if (len > 350) {
+        counterWrap.classList.add('over-limit');
+    } else {
+        counterWrap.classList.remove('over-limit');
+    }
 });
+
 
     const hintEl = document.getElementById('submit-hint-text');
     if (hintEl) {
@@ -548,7 +559,7 @@ function generateValkyCardsHTML(rawText, photosArr, bgColor, textColor, font, au
     let html = '';
     
     const headerHTML = `
-        <div class="valky-card-header-pill" style="transform: scale(0.85); margin-bottom: 8px;">
+        <div class="valky-card-header-pill" style="transform: scale(0.85); margin-bottom: 4px;">
             <img src="anonface.PNG" alt="Анонім">
             <span class="pill-yellow">ВАЛКІВСЬКА</span>
             <span class="pill-white">ПРИЙМАЛЬНЯ</span>
@@ -557,37 +568,64 @@ function generateValkyCardsHTML(rawText, photosArr, bgColor, textColor, font, au
 
     const authorHTML = `<div class="valky-card-author">${authorName}</div>`;
     
+    const CHARS_PER_CARD = 350;
+    const MIN_LEFTOVER = 80;
+
     let chunks = [];
     if (rawText.trim().length > 0) {
         const words = rawText.split(' ');
         let currentChunk = '';
+        let tempChunks = [];
+
         words.forEach(w => {
-            if ((currentChunk + ' ' + w).length > 350) {
-                chunks.push(currentChunk);
+            if ((currentChunk + ' ' + w).trim().length > CHARS_PER_CARD) {
+                tempChunks.push(currentChunk.trim());
                 currentChunk = w;
             } else {
                 currentChunk += (currentChunk ? ' ' : '') + w;
             }
         });
-        if (currentChunk) chunks.push(currentChunk);
+        if (currentChunk.trim()) tempChunks.push(currentChunk.trim());
+
+        if (tempChunks.length > 1) {
+            const last = tempChunks[tempChunks.length - 1];
+            if (last.length < MIN_LEFTOVER) {
+                tempChunks[tempChunks.length - 2] += ' ' + last;
+                tempChunks.pop();
+            }
+        }
+
+        chunks = tempChunks;
     } else if (photosArr.length === 0) {
-        chunks.push("порожньо");
+        chunks.push('порожньо');
     }
 
+    const getFontClass = (text, isMultiCard) => {
+        if (isMultiCard) {
+            if (text.length < 80) return 'fs-large';
+            if (text.length < 180) return 'fs-medium';
+            return 'fs-small';
+        }
+        if (text.length < 80) return 'fs-huge';
+        if (text.length < 180) return 'fs-large';
+        if (text.length < 280) return 'fs-medium';
+        return 'fs-small';
+    };
+
+    const textAlign = (text) => text.length > 193 ? 'left' : 'center';
+    const isMultiCard = chunks.length > 1;
+
     chunks.forEach((chunk, idx) => {
-        let fontClass = 'fs-small';
-        if (chunk.length < 80) fontClass = 'fs-huge';
-        else if (chunk.length < 180) fontClass = 'fs-large';
-        else if (chunk.length < 280) fontClass = 'fs-medium';
+        const fontClass = getFontClass(chunk, isMultiCard);
+        const align = textAlign(chunk);
+        const showHeader = idx === 0 ? headerHTML : '';
+        const showArrow = (idx < chunks.length - 1 || photosArr.length > 0)
+            ? '<div class="valky-card-arrow">→</div>' : '';
 
-        const showHeader = (idx === 0) ? headerHTML : '';
-        const showArrow = (idx < chunks.length - 1 || photosArr.length > 0) ? '<div class="valky-card-arrow">→</div>' : '';
-
-        
         html += `
             <div class="valky-card" style="background:${bgColor}; color:${textColor}; font-family:${font} !important;">
                 ${showHeader}
-                <div class="valky-card-body ${fontClass}" style="font-family:${font} !important;">${chunk}</div>
+                <div class="valky-card-body ${fontClass}" style="font-family:${font} !important; text-align:${align};">${chunk}</div>
                 ${showArrow}
                 ${authorHTML}
             </div>
@@ -608,9 +646,6 @@ function generateValkyCardsHTML(rawText, photosArr, bgColor, textColor, font, au
 
     return html;
 }
-
-
-
 //генератор карточок всьо
 
 
