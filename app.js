@@ -324,8 +324,10 @@ function openSubmitOverlay(mode, placeholderText, defaultFont) {
     submitEditor.innerHTML = '';
     submitEditor.setAttribute('data-placeholder', 'Пишіть сюди...');
     
-    const appliedFont = defaultFont || 'Inter, sans-serif';
-    submitEditor.style.fontFamily = appliedFont;
+    const appliedFont = defaultFont ? `'${defaultFont}', sans-serif` : 'Inter, sans-serif';
+submitEditor.style.fontFamily = appliedFont;
+submitEditor.dataset.activeFont = appliedFont;
+
     
     if (fontSelect) {
         Array.from(fontSelect.options).forEach(opt => {
@@ -334,6 +336,16 @@ function openSubmitOverlay(mode, placeholderText, defaultFont) {
             }
         });
     }
+submitEditor.addEventListener('paste', (e) => {
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+    document.execCommand('insertText', false, text);
+    submitEditor.style.fontFamily = submitEditor.dataset.activeFont || 'Inter, sans-serif';
+});
+
+submitEditor.addEventListener('input', () => {
+    submitEditor.style.fontFamily = submitEditor.dataset.activeFont || 'Inter, sans-serif';
+});
 
     const hintEl = document.getElementById('submit-hint-text');
     if (hintEl) {
