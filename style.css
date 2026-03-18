@@ -3716,10 +3716,11 @@ body.submit-open {
 }
 
 
-.valky-card-body.fs-huge { font-size: 36px; line-height: 1.3; font-weight: 700; }
-.valky-card-body.fs-large { font-size: 26px; line-height: 1.4; }
-.valky-card-body.fs-medium { font-size: 20px; line-height: 1.5; }
-.valky-card-body.fs-small { font-size: 16px; line-height: 1.5; }
+.valky-card-body.fs-huge { font-size: 36px; line-height: 1.3; font-weight: 400; }
+.valky-card-body.fs-large { font-size: 26px; line-height: 1.4; font-weight: 400; }
+.valky-card-body.fs-medium { font-size: 20px; line-height: 1.5; font-weight: 400; }
+.valky-card-body.fs-small { font-size: 16px; line-height: 1.5; font-weight: 400; }
+
 
 .valky-card-arrow {
     position: absolute;
