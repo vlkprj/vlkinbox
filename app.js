@@ -933,6 +933,7 @@ atmoBgDots.forEach(dot => {
         atmoBgDots.forEach(d => d.classList.remove('active'));
         dot.classList.add('active');
         currentAtmoBg = dot.dataset.color;
+        if (atmoStage) atmoStage.style.background = currentAtmoBg;
     });
 });
 
@@ -973,17 +974,19 @@ if (atmoActionBtn) {
                     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; width: 100%; margin: auto 0;">
             `;
             
+            const itemWidth = photosData.length === 1 ? '80%' : '45%';
+            
             photosData.forEach(p => {
                 if (p.isPolaroid) {
                     html += `
-                        <div style="background: #fff; padding: 10px 10px 30px 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border-radius: 2px; display: flex; flex-direction: column; align-items: center; width: 42%;">
+                        <div style="background: #fff; padding: 10px 10px 30px 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border-radius: 2px; display: flex; flex-direction: column; align-items: center; width: ${itemWidth};">
                             <img src="${p.src}" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border: 1px solid #eee;">
                             ${p.caption ? `<div style="font-family: 'Caveat', cursive; font-size: 18px; color: #111; margin-top: 8px; text-align: center; line-height: 1;">${p.caption}</div>` : ''}
                         </div>
                     `;
                 } else {
                     html += `
-                        <div style="width: 42%; aspect-ratio: 1/1; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                        <div style="width: ${itemWidth}; aspect-ratio: 1/1; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
                             <img src="${p.src}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
                         </div>
                     `;
@@ -1005,6 +1008,8 @@ if (atmoActionBtn) {
         atmoContent.style.display = 'none';
         atmoPreviewScreen.style.display = 'flex';
     });
+}
+
 }
 
 
