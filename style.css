@@ -4037,3 +4037,34 @@ body.submit-open {
     z-index: 9999 !important;
     position: relative;
 }
+#char-counter-wrap.over-limit { 
+    color: #ffffff; 
+}
+
+#card-count-hint, .caps-label, .photo-drop-hint, .submit-hint-text { 
+    color: #ffffff !important; 
+    text-align: center; 
+}
+
+.submit-overlay-title { 
+    display: none; 
+}
+
+.submit-header { 
+    justify-content: flex-end; 
+}
+
+.preview-header, .submit-preview-screen button { 
+    z-index: 100; 
+    position: relative; 
+}
+
+.close-submit { 
+    z-index: 101; 
+}
+
+#atmo-stage {
+    padding: 20px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
