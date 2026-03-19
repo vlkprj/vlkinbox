@@ -302,7 +302,23 @@ const previewSendBtn = document.getElementById('preview-send-btn');
 let lastScrollY = 0;
 let finishSendTimeout;
 
-function openSubmitOverlay(mode, placeholderText, defaultFont) {
+const buttonTitles = {
+    '.b-write-main': 'НАПИСАТИ',
+    '.b-story': 'РОЗКАЗАТИ',
+    '.b-serious': 'НАПИСАТИ ЩОСЬ СЕРЙОЗНЕ',
+    '.b-petition': 'ЗВЕРНЕННЯ',
+    '.b-complain': 'ПОСКАРЖИТИСЬ',
+    '.b-zbir': 'ЗБІР',
+    '.b-idea': 'Є ІДЕЯ',
+    '.b-thank': 'ПОДЯКУВАТИ',
+    '.b-unpopular': 'НЕПОПУЛЯРНА ДУМКА',
+    '.b-shopopalo': 'ШОПОПАЛО',
+    '.b-admins': 'НАПИСАТИ АДМІНАМ',
+    '.rumors-container': 'ЧУТКИ',
+    '.b-problem': 'ОТАКА ПРОБЛЕМА'
+};
+
+function openSubmitOverlay(mode, placeholderText, defaultFont, titleText) {
     lastScrollY = window.scrollY;
     submitOverlay.className = `submit-overlay ${mode}-mode`;
     submitOverlay.style.display = 'flex';
@@ -312,6 +328,12 @@ function openSubmitOverlay(mode, placeholderText, defaultFont) {
     submitVideo.style.transition = 'none';
     submitVideo.style.display = 'block';
     document.body.classList.add('submit-open');
+
+    const overlayTitle = submitOverlay.querySelector('.submit-overlay-title');
+    if (overlayTitle) {
+        overlayTitle.innerText = titleText || 'НАПИСАТИ';
+        overlayTitle.style.color = '#ffffff';
+    }
 
     const src = mode === 'mailbox' ? 'skrynka.mp4' : 'blackhole.mp4';
     submitVideo.src = src;
@@ -324,10 +346,20 @@ function openSubmitOverlay(mode, placeholderText, defaultFont) {
     submitEditor.innerHTML = '';
     submitEditor.setAttribute('data-placeholder', 'Пишіть сюди...');
     
+    const counter = document.getElementById('char-counter');
+    const counterWrap = document.getElementById('char-counter-wrap');
+    if (counter) counter.innerText = '0';
+    if (counterWrap) counterWrap.classList.remove('over-limit');
+    
+    const cardHint = document.getElementById('card-count-hint');
+    if (cardHint) cardHint.innerText = '';
+    
+    const inlinePreview = document.getElementById('attach-preview-inline');
+    if (inlinePreview) inlinePreview.innerHTML = '';
+    
     const appliedFont = defaultFont ? `'${defaultFont}', sans-serif` : 'Inter, sans-serif';
-submitEditor.style.fontFamily = appliedFont;
-submitEditor.dataset.activeFont = appliedFont;
-
+    submitEditor.style.fontFamily = appliedFont;
+    submitEditor.dataset.activeFont = appliedFont;
     
     if (fontSelect) {
         Array.from(fontSelect.options).forEach(opt => {
@@ -336,6 +368,24 @@ submitEditor.dataset.activeFont = appliedFont;
             }
         });
     }
+
+    const hintEl = document.getElementById('submit-hint-text');
+    if (hintEl) {
+        hintEl.innerText = placeholderText || '';
+        hintEl.style.fontFamily = appliedFont;
+        hintEl.style.color = mode === 'hole' ? '#ccc' : '#fff';
+        hintEl.classList.remove('vanish');
+        void hintEl.offsetWidth;
+        setTimeout(() => hintEl.classList.add('vanish'), 3500);
+    }
+
+    currentBgColor = '#FAF8F4';
+    currentTextColor = '#222221';
+    textColorDots.forEach(d => d.classList.toggle('active', d.dataset.color === '#222221'));
+    bgColorDots.forEach(d => d.classList.toggle('active', d.dataset.color === '#FAF8F4'));
+    applyEditorColors();
+}
+
 submitEditor.addEventListener('paste', (e) => {
     e.preventDefault();
     const text = (e.clipboardData || window.clipboardData).getData('text/plain');
@@ -363,24 +413,6 @@ submitEditor.addEventListener('input', () => {
     }
 });
 
-
-
-    const hintEl = document.getElementById('submit-hint-text');
-    if (hintEl) {
-        hintEl.innerText = placeholderText || '';
-        hintEl.style.fontFamily = appliedFont;
-        hintEl.style.color = mode === 'hole' ? '#ccc' : '#fff';
-        hintEl.classList.remove('vanish');
-        void hintEl.offsetWidth;
-        setTimeout(() => hintEl.classList.add('vanish'), 3500);
-    }
-
-    currentBgColor = '#FAF8F4';
-    currentTextColor = '#222221';
-    textColorDots.forEach(d => d.classList.toggle('active', d.dataset.color === '#222221'));
-    bgColorDots.forEach(d => d.classList.toggle('active', d.dataset.color === '#FAF8F4'));
-    applyEditorColors();
-}
 
 
 
@@ -444,16 +476,17 @@ const buttonFonts = {
 
 
 
-
+// цикли mailboxButtons.forEach + holeButtons.forEach//
 mailboxButtons.forEach(sel => {
     const el = document.querySelector(sel);
-    if (el) el.addEventListener('click', () => openSubmitOverlay('mailbox', buttonPlaceholders[sel], buttonFonts[sel]));
+    if (el) el.addEventListener('click', () => openSubmitOverlay('mailbox', buttonPlaceholders[sel], buttonFonts[sel], buttonTitles[sel]));
 });
 
 holeButtons.forEach(sel => {
     const el = document.querySelector(sel);
-    if (el) el.addEventListener('click', () => openSubmitOverlay('hole', buttonPlaceholders[sel], buttonFonts[sel]));
+    if (el) el.addEventListener('click', () => openSubmitOverlay('hole', buttonPlaceholders[sel], buttonFonts[sel], buttonTitles[sel]));
 });
+
 
 
 if (closeSubmitBtn) closeSubmitBtn.addEventListener('click', closeSubmitOverlay);
@@ -477,9 +510,11 @@ document.querySelectorAll('.toolbar-btn[data-cmd]').forEach(btn => {
 if (fontSelect) {
     fontSelect.addEventListener('change', () => {
         submitEditor.style.fontFamily = fontSelect.value;
+        submitEditor.dataset.activeFont = fontSelect.value;
         submitEditor.focus();
     });
 }
+
 
 const attachPreviewInline = document.getElementById('attach-preview-inline');
 
@@ -562,11 +597,11 @@ bgColorDots.forEach(dot => {
 });
 
 // Генератор карточок
-function generateValkyCardsHTML(rawText, photosArr, bgColor, textColor, font, authorName) {
+function generateValkyCardsHTML(rawHTML, photosArr, bgColor, textColor, font, authorName) {
     let html = '';
     
     const headerHTML = `
-        <div class="valky-card-header-pill" style="transform: scale(0.85); margin-bottom: 4px;">
+        <div class="valky-card-header-pill" style="transform: scale(0.85); margin-bottom: 14px; margin-top: -8px;">
             <img src="anonface.PNG" alt="Анонім">
             <span class="pill-yellow">ВАЛКІВСЬКА</span>
             <span class="pill-white">ПРИЙМАЛЬНЯ</span>
@@ -579,47 +614,69 @@ function generateValkyCardsHTML(rawText, photosArr, bgColor, textColor, font, au
     const MIN_LEFTOVER = 80;
 
     let chunks = [];
-    if (rawText.trim().length > 0) {
-        const words = rawText.split(' ');
-        let currentChunk = '';
-        let tempChunks = [];
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = rawHTML;
+    const pureText = tempDiv.innerText || '';
 
-        words.forEach(w => {
-            if ((currentChunk + ' ' + w).trim().length > CHARS_PER_CARD) {
-                tempChunks.push(currentChunk.trim());
-                currentChunk = w;
-            } else {
-                currentChunk += (currentChunk ? ' ' : '') + w;
-            }
-        });
-        if (currentChunk.trim()) tempChunks.push(currentChunk.trim());
+    if (pureText.trim().length > 0) {
+        if (pureText.length <= CHARS_PER_CARD) {
+            chunks.push(rawHTML);
+        } else {
+            const words = rawHTML.split(' ');
+            let currentChunk = '';
+            let tempChunks = [];
+            let currentTextLength = 0;
 
-        if (tempChunks.length > 1) {
-            const last = tempChunks[tempChunks.length - 1];
-            if (last.length < MIN_LEFTOVER) {
-                tempChunks[tempChunks.length - 2] += ' ' + last;
-                tempChunks.pop();
+            words.forEach(w => {
+                const wTemp = document.createElement('div');
+                wTemp.innerHTML = w;
+                const wLen = wTemp.innerText.length;
+
+                if (currentTextLength + wLen > CHARS_PER_CARD) {
+                    tempChunks.push(currentChunk.trim());
+                    currentChunk = w;
+                    currentTextLength = wLen;
+                } else {
+                    currentChunk += (currentChunk ? ' ' : '') + w;
+                    currentTextLength += wLen + 1;
+                }
+            });
+            if (currentChunk.trim()) tempChunks.push(currentChunk.trim());
+
+            if (tempChunks.length > 1) {
+                const lastTemp = document.createElement('div');
+                lastTemp.innerHTML = tempChunks[tempChunks.length - 1];
+                if (lastTemp.innerText.length < MIN_LEFTOVER) {
+                    tempChunks[tempChunks.length - 2] += ' ' + tempChunks[tempChunks.length - 1];
+                    tempChunks.pop();
+                }
             }
+            chunks = tempChunks;
         }
-
-        chunks = tempChunks;
     } else if (photosArr.length === 0) {
         chunks.push('порожньо');
     }
 
-    const getFontClass = (text, isMultiCard) => {
+    const getFontClass = (textStr, isMultiCard) => {
+        const tDiv = document.createElement('div');
+        tDiv.innerHTML = textStr;
+        const len = tDiv.innerText.length;
         if (isMultiCard) {
-            if (text.length < 80) return 'fs-large';
-            if (text.length < 180) return 'fs-medium';
+            if (len < 80) return 'fs-large';
+            if (len < 180) return 'fs-medium';
             return 'fs-small';
         }
-        if (text.length < 80) return 'fs-huge';
-        if (text.length < 180) return 'fs-large';
-        if (text.length < 280) return 'fs-medium';
+        if (len < 80) return 'fs-huge';
+        if (len < 180) return 'fs-large';
+        if (len < 280) return 'fs-medium';
         return 'fs-small';
     };
 
-    const textAlign = (text) => text.length > 193 ? 'left' : 'center';
+    const textAlign = (textStr) => {
+        const tDiv = document.createElement('div');
+        tDiv.innerHTML = textStr;
+        return tDiv.innerText.length > 193 ? 'left' : 'center';
+    };
     const isMultiCard = chunks.length > 1;
 
     chunks.forEach((chunk, idx) => {
@@ -653,6 +710,7 @@ function generateValkyCardsHTML(rawText, photosArr, bgColor, textColor, font, au
 
     return html;
 }
+
 //генератор карточок всьо
 
 
@@ -673,7 +731,9 @@ function getActiveNickname(containerId) {
 if (submitActionBtn) {
     submitActionBtn.addEventListener('click', () => {
         const nameVal = getActiveNickname('submit-content');
-        const rawText = submitEditor.innerText || ''; 
+        const rawText = submitEditor.innerHTML || '';
+
+
         
         let photosArr = [];
         const inlinePreview = document.getElementById('attach-preview-inline');
