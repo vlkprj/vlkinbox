@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     //сабміт тута//
 
-    const submitOverlay = document.getElementById('submit-overlay');
+const submitOverlay = document.getElementById('submit-overlay');
 const closeSubmitBtn = document.getElementById('close-submit');
 const submitActionBtn = document.getElementById('submit-action-btn');
 const submitEditor = document.getElementById('submit-editor');
@@ -417,10 +417,6 @@ submitEditor.addEventListener('input', () => {
 
 
 
-
-
-
-
 function closeSubmitOverlay() {
     submitOverlay.style.display = 'none';
     submitOverlay.className = 'submit-overlay';
@@ -439,9 +435,6 @@ function closeSubmitOverlay() {
 
 const mailboxButtons = ['.b-story', '.b-serious', '.b-petition', '.b-complain', '.b-zbir', '.b-idea', '.side-tag', '.b-write-main', '.b-thank'];
 const holeButtons = ['.b-unpopular', '.b-shopopalo', '.b-admins', '.rumors-container', '.b-problem'];
-
-
-
 
 
 const buttonPlaceholders = {
@@ -476,7 +469,6 @@ const buttonFonts = {
     '.b-shopopalo': 'Balsamiq Sans',
     '.b-admins': 'Fira Sans Extra Condensed',
 };
-
 
 
 // цикли mailboxButtons.forEach + holeButtons.forEach//
@@ -519,8 +511,6 @@ if (fontSelect) {
         submitEditor.focus();
     });
 }
-
-
 
 const attachPreviewInline = document.getElementById('attach-preview-inline');
 
