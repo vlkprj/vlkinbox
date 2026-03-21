@@ -315,8 +315,10 @@ const buttonTitles = {
     '.b-shopopalo': 'ШОПОПАЛО',
     '.b-admins': 'НАПИСАТИ АДМІНАМ',
     '.rumors-container': 'ЧУТКИ',
-    '.b-problem': 'ОТАКА ПРОБЛЕМА'
+    '.b-problem': 'ОТАКА ПРОБЛЕМА',
+    '.b-advice': 'ПОТРІБНА ПОРАДА'
 };
+
 
 function openSubmitOverlay(mode, placeholderText, defaultFont, titleText) {
     lastScrollY = window.scrollY;
@@ -433,7 +435,7 @@ function closeSubmitOverlay() {
 
 
 
-const mailboxButtons = ['.b-story', '.b-serious', '.b-petition', '.b-complain', '.b-zbir', '.b-idea', '.side-tag', '.b-write-main', '.b-thank'];
+const mailboxButtons = ['.b-story', '.b-serious', '.b-petition', '.b-complain', '.b-zbir', '.b-idea', '.side-tag', '.b-write-main', '.b-thank', '.b-advice'];
 const holeButtons = ['.b-unpopular', '.b-shopopalo', '.b-admins', '.rumors-container', '.b-problem'];
 
 
@@ -443,15 +445,18 @@ const buttonPlaceholders = {
     '.b-serious': 'Пишіть щось, ну тільки ж серйозне',
     '.b-petition': 'Це ж неофіційне звернення, ви ж розумієте? Але вони побачать, не сумнівайтеся 👀',
     '.b-complain': 'Шо там вже сталося? Розказуйте-показуйте. Матюкатись можна.',
-    '.b-zbir': 'Додайте будь ласка всю важливу інформацію, офіційний (якщо є) запит, контакти і посилання, а також текст збору. Ми перевіримо і обовʼязково опублікуємо',
+    '.b-zbir': 'Додайте будь ласка всю важливу інформацію, офіційний (якщо є) запит, контакти і посилання, а також текст збору. 
+    Ми перевіримо і обовʼязково опублікуємо',
     '.b-idea': 'Цікаво-цікаво. Розказуйте',
     '.b-thank': 'Кому і за шо дякувати будете? Пишіть ❤️',
     '.b-unpopular': 'Ага, тобто хочете срач розпочати?',
     '.b-shopopalo': 'Пишіть своє шопопало, але майте на увазі, що якщо шопопалість вашого шопопала буде занадто, ми не гарантуємо, що опублікуємо це на каналі',
     '.b-admins': 'Ну пишіть вже...',
     '.rumors-container': 'Ну розказуйте шо чули, шо бачили. Чи ви запитати?',
-    '.b-problem': 'Розказуйте-показуйте. Де, шо і коли'
+    '.b-problem': 'Розказуйте-показуйте. Де, шо і коли',
+    '.b-advice': 'Можливо вам підкажуть щось'
 };
+
 
 const buttonFonts = {
     '.b-write-main': 'Fira Sans Extra Condensed',
@@ -468,7 +473,9 @@ const buttonFonts = {
     '.b-idea': 'Oswald',
     '.b-shopopalo': 'Balsamiq Sans',
     '.b-admins': 'Fira Sans Extra Condensed',
+    '.b-advice': 'Fira Sans Extra Condensed'
 };
+
 
 
 // цикли mailboxButtons.forEach + holeButtons.forEach//
