@@ -1192,10 +1192,11 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 
 .neutral-divider {
     border: none;
-    border-top: 2px dotted #ccc;
-    width: 60%;
-    margin: 15px auto;
+    border-top: 1px solid #ccc;
+    width: 100vw;
+    margin: 15px calc(-50vw + 50%);
 }
+
 
 .complain-wrapper {
     position: relative;
