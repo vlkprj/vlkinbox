@@ -1300,7 +1300,6 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     overscroll-behavior: none;
 }
 
-
 .submit-video-bg {
     position: absolute;
     top: 0;
@@ -1313,7 +1312,6 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     transform: scale(1.05);
 }
 
-
 .submit-overlay.mailbox-mode .submit-preview-screen {
     background: transparent;
 }
@@ -1321,7 +1319,6 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 .submit-overlay.hole-mode .submit-preview-screen {
     background: transparent;
 }
-
 
 .submit-header {
     position: relative;
@@ -1342,13 +1339,11 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
-
 .close-submit {
-    font-size: 28px;
     cursor: pointer;
-    width: 36px;
-    height: 36px;
-    background: #B24A3B;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     border-radius: 50%;
     display: flex;
@@ -1356,12 +1351,13 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     justify-content: center;
     transition: background 0.2s;
     font-size: 20px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .close-submit:active {
-    background: #922e22;
+    background: rgba(0, 0, 0, 0.8);
 }
-
 
 .submit-content {
     position: relative;
@@ -1390,18 +1386,15 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     flex-wrap: nowrap;
 }
 
-
 .submit-overlay.mailbox-mode .submit-toolbar {
     background: #f5f5f5;
     border: 1px solid #e0e0e0;
 }
 
-
 .submit-overlay.hole-mode .submit-toolbar {
     background: #1a1a1a;
     border: 1px solid rgba(255,255,255,0.12);
 }
-
 
 .toolbar-btn {
     background: none;
@@ -1442,8 +1435,6 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     max-width: 80px;
 }
 
-
-
 .submit-overlay.mailbox-mode .toolbar-select {
     color: #444;
 }
@@ -1480,14 +1471,12 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 
-
 .submit-overlay.hole-mode .submit-editor {
     background: #1a1a1a;
     border: 1px solid rgba(255,255,255,0.12);
     color: #e0e0e0;
     box-shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
-
 
 .submit-editor:empty::before {
     content: attr(data-placeholder);
@@ -1547,28 +1536,9 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 
 .submit-name-input {
     flex: 1;
-    background: none;
-    border: none;
-    border-bottom: 1px solid;
-    padding: 6px 4px;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    outline: none;
-    border-radius: 0;
-}
-
-.submit-overlay.mailbox-mode .submit-name-input {
-    color: #1a1a1a;
-}
-
-.submit-overlay.hole-mode .submit-name-input {
-    color: #e0e0e0;
-}
-
-.submit-name-input {
-    flex: 1;
     background: transparent;
     border: none;
+    border-bottom: 1px solid transparent;
     padding: 8px 0;
     font-family: 'Inter', sans-serif;
     font-size: 15px;
@@ -1590,7 +1560,6 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     font-weight: 500;
 }
 
-
 .submit-action-btn {
     padding: 14px 40px;
     font-family: 'Space Grotesk', sans-serif;
@@ -1604,8 +1573,11 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .submit-overlay.mailbox-mode .submit-action-btn {
-    background: #1a1a1a;
-    color: #FFDA59;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     box-shadow: 0 4px 16px rgba(0,0,0,0.2);
 }
 
