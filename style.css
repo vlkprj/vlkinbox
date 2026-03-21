@@ -376,7 +376,7 @@ body, html {
 
 .story-typing-area {
     color: #888;
-    font-family: 'Lora', serif;
+    font-family: 'PT Serif', serif;
     font-size: 14px;
     line-height: 1.3;
 }
@@ -1067,7 +1067,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     border-radius: 24px;
 
     color: #c2185b;
-    font-family: 'Lora', serif;
+    font-family: 'PT Serif', serif;
     font-style: italic;
     font-size: 18px;
 
