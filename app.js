@@ -1498,7 +1498,10 @@ const getArtifactText = (count) => `\n\n📸 **Ти відкрив(ла) мож�
             doorBtn.classList.add('door-broken-hole');
         }
 
-            const fxClasses = ['door-glow', 'door-glitch', 'fx-anime', 'fx-glitch', 'fx-upside-down', 'fx-black-hole'];
+            const fxClasses = [
+        'door-glow', 'door-glitch', 'fx-anime', 'fx-glitch', 'fx-upside-down', 
+        'fx-black-hole', 'fx-earthquake', 'fx-acid-trip', 'fx-hologram', 'fx-void'
+    ];
 
     doorBtn.addEventListener('click', (event) => {
         const rect = doorBtn.getBoundingClientRect();
@@ -1609,23 +1612,23 @@ const getArtifactText = (count) => `\n\n📸 **Ти відкрив(ла) мож�
             localStorage.setItem('valky_last_pred', lastPredictionAt);
 
         } else {
-            if (Math.random() < 0.15) {
+            if (Math.random() < 0.40) {
                 doorBtn.classList.remove(...fxClasses);
-                void doorBtn.offsetWidth; 
-                
-                const randomFx = fxClasses[Math.floor(Math.random() * fxClasses.length)];
-                doorBtn.classList.add(randomFx);
-            } else {
+            void doorBtn.offsetWidth; 
+            
+            const randomFx = fxClasses[Math.floor(Math.random() * fxClasses.length)];
+            doorBtn.classList.add(randomFx);
+        } else {
                 let availableBubbles = bubbles.filter(b => !recentBubbles.includes(b));
-                if (availableBubbles.length === 0) availableBubbles = bubbles;
+            if (availableBubbles.length === 0) availableBubbles = bubbles;
                 
                 const randomBubbleText = availableBubbles[Math.floor(Math.random() * availableBubbles.length)];
                 
                 recentBubbles.push(randomBubbleText);
-                if (recentBubbles.length > 15) recentBubbles.shift();
+            if (recentBubbles.length > 15) recentBubbles.shift();
 
-                showDoorBubble(event, randomBubbleText);
-            }
+            showDoorBubble(event, randomBubbleText);
+        }
         }
     });
 }
