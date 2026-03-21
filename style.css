@@ -189,6 +189,11 @@ body, html {
 .fx-upside-down { animation: strangerThingsFlip 1.5s ease-in-out; }
 .fx-black-hole { animation: blackHoleSuck 1s ease-in-out; }
 
+.fx-earthquake { animation: doorEarthquake 3s ease-in-out; }
+.fx-acid-trip { animation: doorAcidTrip 4s linear; }
+.fx-hologram { animation: doorHologram 3s linear; }
+.fx-void { animation: doorVoid 3s cubic-bezier(0.25, 1, 0.5, 1); }
+
 .door-splinter {
     position: fixed;
     width: 6px;
@@ -4061,6 +4066,33 @@ body.submit-open {
     100% { transform: translateX(-50%) scale(1) rotate(0deg); filter: blur(0); }
 }
 
+@keyframes doorEarthquake {
+    0%, 100% { transform: translateX(-50%) rotate(0deg); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(calc(-50% - 4px)) rotate(-4deg); }
+    20%, 40%, 60%, 80% { transform: translateX(calc(-50% + 4px)) rotate(4deg); }
+}
+
+@keyframes doorAcidTrip {
+    0% { transform: translateX(-50%) scale(1); filter: hue-rotate(0deg) saturate(1); }
+    25% { transform: translateX(-50%) scale(1.1); filter: hue-rotate(90deg) saturate(2); }
+    50% { transform: translateX(-50%) scale(0.9); filter: hue-rotate(180deg) saturate(3) drop-shadow(0 0 20px magenta); }
+    75% { transform: translateX(-50%) scale(1.15); filter: hue-rotate(270deg) saturate(2); }
+    100% { transform: translateX(-50%) scale(1); filter: hue-rotate(360deg) saturate(1); }
+}
+
+@keyframes doorHologram {
+    0% { transform: translateX(-50%); filter: sepia(1) hue-rotate(150deg) saturate(3) opacity(0.8); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(calc(-50% - 2px)) skewX(5deg); filter: sepia(1) hue-rotate(150deg) saturate(3) opacity(0.4); }
+    20%, 40%, 60%, 80% { transform: translateX(calc(-50% + 2px)) skewX(-5deg); filter: sepia(1) hue-rotate(150deg) saturate(3) opacity(0.9); }
+    100% { transform: translateX(-50%); filter: sepia(0) hue-rotate(0deg) saturate(1) opacity(1); }
+}
+
+@keyframes doorVoid {
+    0% { transform: translateX(-50%) scale(1); filter: contrast(1) brightness(1); }
+    10% { transform: translateX(-50%) scale(0.95); filter: contrast(10) brightness(0) drop-shadow(0 0 10px rgba(0,0,0,0.5)); }
+    90% { transform: translateX(-50%) scale(0.95); filter: contrast(10) brightness(0) drop-shadow(0 0 10px rgba(0,0,0,0.5)); }
+    100% { transform: translateX(-50%) scale(1); filter: contrast(1) brightness(1); }
+}
 
 
 /*МЕДІА запити*/
