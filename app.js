@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+    document.body.style.opacity = '0';
+    document.fonts.ready.then(() => {
+        document.body.style.transition = 'opacity 0.4s ease';
+        document.body.style.opacity = '1';
+    });
 
     const glitchLetter = document.getElementById('glitch-letter');
     if (glitchLetter) {
