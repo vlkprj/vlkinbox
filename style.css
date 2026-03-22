@@ -869,6 +869,44 @@ body, html {
     transform: translateZ(0); 
 }
 
+
+/* правила дисклеймер */
+.rules-disclaimer {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #888;
+    text-align: center;
+    margin-top: -6px; 
+    margin-bottom: 4px;
+}
+
+
+.rules-disclaimer .open-rules-btn {
+    display: inline;
+    color: #888;
+    text-decoration: underline;
+    text-transform: none;
+    font-weight: 600;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.rules-disclaimer .open-rules-btn:active {
+    color: #555;
+    background: transparent;
+}
+
+/*дисклеймер все*/
+
+.submit-overlay.mailbox-mode .rules-disclaimer .open-rules-btn {
+    color: #444;
+}
+.submit-overlay.hole-mode .rules-disclaimer .open-rules-btn {
+    color: #aaa;
+}
+
 /*дихальні вправи */ 
 .silence-overlay {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -3949,6 +3987,7 @@ body.submit-open {
     border-radius: 24px;
     width: 100%;
     max-width: 320px;
+    max-height: 85vh; 
     padding: 24px;
     display: flex;
     flex-direction: column;
@@ -3969,11 +4008,21 @@ body.submit-open {
 
 .rules-modal-content {
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     color: #444;
     line-height: 1.5;
-    text-align: center;
-    min-height: 80px;
+    text-align: left; 
+    overflow-y: auto; 
+    padding-right: 8px; 
+}
+
+.rules-modal-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.rules-modal-content::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
 }
 
 .rules-modal-close {
@@ -3991,28 +4040,6 @@ body.submit-open {
 
 .rules-modal-close:active {
     transform: scale(0.95);
-}
-
-/* Кнопка виклику в anon-block */
-.open-rules-btn {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-left: auto;
-    color: #888;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-    padding: 6px 8px;
-    border-radius: 8px;
-    transition: background 0.2s, color 0.2s;
-}
-
-.open-rules-btn:active {
-    background: rgba(128,128,128,0.2);
-    color: #555;
 }
 
 
