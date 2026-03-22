@@ -1541,8 +1541,7 @@ const getArtifactText = (count) => `\n\n📸 **Ти відкрив(ла) мож�
         }
 
       
-        const bagBtn = document.getElementById('bag-btn');
-
+      
         let doorClicks = parseInt(localStorage.getItem('valky_door_clicks')) || 0;
         let hasTappedOnce = doorClicks > 0;
         let lastPredictionAt = parseInt(localStorage.getItem('valky_last_pred')) || -10;
@@ -1693,6 +1692,8 @@ const getArtifactText = (count) => `\n\n📸 **Ти відкрив(ла) мож�
 
 
 
+
+const bagBtn = document.getElementById('bag-btn');
 const bagOverlay = document.getElementById('bag-overlay');
 const bagClose = document.getElementById('bag-close');
 const bagContent = document.getElementById('bag-content');
@@ -1726,6 +1727,7 @@ const initialLoot = getLoot();
 if (bagBtn && (initialLoot.achievements.length || initialLoot.predictions.length || initialLoot.artifacts.length)) {
     bagBtn.classList.add('has-items');
 }
+
 
 function renderBagTab(tab) {
     const loot = getLoot();
