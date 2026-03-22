@@ -1298,7 +1298,7 @@ if (capsPreviewEditBtn) {
 const capsVideo = document.getElementById('caps-video');
 
 if (capsVideo) {
-    capsVideo.src = 'skrynka.mp4';
+    capsVideo.src = 'blackhole.mp4';
     capsVideo.load();
 }
 
