@@ -715,35 +715,48 @@ body, html {
 /*др*/
 .b-birthday {
     position: relative;
-    background: linear-gradient(135deg, #FFDA59 0%, #FF9A9E 100%);
-    color: #1a1a1a;
+    background-color: #fcfaf5;
+    background-image: url("https://www.transparenttextures.com/patterns/felt.png"); 
+    color: #4a4a4a;
     border-radius: 20px;
-    font-family: 'Fira Sans', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex: 1;
-    min-height: 120px;
+    min-height: 125px;
     height: auto;
     overflow: hidden;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.06), inset 0 -4px 0 rgba(0,0,0,0.1);
+   
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05), inset 0 0 40px rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
 .b-birthday .bd-top {
-    font-size: 13px;
-    font-weight: 700;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
     text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.6;
+    margin-bottom: 2px;
+}
+
+.b-birthday .bd-middle {
+    font-family: 'Bad Script', cursive;
+    font-size: 16px;
+    line-height: 1;
+    margin-bottom: -5px;
     z-index: 2;
-    letter-spacing: 1px;
 }
 
 .b-birthday .bd-bottom {
-    font-size: 34px;
-    font-weight: 900;
+    font-family: 'Bad Script', cursive;
+    font-size: 30px;
+    font-weight: 700;
     z-index: 2;
-    line-height: 1;
-    text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+    line-height: 1.1;
+    color: #2c2c2c;
 }
 
 .bd-emoji {
