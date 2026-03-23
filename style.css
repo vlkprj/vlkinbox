@@ -4087,26 +4087,27 @@ body.submit-open {
 
 
 .festive-birthday-card::before {
-    content: "✨ 🎂 🎈 🎁 🎉 ✨ 🎂 🎈 🎁 🎉 ✨ 🎂 🎈 🎁 🎉 ✨ 🎂 🎈 🎁 🎉 ✨ 🎂 🎈 🎁 🎉";
+    content: "🎈 ✨ 🎁 🎂 🎉 🎁 🎈 ✨ 🎉 🎂 ✨ 🎉 🎁 🎈 🎂 🎉 🎂 ✨ 🎁 🎈 🎈 🎁 🎉 🎂 ✨ 🎁 ✨ 🎈 🎉 🎂 🎂 🎈 🎁 ✨ 🎉 🎉 🎂 ✨ 🎈 🎁 🎁 ✨ 🎉 🎂 🎈 ✨ 🎈 🎂 🎁 🎉 🎉 🎁 ✨ 🎈 🎂 🎂 ✨ 🎈 🎉 🎁 🎈 🎂 🎉 🎁 ✨ 🎁 🎉 ✨ 🎂 🎈 ✨ 🎁 🎈 🎂 🎉 🎂 🎉 🎁 ✨ 🎈 🎈 🎂 ✨ 🎉 🎁 🎁 ✨ 🎈 🎂 🎉 🎉 🎈 🎂 ✨ 🎁 🎈 ✨ 🎁 🎂 🎉 🎁 🎈 ✨ 🎉 🎂 ✨ 🎉 🎁 🎈 🎂 🎉 🎂 ✨ 🎁 🎈 🎈 🎁 🎉 🎂 ✨ 🎁 ✨ 🎈 🎉 🎂 🎂 🎈 🎁 ✨ 🎉 🎉 🎂 ✨ 🎈 🎁 🎁 ✨ 🎉 🎂 🎈 ✨ 🎈 🎂 🎁 🎉";
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    font-size: 32px;
-    letter-spacing: 15px;
-    opacity: 0.08; 
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    justify-content: center;
-    line-height: 1.8;
+   
+    top: -30%; left: -20%; right: -20%; bottom: -30%;
+    font-size: 30px;
+    line-height: 2.2;
+    letter-spacing: 28px;
+    word-break: break-all;
+    text-align: justify;
+    opacity: 0.08;
+
+    transform: rotate(-10deg) scale(1.2);
     pointer-events: none;
     z-index: 0;
 }
 
-
 .festive-birthday-card > * {
     position: relative;
-    z-index: 1; 
+    z-index: 1;
 }
+
 
 
 
