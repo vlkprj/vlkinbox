@@ -1838,7 +1838,8 @@ setInterval(() => {
     const photoBtn = document.getElementById('photo-action-btn');
     const photoImg = document.getElementById('photo-preview-img');
     if (photoBtn && photoImg) {
-        const isValid = photoImg.style.display !== 'none' && photoImg.src !== '';
+        const src = photoImg.getAttribute('src');
+        const isValid = photoImg.style.display !== 'none' && src && src.length > 5;
         photoBtn.style.opacity = isValid ? '1' : '0.4';
         photoBtn.style.pointerEvents = isValid ? 'auto' : 'none';
     }
@@ -1846,15 +1847,26 @@ setInterval(() => {
     const atmoBtn = document.getElementById('atmo-action-btn');
     const atmoStage = document.getElementById('atmo-stage');
     if (atmoBtn && atmoStage) {
-        const imgs = atmoStage.querySelectorAll('.atmo-slot-img');
         let isValid = false;
+        
+        const imgs = atmoStage.querySelectorAll('img');
         imgs.forEach(img => {
-            if (img.src && !img.src.endsWith('null') && img.src !== '') isValid = true;
+            const src = img.getAttribute('src');
+            if (src && src.trim().length > 5) isValid = true;
         });
+
+        const divs = atmoStage.querySelectorAll('div');
+        divs.forEach(div => {
+            if (div.style.backgroundImage && div.style.backgroundImage !== 'none' && div.style.backgroundImage !== '') {
+                isValid = true;
+            }
+        });
+
         atmoBtn.style.opacity = isValid ? '1' : '0.4';
         atmoBtn.style.pointerEvents = isValid ? 'auto' : 'none';
     }
 }, 300);
+
 
 
 });
