@@ -321,7 +321,7 @@ const buttonTitles = {
     '.b-admins': 'НАПИСАТИ АДМІНАМ',
     '.rumors-container': 'ЧУТКИ',
     '.b-problem': 'ОТАКА ПРОБЛЕМА',
-    '.b-advice': 'ПОТРІБНА ПОРАДА'
+    '.b-advice': 'ПОТРІБНА ПОРАДА',
     '.b-birthday': 'ПРИВІТАТИ З ДНЕМ НАРОДЖЕННЯ'
 };
 
@@ -1724,14 +1724,6 @@ setInterval(() => {
         
         mainBtn.style.opacity = isValid ? '1' : '0.4';
         mainBtn.style.pointerEvents = isValid ? 'auto' : 'none';
-    }
-
-    const capsBtn = document.getElementById('caps-action-btn');
-    const capsEditor = document.getElementById('caps-editor');
-    if (capsBtn && capsEditor) {
-        const isValid = capsEditor.value.trim().length > 0;
-        capsBtn.style.opacity = isValid ? '1' : '0.4';
-        capsBtn.style.pointerEvents = isValid ? 'auto' : 'none';
     }
 
     const photoBtn = document.getElementById('photo-action-btn');
