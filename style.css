@@ -715,9 +715,8 @@ body, html {
 /*др*/
 .b-birthday {
     position: relative;
-    background: #FAFAF5;
-    border: 6px solid #333;
-    color: #333;
+    background-color: #FAFAF5;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -727,19 +726,29 @@ body, html {
     min-height: 125px;
     height: auto;
     overflow: hidden;
-   
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05), inset 0 0 40px rgba(0,0,0,0.02);
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid #EAE6D9;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04), inset 0 0 40px rgba(0,0,0,0.03), 0 0 25px rgba(218, 165, 32, 0.15);
 }
 
 .b-birthday .bd-top {
     font-family: 'Fira Sans', sans-serif;
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    opacity: 0.6;
-    margin-bottom: 2px;
+    opacity: 0.7;
+    margin-bottom: 8px;
+    color: #4A4A4A;
+}
+
+.b-birthday .bd-middle,
+.b-birthday .bd-bottom {
+    background: linear-gradient(to right, #C69320, #F3E2C8, #D4AF37, #FDF5E6, #B8860B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0px 1px 2px rgba(0,0,0,0.15);
+    z-index: 2;
 }
 
 .b-birthday .bd-middle {
@@ -747,21 +756,17 @@ body, html {
     font-size: 16px;
     line-height: 1;
     margin-bottom: -5px;
-    z-index: 2;
 }
 
 .b-birthday .bd-bottom {
     font-family: 'Bad Script', cursive;
     font-size: 30px;
     font-weight: 700;
-    z-index: 2;
     line-height: 1.1;
-    color: #2c2c2c;
 }
 
 .bd-emoji {
     position: absolute;
-    z-index: 1;
     animation: floatBd 3s infinite ease-in-out;
 }
 
@@ -770,6 +775,7 @@ body, html {
     left: 10px;
     font-size: 24px;
     animation-delay: 0s;
+    z-index: 1;
 }
 
 .e2 {
@@ -777,6 +783,7 @@ body, html {
     right: 15px;
     font-size: 32px;
     animation-delay: 1s;
+    z-index: 1;
 }
 
 .e3 {
@@ -784,8 +791,10 @@ body, html {
     right: -5px;
     font-size: 20px;
     animation-delay: 2s;
-    opacity: 0.7;
+    opacity: 0.8;
+    z-index: 3;
 }
+
 
 
 
