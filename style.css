@@ -3668,22 +3668,50 @@ body.submit-open {
     -webkit-overflow-scrolling: touch;
 }
 .preview-post-card::-webkit-scrollbar { display: none; }
+
+
 .preview-swipe-hint {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.6);
-    text-align: center;
-    letter-spacing: 0.5px;
-    margin-top: -8px;
+    font-size: 0 !important; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    min-height: 35px;
 }
 
-.submit-overlay.mailbox-mode .preview-swipe-hint,
-.caps-overlay .preview-swipe-hint,
-.photo-overlay .preview-swipe-hint,
-.atmo-overlay .preview-swipe-hint {
-    color: rgba(0,0,0,0.35);
+
+.preview-swipe-hint:not(:empty)::before {
+    content: "👉 Гортай";
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 8px 20px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    animation: swipePulse 2s infinite ease-in-out;
 }
+
+.submit-overlay.mailbox-mode .preview-swipe-hint:not(:empty)::before,
+.caps-overlay .preview-swipe-hint:not(:empty)::before,
+.photo-overlay .preview-swipe-hint:not(:empty)::before,
+.atmo-overlay .preview-swipe-hint:not(:empty)::before {
+    background: rgba(255, 255, 255, 0.85);
+    color: #333;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+
+.submit-preview-screen:has(.fly-to-hole) .preview-swipe-hint {
+    opacity: 0 !important;
+    transition: opacity 0.1s;
+}
+
 
 
 .caps-preview-card {
@@ -4444,6 +4472,11 @@ body.submit-open {
     0% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-10px) rotate(8deg); }
     100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes swipePulse {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
 }
 
 /*МЕДІА запити*/
