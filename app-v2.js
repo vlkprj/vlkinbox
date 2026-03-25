@@ -1954,6 +1954,24 @@ setInterval(() => {
     }
 }, 300);
 
+const iosDoneBtn = document.createElement('div');
+iosDoneBtn.className = 'ios-done-btn';
+iosDoneBtn.innerText = 'Готово';
+document.body.appendChild(iosDoneBtn);
+
+iosDoneBtn.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    if (submitEditor) submitEditor.blur();
+});
+
+if (submitEditor) {
+    submitEditor.addEventListener('focus', () => {
+        iosDoneBtn.classList.add('show');
+    });
+    submitEditor.addEventListener('blur', () => {
+        setTimeout(() => iosDoneBtn.classList.remove('show'), 100);
+    });
+}
 
 
 });
