@@ -711,18 +711,17 @@ function generateValkyCardsHTML(rawHTML, photosArr, bgColor, textColor, font, au
     const isMultiCard = chunks.length > 1;
 
     chunks.forEach((chunk, idx) => {
-        const len = useHTML ? pureText.length : chunk.length;
         let fontClass = 'fs-small';
-        if (isMultiCard) {
-            if (len < 80) fontClass = 'fs-large';
-            else if (len < 180) fontClass = 'fs-medium';
-        } else {
+        let align = 'left';
+
+        if (!isMultiCard) {
+            const len = useHTML ? pureText.length : chunk.length;
             if (len < 80) fontClass = 'fs-huge';
             else if (len < 180) fontClass = 'fs-large';
             else if (len < 280) fontClass = 'fs-medium';
+            align = len > 193 ? 'left' : 'center';
         }
 
-        const align = len > 193 ? 'left' : 'center';
         const showHeader = idx === 0 ? headerHTML : '';
         const showArrow = (idx < chunks.length - 1 || photosArr.length > 0) ? '<div class="valky-card-arrow">→</div>' : '';
         
@@ -738,7 +737,6 @@ function generateValkyCardsHTML(rawHTML, photosArr, bgColor, textColor, font, au
         `;
     });
 
-
     photosArr.slice(0, 5).forEach(src => {
         html += `
             <div class="valky-card" style="background:${bgColor}; color:${textColor}; font-family:${safeFont} !important;">
@@ -753,6 +751,7 @@ function generateValkyCardsHTML(rawHTML, photosArr, bgColor, textColor, font, au
 
     return html;
 }
+
 
 
 
