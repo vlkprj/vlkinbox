@@ -1988,30 +1988,5 @@ setInterval(() => {
     }
 }, 300);
 
-const iosDoneBtn = document.createElement('div');
-iosDoneBtn.className = 'ios-keyboard-done';
-iosDoneBtn.innerHTML = `Готово <span class="material-symbols-outlined" style="font-size:18px;">check_circle</span>`;
-document.body.appendChild(iosDoneBtn);
-
-iosDoneBtn.addEventListener('mousedown', (e) => {
-    e.preventDefault();
-    if (submitEditor) submitEditor.blur();
-});
-
-iosDoneBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    if (submitEditor) submitEditor.blur();
-}, { passive: false });
-
-if (submitEditor) {
-    submitEditor.addEventListener('focus', () => {
-        iosDoneBtn.classList.add('show');
-    });
-    submitEditor.addEventListener('blur', () => {
-        setTimeout(() => iosDoneBtn.classList.remove('show'), 150);
-    });
-}
-
-
 
 });
