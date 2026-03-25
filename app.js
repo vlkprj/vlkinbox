@@ -698,7 +698,7 @@ inlineDoneBtn.addEventListener('mousedown', (e) => {
     submitEditor.blur();
 });
 
-});
+
 
 function generateValkyCardsHTML(rawHTML, photosArr, bgColor, textColor, font, authorName, extraClass = '') {
     let html = '';
