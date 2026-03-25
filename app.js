@@ -606,21 +606,11 @@ if (attachBtn && attachInput) {
         reader.readAsDataURL(file);
     });
 }
-const textColorDots = document.querySelectorAll('.text-color-dot');
-const bgColorDots = document.querySelectorAll('.bg-color-dot');
-
-const safeTextColors = {
-    '#FAF8F4': ['#222221'],
-    '#262624': ['#FAF8F4', '#4282AA', '#B24A3B', '#D97757'],
-    '#FFFFFF': ['#222221'],
-};
-
-const safeBgForText = {
-    '#222221': ['#FAF8F4', '#FFFFFF'],
-    '#B24A3B': ['#FAF8F4', '#FFFFFF'],
-    '#4282AA': ['#262624', '#FAF8F4'],
-    '#D97757': ['#262624', '#FAF8F4'],
-};
+const mainTextColorBtn = document.getElementById('main-text-color');
+const mainBgColorBtn = document.getElementById('main-bg-color');
+const popoverText = document.getElementById('popover-text');
+const popoverBg = document.getElementById('popover-bg');
+const inlineDoneBtn = document.getElementById('inline-done-btn');
 
 let currentBgColor = '#FAF8F4';
 let currentTextColor = '#222221';
@@ -628,42 +618,86 @@ let currentTextColor = '#222221';
 function applyEditorColors() {
     submitEditor.style.background = currentBgColor;
     submitEditor.style.color = currentTextColor;
+    mainTextColorBtn.style.background = currentTextColor;
+    mainBgColorBtn.style.background = currentBgColor;
 }
 
-textColorDots.forEach(dot => {
-    dot.addEventListener('click', () => {
+mainTextColorBtn.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    popoverText.classList.toggle('show');
+    popoverBg.classList.remove('show');
+});
+
+mainBgColorBtn.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    popoverBg.classList.toggle('show');
+    popoverText.classList.remove('show');
+});
+
+document.addEventListener('mousedown', (e) => {
+    if (!e.target.closest('.color-picker-wrap')) {
+        popoverText.classList.remove('show');
+        popoverBg.classList.remove('show');
+    }
+});
+
+const safeTextColors = {
+    '#FAF8F4': ['#222221'],
+    '#262624': ['#FAF8F4', '#4282AA', '#B24A3B', '#D97757'],
+    '#FFFFFF': ['#222221']
+};
+
+const safeBgForText = {
+    '#222221': ['#FAF8F4', '#FFFFFF'],
+    '#B24A3B': ['#FAF8F4', '#FFFFFF'],
+    '#4282AA': ['#262624', '#FAF8F4'],
+    '#D97757': ['#262624', '#FAF8F4']
+};
+
+document.querySelectorAll('.text-color-dot').forEach(dot => {
+    dot.addEventListener('mousedown', (e) => {
+        e.preventDefault();
         const color = dot.dataset.color;
         const allowedBgs = safeBgForText[color];
         if (allowedBgs && !allowedBgs.includes(currentBgColor)) {
             currentBgColor = allowedBgs[0];
-            bgColorDots.forEach(d => {
-                d.classList.toggle('active', d.dataset.color === currentBgColor);
-            });
         }
         currentTextColor = color;
-        textColorDots.forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
         applyEditorColors();
+        popoverText.classList.remove('show');
         submitEditor.focus();
     });
 });
 
-bgColorDots.forEach(dot => {
-    dot.addEventListener('click', () => {
+document.querySelectorAll('.bg-color-dot').forEach(dot => {
+    dot.addEventListener('mousedown', (e) => {
+        e.preventDefault();
         const color = dot.dataset.color;
         const allowedTexts = safeTextColors[color];
         if (allowedTexts && !allowedTexts.includes(currentTextColor)) {
             currentTextColor = allowedTexts[0];
-            textColorDots.forEach(d => {
-                d.classList.toggle('active', d.dataset.color === currentTextColor);
-            });
         }
         currentBgColor = color;
-        bgColorDots.forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
         applyEditorColors();
+        popoverBg.classList.remove('show');
         submitEditor.focus();
     });
+});
+
+if (submitEditor) {
+    submitEditor.addEventListener('focus', () => {
+        inlineDoneBtn.classList.add('show');
+    });
+    submitEditor.addEventListener('blur', () => {
+        setTimeout(() => inlineDoneBtn.classList.remove('show'), 150);
+    });
+}
+
+inlineDoneBtn.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    submitEditor.blur();
+});
+
 });
 
 function generateValkyCardsHTML(rawHTML, photosArr, bgColor, textColor, font, authorName, extraClass = '') {
