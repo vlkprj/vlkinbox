@@ -445,14 +445,15 @@ function closeSubmitOverlay() {
     if (typeof submitVideo !== 'undefined' && submitVideo) {
         submitVideo.pause();
         submitVideo.src = '';
-        submitVideo.style.display = 'block';
+        submitVideo.style.display = '';
     }
 
+   
     if (typeof atmoVideo !== 'undefined' && atmoVideo) {
-        atmoVideo.pause();
-        atmoVideo.currentTime = 0;
-        atmoVideo.style.display = 'block';
+        atmoVideo.style.display = ''; 
         atmoVideo.style.filter = '';
+        atmoVideo.style.zIndex = '';
+        atmoVideo.play().catch(e => console.log('Safari video unfreeze:', e));
     }
     
     clearTimeout(finishSendTimeout);
@@ -476,12 +477,10 @@ function closeSubmitOverlay() {
     const atmoCaps = document.querySelectorAll('.atmo-polaroid-caption');
     atmoCaps.forEach(cap => cap.value = '');
 
+   
     const allHeaders = document.querySelectorAll('.submit-header');
-    allHeaders.forEach(h => h.style.display = 'flex');
+    allHeaders.forEach(h => h.style.display = '');
 }
-
-
-
 
 
 
