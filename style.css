@@ -3117,7 +3117,16 @@ body.submit-open {
     gap: 6px;
 }
 
+.colors-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #888;
+    white-space: nowrap;
+}
+
 .main-color-btn {
+    display: block;
     width: 24px;
     height: 24px;
     border-radius: 50%;
@@ -3135,19 +3144,17 @@ body.submit-open {
     bottom: 35px;
     left: 50%;
     transform: translateX(-50%) scale(0.9);
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0,0,0,0.05);
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.1);
     border-radius: 14px;
     padding: 8px;
     display: flex;
     gap: 8px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     opacity: 0;
     pointer-events: none;
     transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    z-index: 100;
+    z-index: 99999;
 }
 
 .color-popover.show {
@@ -3157,8 +3164,23 @@ body.submit-open {
 }
 
 .submit-overlay.hole-mode .color-popover {
-    background: rgba(30, 30, 30, 0.95);
-    border: 1px solid rgba(255,255,255,0.05);
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.color-dot {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.color-dot:active {
+    transform: scale(0.9);
 }
 
 .inline-done-btn {
@@ -3175,8 +3197,22 @@ body.submit-open {
     gap: 6px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    transition: transform 0.15s ease, opacity 0.2s, background 0.2s;
+    transition: transform 0.15s ease, opacity 0.2s, background 0.2s, color 0.2s;
     opacity: 0;
+    pointer-events: none;
+}
+
+.submit-overlay.hole-mode .inline-done-btn {
+    background: #F4C73E;
+    color: #1a1a1a;
+    box-shadow: 0 4px 15px rgba(244, 199, 62, 0.2);
+}
+
+.inline-done-btn:disabled {
+    background: rgba(128, 128, 128, 0.1) !important;
+    color: rgba(128, 128, 128, 0.4) !important;
+    box-shadow: none !important;
+    cursor: default;
     pointer-events: none;
 }
 
@@ -3185,10 +3221,10 @@ body.submit-open {
     pointer-events: auto;
 }
 
-.inline-done-btn:active {
+.inline-done-btn:active:not(:disabled) {
     transform: scale(0.95);
-    background: #333333;
 }
+
 
 
 
