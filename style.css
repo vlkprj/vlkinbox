@@ -4308,6 +4308,18 @@ body.submit-open {
     animation: suckIntoHole 1.5s ease-in forwards !important;
 }
 
+.preview-header {
+    position: relative;
+    z-index: 1005 !important;
+}
+
+.preview-edit-btn {
+    position: relative;
+    z-index: 1006 !important;
+    cursor: pointer;
+}
+
+
 /* АНІМАЦІЇ */
 @keyframes pillowSway { 0% { transform: skewX(-4deg) rotate(-4deg); } 100% { transform: skewX(4deg) rotate(4deg); } }
 @keyframes stepLeft { 0% { transform: translateY(0) scaleY(0.9); } 100% { transform: translateY(-12px) scaleY(1.1); } }
