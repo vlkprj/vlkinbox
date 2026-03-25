@@ -4351,6 +4351,35 @@ span.preview-label {
     height: max-content !important;
 }
 
+/*тост*/
+.valky-toast {
+    position: fixed;
+    bottom: -60px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(26, 26, 26, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+    pointer-events: none; 
+    max-width: 85%;
+    width: max-content;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.valky-toast.show {
+    bottom: 50px; 
+    opacity: 1;
+}
+
 
 /* АНІМАЦІЇ */
 @keyframes pillowSway { 0% { transform: skewX(-4deg) rotate(-4deg); } 100% { transform: skewX(4deg) rotate(4deg); } }
