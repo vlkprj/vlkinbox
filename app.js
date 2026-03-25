@@ -762,8 +762,6 @@ if (submitActionBtn) {
         const nameVal = getActiveNickname('submit-content');
         const rawText = submitEditor.innerHTML || '';
 
-
-        
         let photosArr = [];
         const inlinePreview = document.getElementById('attach-preview-inline');
         if (inlinePreview) {
@@ -776,18 +774,19 @@ if (submitActionBtn) {
         const tc = currentTextColor || (isHole ? '#e0e0e0' : '#1a1a1a');
         const font = submitEditor.style.fontFamily || 'Inter, sans-serif';
 
-        
         const innerTitle = document.querySelector('.caps-label.dynamic-title');
         const isBirthday = innerTitle && innerTitle.innerText === 'ПРИВІТАТИ З ДНЕМ НАРОДЖЕННЯ';
         const extraClass = isBirthday ? 'festive-birthday-card' : '';
 
-      
         previewPostCard.innerHTML = generateValkyCardsHTML(rawText, photosArr, bg, tc, font, nameVal, extraClass);
 
         if (previewMetaLine) previewMetaLine.style.display = 'none';
        
         submitContent.style.display = 'none';
         submitPreviewScreen.style.display = 'flex';
+
+        const mainHeader = document.querySelector('.submit-header');
+        if (mainHeader) mainHeader.style.display = 'none';
     });
 }
 
@@ -795,6 +794,9 @@ if (previewEditBtn) {
     previewEditBtn.addEventListener('click', () => {
         submitPreviewScreen.style.display = 'none';
         submitContent.style.display = 'flex';
+
+        const mainHeader = document.querySelector('.submit-header');
+        if (mainHeader) mainHeader.style.display = 'flex';
     });
 }
 
@@ -847,6 +849,7 @@ if (previewSendBtn) {
         }
     });
 }
+
 
 // Атмосфера //
 const atmoOverlay = document.getElementById('atmo-overlay');
