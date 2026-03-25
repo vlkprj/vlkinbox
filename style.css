@@ -3954,7 +3954,7 @@ body.submit-open {
     margin-bottom: 20px !important;
 }
 
-.preview-label, .preview-edit-btn, .atmo-overlay-title, .photo-overlay-title {
+.preview-edit-btn, .atmo-overlay-title, .photo-overlay-title {
     color: #fff !important;
     text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
