@@ -622,14 +622,24 @@ function applyEditorColors() {
     mainBgColorBtn.style.background = currentBgColor;
 }
 
-mainTextColorBtn.addEventListener('mousedown', (e) => {
-    e.preventDefault();
+function bindKeepFocus(element, callback) {
+    if (!element) return;
+    element.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        callback(e);
+    });
+    element.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        callback(e);
+    }, { passive: false });
+}
+
+bindKeepFocus(mainTextColorBtn, () => {
     popoverText.classList.toggle('show');
     popoverBg.classList.remove('show');
 });
 
-mainBgColorBtn.addEventListener('mousedown', (e) => {
-    e.preventDefault();
+bindKeepFocus(mainBgColorBtn, () => {
     popoverBg.classList.toggle('show');
     popoverText.classList.remove('show');
 });
@@ -640,6 +650,13 @@ document.addEventListener('mousedown', (e) => {
         popoverBg.classList.remove('show');
     }
 });
+
+document.addEventListener('touchstart', (e) => {
+    if (!e.target.closest('.color-picker-wrap')) {
+        popoverText.classList.remove('show');
+        popoverBg.classList.remove('show');
+    }
+}, { passive: true });
 
 const safeTextColors = {
     '#FAF8F4': ['#222221'],
@@ -655,8 +672,7 @@ const safeBgForText = {
 };
 
 document.querySelectorAll('.text-color-dot').forEach(dot => {
-    dot.addEventListener('mousedown', (e) => {
-        e.preventDefault();
+    bindKeepFocus(dot, () => {
         const color = dot.dataset.color;
         const allowedBgs = safeBgForText[color];
         if (allowedBgs && !allowedBgs.includes(currentBgColor)) {
@@ -670,8 +686,7 @@ document.querySelectorAll('.text-color-dot').forEach(dot => {
 });
 
 document.querySelectorAll('.bg-color-dot').forEach(dot => {
-    dot.addEventListener('mousedown', (e) => {
-        e.preventDefault();
+    bindKeepFocus(dot, () => {
         const color = dot.dataset.color;
         const allowedTexts = safeTextColors[color];
         if (allowedTexts && !allowedTexts.includes(currentTextColor)) {
@@ -709,8 +724,7 @@ if (attachPreviewInline) {
     observer.observe(attachPreviewInline, { childList: true });
 }
 
-inlineDoneBtn.addEventListener('mousedown', (e) => {
-    e.preventDefault();
+bindKeepFocus(inlineDoneBtn, () => {
     if (!inlineDoneBtn.disabled) {
         submitEditor.blur();
     }
