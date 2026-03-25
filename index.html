@@ -282,83 +282,88 @@
 
 
         <div class="submit-content" id="submit-content">
-        <div class="submit-hint-text" id="submit-hint-text"></div>
-        <div class="card-count-hint" id="card-count-hint"></div>
-        <div class="submit-editor-wrap">
-            <div class="submit-editor" id="submit-editor" contenteditable="true" data-placeholder="Пишіть сюди..."></div>
-            <div id="attach-preview-inline" class="attach-preview-inline"></div>
-                        <div class="editor-toolbar-row">
-                            <div class="char-counter-wrap" id="char-counter-wrap">
-     <span id="char-counter">0</span>/350
-</div>
-                <button class="toolbar-attach-btn" id="attach-btn">
-                    <span class="material-symbols-outlined" style="font-size:20px;">attach_file</span>
-                </button>
-                <input type="file" id="attach-input" accept="image/*" style="display:none;">
-                
-                <div class="toolbar-right-group" style="display: flex; align-items: center; gap: 4px; margin-left: auto;">
-                    <button class="toolbar-btn" data-cmd="bold"><b>B</b></button>
-                    <button class="toolbar-btn" data-cmd="italic"><i style="font-family:serif;">i</i></button>
-                    <div class="toolbar-divider"></div>
-                    <div class="toolbar-font-box" id="toolbar-font-box">
-                        <span class="toolbar-font-label">Шрифт</span>
-                        <select class="toolbar-select" id="font-select">
-                            <option value="Inter">Inter</option>
-                            <option value="Vollkorn">Vollkorn</option>
-                            <option value="PT Serif">PT Serif</option>
-                            <option value="Space Grotesk">Grotesk</option>
-                            <option value="Oswald">Oswald</option>
-                            <option value="Philosopher">Philosopher</option>
-                            <option value="Dela Gothic One">Dela Gothic</option>
-                            <option value="Bad Script">Bad Script</option>
-                            <option value="Balsamiq Sans">Balsamiq</option>
-                            <option value="Fira Sans Extra Condensed">Fira Sans</option>
-                        </select>
+    <div class="submit-hint-text" id="submit-hint-text"></div>
+    <div class="card-count-hint" id="card-count-hint"></div>
+    
+    <div class="submit-editor-wrap">
+        <div class="submit-editor" id="submit-editor" contenteditable="true" data-placeholder="Пишіть сюди..."></div>
+        <div id="attach-preview-inline" class="attach-preview-inline"></div>
+        
+        <div class="editor-toolbar-row">
+            <div class="char-counter-wrap" id="char-counter-wrap">
+                <span id="char-counter">0</span>/350
+            </div>
+            <button class="toolbar-attach-btn" id="attach-btn">
+                <span class="material-symbols-outlined" style="font-size:20px;">attach_file</span>
+            </button>
+            <input type="file" id="attach-input" accept="image/*" style="display:none;">
+            
+            <div class="toolbar-right-group" style="display: flex; align-items: center; gap: 4px; margin-left: auto;">
+                <button class="toolbar-btn" data-cmd="bold"><b>B</b></button>
+                <button class="toolbar-btn" data-cmd="italic"><i style="font-family:serif;">i</i></button>
+                <div class="toolbar-divider"></div>
+                <div class="toolbar-font-box" id="toolbar-font-box">
+                    <span class="toolbar-font-label">Шрифт</span>
+                    <select class="toolbar-select" id="font-select">
+                        <option value="Inter">Inter</option>
+                        <option value="Vollkorn">Vollkorn</option>
+                        <option value="PT Serif">PT Serif</option>
+                        <option value="Space Grotesk">Grotesk</option>
+                        <option value="Oswald">Oswald</option>
+                        <option value="Philosopher">Philosopher</option>
+                        <option value="Dela Gothic One">Dela Gothic</option>
+                        <option value="Bad Script">Bad Script</option>
+                        <option value="Balsamiq Sans">Balsamiq</option>
+                        <option value="Fira Sans Extra Condensed">Fira Sans</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="editor-colors-row" style="position: relative; display: flex; align-items: center; justify-content: space-between; padding-top: 8px; z-index: 100;">
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <div class="color-picker-wrap">
+                    <span class="colors-label">Текст</span>
+                    <div class="main-color-btn" id="main-text-color" style="background:#222221;"></div>
+                    <div class="color-popover" id="popover-text">
+                        <div class="color-dot text-color-dot" data-color="#222221" style="background:#222221;"></div>
+                        <div class="color-dot text-color-dot" data-color="#B24A3B" style="background:#B24A3B;"></div>
+                        <div class="color-dot text-color-dot" data-color="#4282AA" style="background:#4282AA;"></div>
+                        <div class="color-dot text-color-dot" data-color="#D97757" style="background:#D97757;"></div>
+                    </div>
+                </div>
+                <div class="toolbar-divider"></div>
+                <div class="color-picker-wrap">
+                    <span class="colors-label">Фон</span>
+                    <div class="main-color-btn" id="main-bg-color" style="background:#FAF8F4; border:1px solid #ddd;"></div>
+                    <div class="color-popover" id="popover-bg">
+                        <div class="color-dot bg-color-dot" data-color="#FAF8F4" style="background:#FAF8F4; border:1px solid #ddd;"></div>
+                        <div class="color-dot bg-color-dot" data-color="#262624" style="background:#262624;"></div>
+                        <div class="color-dot bg-color-dot" data-color="#FFFFFF" style="background:#FFFFFF; border:1px solid #ddd;"></div>
                     </div>
                 </div>
             </div>
-            <div class="editor-colors-row" style="position: relative; display: flex; align-items: center; justify-content: space-between; padding-top: 8px;">
-    <div style="display: flex; gap: 15px; align-items: center;">
-        <div class="color-picker-wrap">
-            <span class="colors-label">Текст</span>
-            <div class="main-color-btn" id="main-text-color" style="background:#222221;"></div>
-            <div class="color-popover" id="popover-text">
-                <div class="color-dot text-color-dot" data-color="#222221" style="background:#222221;"></div>
-                <div class="color-dot text-color-dot" data-color="#B24A3B" style="background:#B24A3B;"></div>
-                <div class="color-dot text-color-dot" data-color="#4282AA" style="background:#4282AA;"></div>
-                <div class="color-dot text-color-dot" data-color="#D97757" style="background:#D97757;"></div>
-            </div>
-        </div>
-        <div class="toolbar-divider"></div>
-        <div class="color-picker-wrap">
-            <span class="colors-label">Фон</span>
-            <div class="main-color-btn" id="main-bg-color" style="background:#FAF8F4; border:1px solid #ddd;"></div>
-            <div class="color-popover" id="popover-bg">
-                <div class="color-dot bg-color-dot" data-color="#FAF8F4" style="background:#FAF8F4; border:1px solid #ddd;"></div>
-                <div class="color-dot bg-color-dot" data-color="#262624" style="background:#262624;"></div>
-                <div class="color-dot bg-color-dot" data-color="#FFFFFF" style="background:#FFFFFF; border:1px solid #ddd;"></div>
-            </div>
+            <button class="inline-done-btn" id="inline-done-btn" disabled>
+                Готово <span class="material-symbols-outlined" style="font-size: 18px;">east</span>
+            </button>
         </div>
     </div>
-    <div class="editor-colors-row" style="position: relative; display: flex; align-items: center; justify-content: space-between; padding-top: 8px; z-index: 99999;">
+
+    <div class="anon-block">
+        <div class="anon-badge">
+            <span class="material-symbols-outlined">domino_mask</span>
+            Анонімно
+        </div>
+        <div class="anon-divider"></div>
+        <input class="anon-name-input-field anon-name-field" type="text" placeholder="Нікнейм (Необовʼязково)">
+    </div> 
+    <div class="rules-disclaimer">
+        Щоб потім не було питань, прочитайте <span class="open-rules-btn">правила</span>
+    </div> 
+    <button class="submit-action-btn" id="submit-action-btn">ГОТОВО</button>
 </div>
 
-        </div>
-
-                   <div class="anon-block">
-            <div class="anon-badge">
-                <span class="material-symbols-outlined">domino_mask</span>
-                Анонімно
-            </div>
-            <div class="anon-divider"></div>
-            <input class="anon-name-input-field anon-name-field" type="text" placeholder="Нікнейм (Необовʼязково)">
-        </div> <div class="rules-disclaimer">
-            Щоб потім не було питань, прочитайте <span class="open-rules-btn">правила</span>
-        </div> <button class="submit-action-btn" id="submit-action-btn">ГОТОВО</button>
-
     </div> <div class="submit-preview-screen" id="submit-preview-screen">
-
-
         <div class="preview-header">
             <span class="preview-label">ПОПЕРЕДНІЙ ПЕРЕГЛЯД</span>
             <button class="preview-edit-btn" id="preview-edit-btn">← Редагувати</button>
