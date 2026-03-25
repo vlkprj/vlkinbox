@@ -1064,17 +1064,17 @@ if (atmoActionBtn) {
                 <span class="pill-white">ПРИЙМАЛЬНЯ</span>
             </div>
         `;
-        const authorHTML = `<div class="valky-card-author" style="color:${textColor}; margin-top: 30px; margin-bottom: 5px;">${nameVal}</div>`;
+        const authorHTML = `<div class="valky-card-author" style="color:${textColor}; margin-top: 15px;">${nameVal}</div>`;
 
         if (photosData.length > 0) {
             html += `
-                <div class="valky-card" style="background:${currentAtmoBg}; justify-content: space-between; align-items: center; padding-top: 25px; padding-bottom: 20px;">
+                <div class="valky-card" style="background:${currentAtmoBg}; justify-content: space-between; align-items: center; padding-top: 25px;">
                     ${headerHTML}
                     <div style="display: flex; flex-wrap: wrap; justify-content: center; width: 100%; margin: auto 0; position: relative;">
             `;
             
             if (photosData.length === 4) {
-                html += `<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; margin-bottom: 25px; margin-top: -15px;">`;
+                html += `<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; margin-top: 10px;">`;
                 photosData.forEach(p => {
                     html += `
                         <div style="background: #fff; padding: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border-radius: 2px;">
@@ -1112,7 +1112,7 @@ if (atmoActionBtn) {
                 const w = isSquare ? '85%' : '80%';
 
                 html += `
-                    <div style="background: #fff; padding: 10px 10px ${pb} 10px; box-shadow: 0 6px 15px rgba(0,0,0,0.15); border-radius: 2px; display: flex; flex-direction: column; width: ${w};">
+                    <div style="background: #fff; padding: 10px 10px ${pb} 10px; box-shadow: 0 6px 15px rgba(0,0,0,0.15); border-radius: 2px; display: flex; flex-direction: column; width: ${w}; margin-top: -15px;">
                         <img src="${p.src}" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; object-position: ${p.objPos}; border: 1px solid #eee; display: block;">
                         ${!isSquare ? `
                         <div style="display: flex; align-items: center; justify-content: center; min-height: ${minH}; padding-top: 8px;">
@@ -1142,6 +1142,7 @@ if (atmoActionBtn) {
         if (atmoHeader) atmoHeader.style.display = 'none';
     });
 }
+
 
 
 
