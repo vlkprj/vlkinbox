@@ -317,18 +317,34 @@
                     </div>
                 </div>
             </div>
-            <div class="editor-colors-row">
-                <span class="colors-label">Текст</span>
-                <div class="color-dot text-color-dot active" data-color="#222221" style="background:#222221;"></div>
+            <div class="editor-colors-row" style="position: relative; display: flex; align-items: center; justify-content: space-between; padding-top: 8px;">
+    <div style="display: flex; gap: 15px; align-items: center;">
+        <div class="color-picker-wrap">
+            <span class="colors-label">Текст</span>
+            <div class="main-color-btn" id="main-text-color" style="background:#222221;"></div>
+            <div class="color-popover" id="popover-text">
+                <div class="color-dot text-color-dot" data-color="#222221" style="background:#222221;"></div>
                 <div class="color-dot text-color-dot" data-color="#B24A3B" style="background:#B24A3B;"></div>
                 <div class="color-dot text-color-dot" data-color="#4282AA" style="background:#4282AA;"></div>
                 <div class="color-dot text-color-dot" data-color="#D97757" style="background:#D97757;"></div>
-                <div class="toolbar-divider"></div>
-                <span class="colors-label">Фон</span>
-                <div class="color-dot bg-color-dot active" data-color="#FAF8F4" style="background:#FAF8F4; border:1px solid #ddd;"></div>
+            </div>
+        </div>
+        <div class="toolbar-divider"></div>
+        <div class="color-picker-wrap">
+            <span class="colors-label">Фон</span>
+            <div class="main-color-btn" id="main-bg-color" style="background:#FAF8F4; border:1px solid #ddd;"></div>
+            <div class="color-popover" id="popover-bg">
+                <div class="color-dot bg-color-dot" data-color="#FAF8F4" style="background:#FAF8F4; border:1px solid #ddd;"></div>
                 <div class="color-dot bg-color-dot" data-color="#262624" style="background:#262624;"></div>
                 <div class="color-dot bg-color-dot" data-color="#FFFFFF" style="background:#FFFFFF; border:1px solid #ddd;"></div>
             </div>
+        </div>
+    </div>
+    <button class="inline-done-btn" id="inline-done-btn">
+        Готово <span class="material-symbols-outlined" style="font-size: 16px;">check</span>
+    </button>
+</div>
+
         </div>
 
                    <div class="anon-block">
