@@ -3172,7 +3172,8 @@ body.submit-open {
 
 .color-popover {
     position: absolute;
-    bottom: calc(100% + 10px);
+    bottom: 100%;
+    margin-bottom: 12px;
     left: 50%;
     transform: translateX(-50%) scale(0.9);
     background: #ffffff;
@@ -3187,6 +3188,7 @@ body.submit-open {
     visibility: hidden;
     transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     width: max-content;
+    z-index: 99999;
 }
 
 .color-popover.show {
@@ -3194,6 +3196,7 @@ body.submit-open {
     visibility: visible;
     transform: translateX(-50%) scale(1);
 }
+
 
 .submit-overlay.hole-mode .color-popover {
     background: #1a1a1a;
