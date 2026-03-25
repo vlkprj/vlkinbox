@@ -4380,30 +4380,34 @@ span.preview-label {
     opacity: 1;
 }
 
-.ios-done-btn {
+.ios-keyboard-done {
     position: fixed;
-    top: 15px;
-    right: 15px;
-    background: #F4C73E;
-    color: #1a1a1a;
-    padding: 8px 18px;
-    border-radius: 20px;
+    bottom: 20px;
+    right: 20px;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     z-index: 99999;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
     opacity: 0;
     pointer-events: none;
-    transform: translateY(-20px);
+    transform: translateY(20px);
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.ios-done-btn.show {
+.ios-keyboard-done.show {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
 }
+
 
 
 /* АНІМАЦІЇ */
