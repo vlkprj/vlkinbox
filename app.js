@@ -1003,7 +1003,7 @@ if (atmoActionBtn) {
                     `;
                 });
                 html += `</div>`;
-                                    } else if (photosData.length === 2) {
+            } else if (photosData.length === 2) {
                 html += `<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 340px; position: relative;">`;
                 photosData.forEach((p, idx) => {
                     const rotate = idx === 0 ? '-6deg' : '9deg';
@@ -1024,10 +1024,7 @@ if (atmoActionBtn) {
                     `;
                 });
                 html += `</div>`;
-            }
-
-            }
- else {
+            } else {
                 const p = photosData[0];
                 const isSquare = !p.isPolaroid;
                 const pb = isSquare ? '10px' : '10px';
@@ -1063,59 +1060,6 @@ if (atmoActionBtn) {
     });
 }
 
-if (atmoPreviewEditBtn) {
-    atmoPreviewEditBtn.addEventListener('click', () => {
-        atmoPreviewScreen.style.display = 'none';
-        atmoContent.style.display = 'flex';
-    });
-}
-
-if (atmoPreviewSendBtn) {
-    atmoPreviewSendBtn.addEventListener('click', () => {
-        atmoPreviewScreen.style.background = 'transparent';
-        if (atmoPreviewMetaLine) atmoPreviewMetaLine.style.opacity = '0';
-        if (atmoPreviewEditBtn) atmoPreviewEditBtn.style.opacity = '0';
-        atmoPreviewSendBtn.style.opacity = '0';
-        
-        const previewLabel = atmoPreviewScreen.querySelector('.preview-label');
-        if (previewLabel) previewLabel.style.opacity = '0';
-
-        if (atmoVideo) {
-            atmoVideo.currentTime = 0;
-            atmoVideo.style.zIndex = '14';
-            atmoVideo.style.display = 'block';
-            atmoVideo.style.filter = 'blur(0px) brightness(0.8)';
-            atmoVideo.play();
-        }
-
-        atmoPreviewCard.classList.add('fly-to-mailbox');
-
-        setTimeout(() => {
-            atmoPreviewScreen.style.display = 'none';
-            atmoPreviewScreen.style.background = '';
-            if (atmoVideo) atmoVideo.style.zIndex = '';
-            atmoPreviewCard.classList.remove('fly-to-mailbox');
-            if (atmoPreviewMetaLine) atmoPreviewMetaLine.style.opacity = '1';
-            if (atmoPreviewEditBtn) atmoPreviewEditBtn.style.opacity = '1';
-            atmoPreviewSendBtn.style.opacity = '1';
-            if (previewLabel) previewLabel.style.opacity = '1';
-        }, 1000);
-
-        const finishSend = () => {
-            if (atmoVideo) atmoVideo.style.display = 'none';
-            atmoSentScreen.style.display = 'flex';
-        };
-
-        if (atmoVideo) {
-            atmoVideo.onended = finishSend;
-            setTimeout(() => {
-                if (atmoSentScreen.style.display !== 'flex') finishSend();
-            }, 8000);
-        } else {
-            finishSend();
-        }
-    });
-}
 
 // Фото і Мем //
 const photoOverlay = document.getElementById('photo-overlay');
