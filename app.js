@@ -466,7 +466,11 @@ function closeSubmitOverlay() {
 
     const atmoCaps = document.querySelectorAll('.atmo-polaroid-caption');
     atmoCaps.forEach(cap => cap.value = '');
+
+    const allHeaders = document.querySelectorAll('.submit-header');
+    allHeaders.forEach(h => h.style.display = 'flex');
 }
+
 
 
 
@@ -1073,13 +1077,27 @@ if (atmoActionBtn) {
             html += `<div class="valky-card" style="background:${currentAtmoBg};"><div style="color:${textColor}; margin: auto;">Пусто</div></div>`;
         }
 
-        atmoPreviewCard.innerHTML = html;
+                atmoPreviewCard.innerHTML = html;
         if (atmoPreviewMetaLine) atmoPreviewMetaLine.style.display = 'none';
         
         atmoContent.style.display = 'none';
         atmoPreviewScreen.style.display = 'flex';
+        
+        const atmoHeader = document.querySelector('#atmo-overlay .submit-header');
+        if (atmoHeader) atmoHeader.style.display = 'none';
     });
 }
+
+if (atmoPreviewEditBtn) {
+    atmoPreviewEditBtn.addEventListener('click', () => {
+        atmoPreviewScreen.style.display = 'none';
+        atmoContent.style.display = 'flex';
+        
+        const atmoHeader = document.querySelector('#atmo-overlay .submit-header');
+        if (atmoHeader) atmoHeader.style.display = 'flex';
+    });
+}
+
 
 
 // Фото і Мем //
