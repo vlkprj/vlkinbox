@@ -325,6 +325,27 @@ const buttonTitles = {
     '.b-birthday': 'ПРИВІТАТИ З ДНЕМ НАРОДЖЕННЯ'
 };
 
+let toastTimeout;
+function showValkyToast(text) {
+    if (!text) return;
+    
+    let toast = document.getElementById('valky-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'valky-toast';
+        toast.className = 'valky-toast';
+        document.body.appendChild(toast);
+    }
+    
+    toast.innerText = text;
+    toast.classList.add('show');
+
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 6000); 
+}
+
 
 
 function openSubmitOverlay(mode, placeholderText, defaultFont, titleText) {
@@ -385,19 +406,14 @@ function openSubmitOverlay(mode, placeholderText, defaultFont, titleText) {
         });
     }
 
+ 
     const hintEl = document.getElementById('submit-hint-text');
-    if (hintEl) {
-        hintEl.innerText = placeholderText || '';
-        hintEl.style.fontFamily = appliedFont;
-        hintEl.style.color = mode === 'hole' ? '#ccc' : '#fff';
-        hintEl.classList.remove('vanish');
-        void hintEl.offsetWidth;
-        
+    if (hintEl) hintEl.style.display = 'none'; 
 
-        const readTime = Math.max(3500, (placeholderText || '').length * 70);
-        setTimeout(() => hintEl.classList.add('vanish'), readTime);
+    if (placeholderText) {
+        showValkyToast(placeholderText); 
     }
-
+    
 
     currentBgColor = '#FAF8F4';
     currentTextColor = '#222221';
@@ -405,6 +421,7 @@ function openSubmitOverlay(mode, placeholderText, defaultFont, titleText) {
     bgColorDots.forEach(d => d.classList.toggle('active', d.dataset.color === '#FAF8F4'));
     applyEditorColors();
 }
+
 
 
 submitEditor.addEventListener('paste', (e) => {
