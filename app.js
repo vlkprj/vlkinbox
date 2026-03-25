@@ -1003,19 +1003,19 @@ if (atmoActionBtn) {
                     `;
                 });
                 html += `</div>`;
-                        } else if (photosData.length === 2) {
-                html += `<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 290px; position: relative; overflow: hidden; border-radius: 4px;">`;
+                                    } else if (photosData.length === 2) {
+                html += `<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 340px; position: relative;">`;
                 photosData.forEach((p, idx) => {
-                    const rotate = idx === 0 ? '-8deg' : '12deg';
-                    const left = idx === 0 ? '2%' : 'auto';
-                    const right = idx === 1 ? '-15%' : 'auto';
+                    const rotate = idx === 0 ? '-6deg' : '9deg';
+                    const left = idx === 0 ? '0%' : 'auto';
+                    const right = idx === 1 ? '-4%' : 'auto';
                     const zIndex = idx === 0 ? '1' : '2';
-                    const top = idx === 0 ? '-10px' : '50px';
-                    const width = idx === 0 ? '55%' : '68%';
-                    const shadow = idx === 0 ? '0 4px 12px rgba(0,0,0,0.15)' : '0 12px 24px rgba(0,0,0,0.3)';
+                    const top = idx === 0 ? '0px' : '65px';
+                    const width = idx === 0 ? '58%' : '65%';
+                    const shadow = idx === 0 ? '0 4px 15px rgba(0,0,0,0.15)' : '0 12px 30px rgba(0,0,0,0.3)';
 
                     html += `
-                        <div style="position: absolute; left: ${left}; right: ${right}; top: ${top}; z-index: ${zIndex}; background: #fff; padding: 10px; box-shadow: ${shadow}; border-radius: 2px; display: flex; flex-direction: column; width: ${width}; transform: rotate(${rotate});">
+                        <div style="position: absolute; left: ${left}; right: ${right}; top: ${top}; z-index: ${zIndex}; background: #fff; padding: 10px 10px 15px 10px; box-shadow: ${shadow}; border-radius: 2px; display: flex; flex-direction: column; width: ${width}; transform: rotate(${rotate});">
                             <img src="${p.src}" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border: 1px solid #eee;">
                             <div style="flex: 1; display: flex; align-items: center; justify-content: center; min-height: 35px; padding-top: 5px;">
                                 ${p.caption ? `<div style="font-family: 'Caveat', cursive; font-size: 16px; color: #111; text-align: center; line-height: 1;">${p.caption}</div>` : ''}
@@ -1024,6 +1024,8 @@ if (atmoActionBtn) {
                     `;
                 });
                 html += `</div>`;
+            }
+
             }
  else {
                 const p = photosData[0];
