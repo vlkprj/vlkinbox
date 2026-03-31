@@ -2194,15 +2194,6 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 .b-thank:active svg path {
     fill: #fff;
 }
-.submit-editor-wrap {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 16px;
-    overflow: visible;
-}
 
 .submit-overlay.mailbox-mode .submit-editor-wrap {
     border: 1px solid rgba(0,0,0,0.12);
@@ -3485,6 +3476,7 @@ body.submit-open {
     box-shadow: 0 2px 18px rgba(0,0,0,0.09);
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .submit-overlay.hole-mode .submit-editor-wrap {
