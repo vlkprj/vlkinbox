@@ -1655,21 +1655,6 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     color: #ccc;
 }
 
-.submit-editor {
-    width: 100%;
-    max-width: 400px;
-    min-height: 180px;
-    max-height: 280px;
-    overflow-y: auto;
-    border-radius: 16px;
-    padding: 18px 20px;
-    font-family: 'Inter', sans-serif;
-    font-size: 20px;
-    line-height: 1.65;
-    outline: none;
-    box-sizing: border-box;
-    word-wrap: break-word;
-}
 
 .submit-overlay.mailbox-mode .submit-editor {
     background: #fff;
@@ -2217,7 +2202,7 @@ box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
     border-radius: 16px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .submit-overlay.mailbox-mode .submit-editor-wrap {
@@ -3171,9 +3156,6 @@ body.submit-open {
     transform: scale(0.9);
 }
 
-.submit-editor-wrap {
-    overflow: visible !important;
-}
 
 .color-picker-wrap {
     position: relative;
