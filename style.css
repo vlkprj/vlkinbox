@@ -3257,13 +3257,14 @@ body.submit-open {
     overflow-y: auto;
 }
 
-.submit-overlay.mailbox-mode .submit-preview-screen {
-    background: #FAFAF5;
+.submit-overlay.mailbox-mode .submit-sent-screen {
+    background: transparent;
 }
 
-.submit-overlay.hole-mode .submit-preview-screen {
-    background: #080C0C;
+.submit-overlay.hole-mode .submit-sent-screen {
+    background: transparent;
 }
+
 
 .caps-overlay .submit-preview-screen {
     background: #dcdcdc;
