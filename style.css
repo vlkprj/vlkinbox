@@ -3159,6 +3159,15 @@ body.submit-open {
     z-index: 99999;
 }
 
+#popover-text {
+    left: 0;
+    transform: translateX(0) scale(0.9);
+    transform-origin: bottom left;
+}
+
+#popover-text.show {
+    transform: translateX(0) scale(1);
+}
 
 
 .color-popover.show {
