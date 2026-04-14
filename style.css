@@ -4727,3 +4727,6 @@ input, textarea, [contenteditable] {
     appearance: none;
     outline: none;
 }
+#bag-btn, #bag-overlay {
+    display: none !important;
+}
