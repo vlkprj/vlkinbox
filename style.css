@@ -712,13 +712,14 @@ body, html {
     align-items: center;
 }
 
+/*др*/ 
 .b-birthday {
     position: relative;
     background-color: #7691AD; 
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
     border-radius: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
     flex: 1;
@@ -779,12 +780,14 @@ body, html {
 }
 
 .e2 {
-    bottom: 10px;
+    top: 50%;
+    margin-top: -16px; 
     left: -15px;
     font-size: 32px;
     animation: peekaboo 4s infinite ease-in-out;
     z-index: 1;
 }
+
 
 .e3 {
     top: 25px;
