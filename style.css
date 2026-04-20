@@ -712,22 +712,22 @@ body, html {
     align-items: center;
 }
 
-/*др*/ 
+/*др*/
 .b-birthday {
     position: relative;
-    background-color: #7691AD; 
+    background-color: #1A1816; /* Глибокий преміальний темний */
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
     border-radius: 20px;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex: 1;
     min-height: 125px;
     height: auto;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(223, 190, 111, 0.3), inset 0 15px 30px rgba(255,255,255,0.05);
+    border: 1px solid #3A3224;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15), inset 0 0 40px rgba(0,0,0,0.2);
 }
 
 .b-birthday .bd-top {
@@ -735,10 +735,10 @@ body, html {
     font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    opacity: 0.9;
+    letter-spacing: 2px;
+    opacity: 0.6;
     margin-bottom: 8px;
-    color: #FFFFFF;
+    color: #D4CABC;
 }
 
 .b-birthday .bd-middle,
@@ -751,7 +751,7 @@ body, html {
     z-index: 2;
     padding-bottom: 8px;
     margin-bottom: -4px;
-    filter: drop-shadow(0px 2px 10px rgba(220, 170, 50, 0.2));
+    filter: drop-shadow(0px 2px 10px rgba(220, 170, 50, 0.15));
 }
 
 .b-birthday .bd-middle {
@@ -769,45 +769,32 @@ body, html {
 
 .bd-emoji {
     position: absolute;
+    animation: floatBd 3s infinite ease-in-out;
 }
 
 .e1 {
     top: 10px;
     left: 10px;
     font-size: 24px;
-    animation: floatBd 3s infinite ease-in-out;
+    animation-delay: 0s;
     z-index: 1;
 }
 
 .e2 {
-    top: 50%;
-    margin-top: -16px; 
-    left: -15px;
+    bottom: 5px;
+    right: 15px;
     font-size: 32px;
-    animation: peekaboo 4s infinite ease-in-out;
+    animation-delay: 1s;
     z-index: 1;
 }
-
 
 .e3 {
     top: 25px;
     right: 10px;
     font-size: 20px;
-    animation: floatBd 3s infinite ease-in-out;
     animation-delay: 2s;
     opacity: 0.9;
     z-index: 10;
-}
-
-@keyframes peekaboo {
-    0%, 100% { 
-        opacity: 0; 
-        transform: translateX(-10px) rotate(-15deg); 
-    }
-    30%, 70% { 
-        opacity: 1; 
-        transform: translateX(25px) rotate(5deg); 
-    }
 }
 
 
@@ -4744,169 +4731,3 @@ input, textarea, [contenteditable] {
 #bag-btn, #bag-overlay {
     display: none !important;
 }
-
-/* Антиаліасінг для андроїдів і старих айфонів */
-body, html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-}
-
-.wysiwyg-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 3000;
-    background: #080C0C; /* Дефолт для діри, мінятиметься класом */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-}
-
-.wysiwyg-overlay.mailbox-mode { background: #1D3561; }
-.wysiwyg-overlay.hole-mode { background: #00090E; }
-
-.fullscreen-video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    filter: brightness(0.3) blur(10px);
-    transition: filter 1s ease;
-}
-
-.fullscreen-video-bg.playing {
-    filter: brightness(0.8) blur(0px);
-}
-
-.wysiwyg-header {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    padding-top: max(20px, env(safe-area-inset-top));
-}
-
-.wysiwyg-step {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: auto;
-    padding-bottom: 120px; /* Місце для sticky кнопки */
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Сама картка 1080/1350 */
-.card-workspace {
-    width: 90%;
-    max-width: 400px;
-    margin-top: 10px;
-    perspective: 1000px;
-}
-
-.prmln-card {
-    width: 100%;
-    aspect-ratio: 1080 / 1350;
-    border-radius: 16px;
-    padding: 24px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    overflow: hidden;
-}
-
-.card-text-zone {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 22px;
-    line-height: 1.4;
-    outline: none;
-    word-break: break-word;
-    min-height: 50%;
-}
-
-.card-text-zone:empty::before {
-    content: attr(data-placeholder);
-    opacity: 0.4;
-    pointer-events: none;
-}
-
-.valky-card-author {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;
-    opacity: 0.6;
-    font-weight: 500;
-}
-
-/* STICKY ФУТЕР - Головний фікс для айфонів */
-.sticky-action-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px 20px calc(15px + env(safe-area-inset-bottom));
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 20%, transparent);
-    display: flex;
-    justify-content: center;
-    z-index: 100;
-    pointer-events: none; /* Щоб кліки проходили крізь градієнт */
-}
-
-.action-btn-primary {
-    pointer-events: auto; /* Повертаємо клікабельність самій кнопці */
-    background: #fff;
-    color: #000;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 16px;
-    font-weight: 900;
-    padding: 16px 40px;
-    border-radius: 30px;
-    border: none;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    cursor: pointer;
-    transition: transform 0.1s;
-    width: 90%;
-    max-width: 350px;
-}
-
-.action-btn-primary:active {
-    transform: scale(0.96);
-}
-
-/* Анімація фінального екрану */
-.success-message {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #fff;
-    opacity: 1;
-    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-}
-
-.success-message.fade-out {
-    opacity: 0;
-    transform: translate(-50%, -60%);
-    letter-spacing: 2px;
-}
-
