@@ -1687,7 +1687,7 @@ doorBtn.addEventListener('click', (event) => {
         }
     }
 });
-
+}
 
 const bagBtn = document.getElementById('bag-btn');
 const bagOverlay = document.getElementById('bag-overlay');
