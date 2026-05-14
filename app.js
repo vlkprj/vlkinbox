@@ -382,7 +382,16 @@ function openSubmitOverlay(mode, placeholderText, defaultFont, titleText) {
     submitVideo.pause();
     submitVideo.currentTime = 0;
     
+    const step2Tools = document.getElementById('step-2-tools');
+    const finalSubmitBtn = document.getElementById('final-submit-btn');
+    const mainSubmitBtn = document.getElementById('submit-action-btn');
+    
+    if (step2Tools) step2Tools.style.display = 'none';
+    if (finalSubmitBtn) finalSubmitBtn.style.display = 'none';
+    if (mainSubmitBtn) mainSubmitBtn.style.display = 'block';
+
     submitEditor.innerHTML = '';
+
     submitEditor.setAttribute('data-placeholder', 'Пишіть сюди...');
     
     const counter = document.getElementById('char-counter');
@@ -844,10 +853,27 @@ function getActiveNickname(containerId) {
 
 
 // Головний редактор //
+const finalSubmitBtn = document.getElementById('final-submit-btn');
+
 if (submitActionBtn) {
-    submitActionBtn.addEventListener('click', () => {
+    submitActionBtn.addEventListener('click', (e) => {
+        if (submitActionBtn.style.pointerEvents === 'none') return;
+        e.preventDefault();
+        
+        if (typeof submitEditor !== 'undefined') submitEditor.blur();
+        
+        submitActionBtn.style.display = 'none';
+        const tools = document.getElementById('step-2-tools');
+        if (tools) tools.style.display = 'flex';
+        if (finalSubmitBtn) finalSubmitBtn.style.display = 'block';
+    });
+}
+
+if (finalSubmitBtn) {
+    finalSubmitBtn.addEventListener('click', () => {
         const nameVal = getActiveNickname('submit-content');
         const rawText = submitEditor.innerHTML || '';
+
 
         let photosArr = [];
         const inlinePreview = document.getElementById('attach-preview-inline');
