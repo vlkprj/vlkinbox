@@ -420,9 +420,7 @@ function openSubmitOverlay(mode, placeholderText, defaultFont, titleText) {
     document.querySelectorAll('.text-color-dot').forEach(d => d.classList.toggle('active', d.dataset.color === '#222221'));
     document.querySelectorAll('.bg-color-dot').forEach(d => d.classList.toggle('active', d.dataset.color === '#FAF8F4'));
     applyEditorColors();
-
-
-
+}
 
 submitEditor.addEventListener('paste', (e) => {
     e.preventDefault();
