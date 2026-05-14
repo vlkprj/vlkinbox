@@ -857,21 +857,7 @@ function getActiveNickname(containerId) {
 
 
 // Головний редактор //
-const finalSubmitBtn = document.getElementById('final-submit-btn');
 
-if (submitActionBtn) {
-    submitActionBtn.addEventListener('click', (e) => {
-        if (submitActionBtn.style.pointerEvents === 'none') return;
-        e.preventDefault();
-        
-        // Ховаємо клавіатуру на айфоні
-        if (submitEditor) submitEditor.blur();
-        
-        // Перемикаємо кроки
-        document.getElementById('editor-step-1').style.display = 'none';
-        document.getElementById('style-step-2').style.display = 'flex';
-    });
-}
 
 const finalSubmitBtn = document.getElementById('final-submit-btn');
 if (finalSubmitBtn) {
