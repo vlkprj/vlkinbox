@@ -358,7 +358,11 @@ function openSubmitOverlay(mode, placeholderText, defaultFont, titleText) {
     submitVideo.style.transition = 'none';
     submitVideo.style.display = 'block';
     document.body.classList.add('submit-open');
-
+    
+    const step1 = document.getElementById('editor-step-1');
+    const step2 = document.getElementById('style-step-2');
+    if (step1) step1.style.display = 'flex';
+    if (step2) step2.style.display = 'none';
     const overlayTitle = submitOverlay.querySelector('.submit-overlay-title');
     if (overlayTitle) overlayTitle.style.display = 'none'; 
 
@@ -860,14 +864,38 @@ if (submitActionBtn) {
         if (submitActionBtn.style.pointerEvents === 'none') return;
         e.preventDefault();
         
-        if (typeof submitEditor !== 'undefined') submitEditor.blur();
+        // Ховаємо клавіатуру на айфоні
+        if (submitEditor) submitEditor.blur();
         
-        submitActionBtn.style.display = 'none';
-        const tools = document.getElementById('step-2-tools');
-        if (tools) tools.style.display = 'flex';
-        if (finalSubmitBtn) finalSubmitBtn.style.display = 'block';
+        // Перемикаємо кроки
+        document.getElementById('editor-step-1').style.display = 'none';
+        document.getElementById('style-step-2').style.display = 'flex';
     });
 }
+
+const finalSubmitBtn = document.getElementById('final-submit-btn');
+if (finalSubmitBtn) {
+    finalSubmitBtn.addEventListener('click', () => {
+        const nameVal = getActiveNickname('submit-content');
+        const rawText = submitEditor.innerHTML || '';
+        let photosArr = [];
+        const inlinePreview = document.getElementById('attach-preview-inline');
+        if (inlinePreview) {
+            const imgs = inlinePreview.querySelectorAll('img');
+            imgs.forEach(img => photosArr.push(img.src));
+        }
+
+        const isHole = submitOverlay.classList.contains('hole-mode');
+        const bg = currentBgColor || (isHole ? '#1a1a1a' : '#fff');
+        const tc = currentTextColor || (isHole ? '#e0e0e0' : '#1a1a1a');
+        const font = submitEditor.style.fontFamily || 'Inter, sans-serif';
+
+        previewPostCard.innerHTML = generateValkyCardsHTML(rawText, photosArr, bg, tc, font, nameVal);
+        submitContent.style.display = 'none';
+        submitPreviewScreen.style.display = 'flex';
+    });
+}
+
 
 if (finalSubmitBtn) {
     finalSubmitBtn.addEventListener('click', () => {
