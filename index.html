@@ -308,8 +308,29 @@
         </div>
         <button class="submit-action-btn" id="submit-action-btn">ДАЛІ</button>
     </div>
+        <button class="submit-action-btn" id="final-submit-btn">ГОТОВО</button>
+    </div>
 
-    <div id="style-step-2" style="display: none; width: 100%; flex-direction: column; gap: 15px;">
+    <div class="anon-block">
+        <div class="anon-badge">
+            <span class="material-symbols-outlined">domino_mask</span>
+            Анонімно
+        </div>
+        <div class="anon-divider"></div>
+        <input class="anon-name-input-field anon-name-field" type="text" placeholder="Нікнейм (Необовʼязково)">
+    </div> 
+    <div class="rules-disclaimer">
+        Щоб потім не було питань, прочитайте <span class="open-rules-btn">правила</span>
+    </div> 
+</div>
+
+    <div class="submit-preview-screen" id="submit-preview-screen">
+        <div class="preview-header">
+            <span class="preview-label">ПОПЕРЕДНІЙ ПЕРЕГЛЯД</span>
+            <button class="preview-edit-btn" id="preview-edit-btn">← Редагувати</button>
+        </div>
+        <div class="preview-post-card" id="preview-post-card"></div>
+            <div id="style-step-2" style="display: none; width: 100%; flex-direction: column; gap: 15px;">
         <div class="style-config-box" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; backdrop-filter: blur(10px);">
             <div class="toolbar-font-box" style="margin-bottom: 15px;">
                 <span class="toolbar-font-label" style="color:#fff; display:block; margin-bottom:8px; font-size:12px; text-transform:uppercase; letter-spacing:1px;">Оберіть шрифт</span>
@@ -349,28 +370,6 @@
                 </div>
             </div>
         </div>
-        <button class="submit-action-btn" id="final-submit-btn">ГОТОВО</button>
-    </div>
-
-    <div class="anon-block">
-        <div class="anon-badge">
-            <span class="material-symbols-outlined">domino_mask</span>
-            Анонімно
-        </div>
-        <div class="anon-divider"></div>
-        <input class="anon-name-input-field anon-name-field" type="text" placeholder="Нікнейм (Необовʼязково)">
-    </div> 
-    <div class="rules-disclaimer">
-        Щоб потім не було питань, прочитайте <span class="open-rules-btn">правила</span>
-    </div> 
-</div>
-
-    <div class="submit-preview-screen" id="submit-preview-screen">
-        <div class="preview-header">
-            <span class="preview-label">ПОПЕРЕДНІЙ ПЕРЕГЛЯД</span>
-            <button class="preview-edit-btn" id="preview-edit-btn">← Редагувати</button>
-        </div>
-        <div class="preview-post-card" id="preview-post-card"></div>
         <div class="preview-swipe-hint" id="preview-swipe-hint"></div>
         <div class="preview-meta-line" id="preview-meta-line"></div>
         <button class="submit-action-btn" id="preview-send-btn">ВІДПРАВИТИ</button>
