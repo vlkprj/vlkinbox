@@ -417,10 +417,6 @@ if (fontSelect) {
     fontSelect.value = appliedFont; 
 }
 
-        });
-    }
-
- 
     const hintEl = document.getElementById('submit-hint-text');
     if (hintEl) hintEl.style.display = 'none'; 
 
