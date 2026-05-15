@@ -4731,3 +4731,7 @@ input, textarea, [contenteditable] {
 #bag-btn, #bag-overlay {
     display: none !important;
 }
+/*підказки пусті*/
+.submit-hint-text:empty {
+    display: none !important;
+}
