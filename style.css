@@ -4753,3 +4753,13 @@ input, textarea, [contenteditable] {
 .submit-action-btn:active {
     transform: translateX(-50%) scale(0.96) !important;
 }
+
+@keyframes pulseAtmoIcon {
+    0%, 100% { transform: scale(1); color: #ccc; }
+    50% { transform: scale(1.15); color: #B24A3B; }
+}
+.atmo-slot-placeholder .material-symbols-outlined {
+    animation: pulseAtmoIcon 2s infinite ease-in-out;
+}
+
+
