@@ -4009,7 +4009,6 @@ body.submit-open {
 }
 
 .submit-content .submit-action-btn {
-    position: relative !important;
     bottom: auto !important;
     margin-top: 20px !important;
     margin-bottom: 20px !important;
@@ -4734,4 +4733,23 @@ input, textarea, [contenteditable] {
 /*підказки пусті*/
 .submit-hint-text:empty {
     display: none !important;
+}
+
+/*кнопка заібала*/
+.submit-content {
+    padding-bottom: 90px !important;
+}
+
+.submit-action-btn {
+    position: fixed !important;
+    bottom: 30px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 90%;
+    max-width: 380px;
+    z-index: 9999 !important;
+}
+
+.submit-action-btn:active {
+    transform: translateX(-50%) scale(0.96) !important;
 }
