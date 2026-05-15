@@ -273,116 +273,119 @@
 </div>
 
 <div class="submit-overlay" id="submit-overlay">
-
     <video class="submit-video-bg" id="submit-video" playsinline muted preload="auto"></video>
 
-   <div class="submit-header">
-    <span class="submit-overlay-title">НАПИСАТИ</span>
-    <span class="material-symbols-outlined close-submit" id="close-submit">close</span>
-</div>
+    <div class="submit-header">
+        <span class="submit-overlay-title">НАПИСАТИ</span>
+        <span class="material-symbols-outlined close-submit" id="close-submit">close</span>
+    </div>
 
-
-<div class="submit-content" id="submit-content">
-    <div class="submit-hint-text" id="submit-hint-text"></div>
-    <div class="card-count-hint" id="card-count-hint"></div>
-    
-    <div id="editor-step-1" style="width: 100%; display: flex; flex-direction: column; gap: 12px;">
-        <div class="submit-editor-wrap">
-            <div class="submit-editor" id="submit-editor" contenteditable="true" data-placeholder="Пишіть сюди..."></div>
-            <div id="attach-preview-inline" class="attach-preview-inline"></div>
-            
-            <div class="editor-toolbar-row">
-                <div class="char-counter-wrap">
-                    <span id="char-counter">0</span>/350
-                </div>
-                <button class="toolbar-attach-btn" id="attach-btn">
-                    <span class="material-symbols-outlined" style="font-size:20px;">attach_file</span>
-                </button>
-                <input type="file" id="attach-input" accept="image/*" style="display:none;">
+    <div class="submit-content" id="submit-content">
+        <div class="submit-hint-text" id="submit-hint-text"></div>
+        <div class="card-count-hint" id="card-count-hint"></div>
+        
+        <div id="editor-step-1" style="width: 100%; display: flex; flex-direction: column; gap: 12px;">
+            <div class="submit-editor-wrap">
+                <div class="submit-editor" id="submit-editor" contenteditable="true" data-placeholder="Пишіть сюди..."></div>
+                <div id="attach-preview-inline" class="attach-preview-inline"></div>
                 
-                <div class="toolbar-right-group" style="display: flex; align-items: center; gap: 8px; margin-left: auto;">
-                    <button class="toolbar-btn" data-cmd="bold"><b>B</b></button>
-                    <button class="toolbar-btn" data-cmd="italic"><i style="font-family:serif;">i</i></button>
+                <div class="editor-toolbar-row">
+                    <div class="char-counter-wrap">
+                        <span id="char-counter">0</span>/350
+                    </div>
+                    <button class="toolbar-attach-btn" id="attach-btn">
+                        <span class="material-symbols-outlined" style="font-size:20px;">attach_file</span>
+                    </button>
+                    <input type="file" id="attach-input" accept="image/*" style="display:none;">
+                    
+                    <div class="toolbar-right-group" style="display: flex; align-items: center; gap: 8px; margin-left: auto;">
+                        <button class="toolbar-btn" data-cmd="bold"><b>B</b></button>
+                        <button class="toolbar-btn" data-cmd="italic"><i style="font-family:serif;">i</i></button>
+                    </div>
                 </div>
             </div>
+
+            <!-- Анонімно і Правила тепер тупо перед кнопкою ДАЛІ -->
+            <div class="anon-block">
+                <div class="anon-badge">
+                    <span class="material-symbols-outlined">domino_mask</span>
+                    Анонімно
+                </div>
+                <div class="anon-divider"></div>
+                <input class="anon-name-input-field anon-name-field" type="text" placeholder="Нікнейм (Необовʼязково)">
+            </div> 
+            
+            <div class="rules-disclaimer">
+                Щоб потім не було питань, прочитайте <span class="open-rules-btn">правила</span>
+            </div> 
+
+            <button class="submit-action-btn" id="submit-action-btn">ДАЛІ</button>
         </div>
-        <button class="submit-action-btn" id="submit-action-btn">ДАЛІ</button>
-    </div>
-        <button class="submit-action-btn" id="final-submit-btn">ГОТОВО</button>
     </div>
 
-    <div class="anon-block">
-        <div class="anon-badge">
-            <span class="material-symbols-outlined">domino_mask</span>
-            Анонімно
-        </div>
-        <div class="anon-divider"></div>
-        <input class="anon-name-input-field anon-name-field" type="text" placeholder="Нікнейм (Необовʼязково)">
-    </div> 
-    <div class="rules-disclaimer">
-        Щоб потім не було питань, прочитайте <span class="open-rules-btn">правила</span>
-    </div> 
-</div>
-
-    <div class="submit-preview-screen" id="submit-preview-screen">
+    <div class="submit-preview-screen" id="submit-preview-screen" style="display: none;">
         <div class="preview-header">
             <span class="preview-label">ПОПЕРЕДНІЙ ПЕРЕГЛЯД</span>
             <button class="preview-edit-btn" id="preview-edit-btn">← Редагувати</button>
         </div>
+        
         <div class="preview-post-card" id="preview-post-card"></div>
-            <div id="style-step-2" style="display: none; width: 100%; flex-direction: column; gap: 15px;">
-        <div class="style-config-box" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; backdrop-filter: blur(10px);">
-            <div class="toolbar-font-box" style="margin-bottom: 15px;">
-                <span class="toolbar-font-label" style="color:#fff; display:block; margin-bottom:8px; font-size:12px; text-transform:uppercase; letter-spacing:1px;">Оберіть шрифт</span>
-                <select class="toolbar-select" id="font-select" style="width:100%; height:40px; border-radius:10px;">
-                    <option value="Inter">Inter</option>
-                    <option value="Vollkorn">Vollkorn</option>
-                    <option value="PT Serif">PT Serif</option>
-                    <option value="Space Grotesk">Grotesk</option>
-                    <option value="Oswald">Oswald</option>
-                    <option value="Philosopher">Philosopher</option>
-                    <option value="Dela Gothic One">Dela Gothic</option>
-                    <option value="Bad Script">Bad Script</option>
-                    <option value="Balsamiq Sans">Balsamiq</option>
-                    <option value="Fira Sans Extra Condensed">Fira Sans</option>
-                </select>
-            </div>
 
-            <div class="editor-colors-row" style="display: flex; gap: 20px; align-items: center; justify-content: space-around;">
-                <div class="color-picker-wrap">
-                    <span class="colors-label" style="color:#fff;">Текст</span>
-                    <div class="main-color-btn" id="main-text-color" style="background:#222221;"></div>
-                    <div class="color-popover" id="popover-text">
-                        <div class="color-dot text-color-dot" data-color="#222221" style="background:#222221;"></div>
-                        <div class="color-dot text-color-dot" data-color="#B24A3B" style="background:#B24A3B;"></div>
-                        <div class="color-dot text-color-dot" data-color="#4282AA" style="background:#4282AA;"></div>
-                        <div class="color-dot text-color-dot" data-color="#D97757" style="background:#D97757;"></div>
-                    </div>
+        <!-- Стилі тепер тут, з новим ID, щоб старий JS їх не ховав -->
+        <div id="style-config-panel" style="width: 100%; display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+            <div class="style-config-box" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; backdrop-filter: blur(10px);">
+                <div class="toolbar-font-box" style="margin-bottom: 15px;">
+                    <span class="toolbar-font-label" style="color:#fff; display:block; margin-bottom:8px; font-size:12px; text-transform:uppercase; letter-spacing:1px;">Оберіть шрифт</span>
+                    <select class="toolbar-select" id="font-select" style="width:100%; height:40px; border-radius:10px;">
+                        <option value="Inter">Inter</option>
+                        <option value="Vollkorn">Vollkorn</option>
+                        <option value="PT Serif">PT Serif</option>
+                        <option value="Space Grotesk">Grotesk</option>
+                        <option value="Oswald">Oswald</option>
+                        <option value="Philosopher">Philosopher</option>
+                        <option value="Dela Gothic One">Dela Gothic</option>
+                        <option value="Bad Script">Bad Script</option>
+                        <option value="Balsamiq Sans">Balsamiq</option>
+                        <option value="Fira Sans Extra Condensed">Fira Sans</option>
+                    </select>
                 </div>
-                <div class="color-picker-wrap">
-                    <span class="colors-label" style="color:#fff;">Фон</span>
-                    <div class="main-color-btn" id="main-bg-color" style="background:#FAF8F4; border:1px solid #ddd;"></div>
-                    <div class="color-popover" id="popover-bg">
-                        <div class="color-dot bg-color-dot" data-color="#FAF8F4" style="background:#FAF8F4; border:1px solid #ddd;"></div>
-                        <div class="color-dot bg-color-dot" data-color="#262624" style="background:#262624;"></div>
-                        <div class="color-dot bg-color-dot" data-color="#FFFFFF" style="background:#FFFFFF; border:1px solid #ddd;"></div>
+
+                <div class="editor-colors-row" style="display: flex; gap: 20px; align-items: center; justify-content: space-around;">
+                    <div class="color-picker-wrap">
+                        <span class="colors-label" style="color:#fff;">Текст</span>
+                        <div class="main-color-btn" id="main-text-color" style="background:#222221;"></div>
+                        <div class="color-popover" id="popover-text">
+                            <div class="color-dot text-color-dot" data-color="#222221" style="background:#222221;"></div>
+                            <div class="color-dot text-color-dot" data-color="#B24A3B" style="background:#B24A3B;"></div>
+                            <div class="color-dot text-color-dot" data-color="#4282AA" style="background:#4282AA;"></div>
+                            <div class="color-dot text-color-dot" data-color="#D97757" style="background:#D97757;"></div>
+                        </div>
+                    </div>
+                    <div class="color-picker-wrap">
+                        <span class="colors-label" style="color:#fff;">Фон</span>
+                        <div class="main-color-btn" id="main-bg-color" style="background:#FAF8F4; border:1px solid #ddd;"></div>
+                        <div class="color-popover" id="popover-bg">
+                            <div class="color-dot bg-color-dot" data-color="#FAF8F4" style="background:#FAF8F4; border:1px solid #ddd;"></div>
+                            <div class="color-dot bg-color-dot" data-color="#262624" style="background:#262624;"></div>
+                            <div class="color-dot bg-color-dot" data-color="#FFFFFF" style="background:#FFFFFF; border:1px solid #ddd;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="preview-swipe-hint" id="preview-swipe-hint"></div>
         <div class="preview-meta-line" id="preview-meta-line"></div>
         <button class="submit-action-btn" id="preview-send-btn">ВІДПРАВИТИ</button>
-       
     </div>
 
-    <div class="submit-sent-screen" id="submit-sent-screen">
-         <div class="sent-text">✅ ВІДПРАВЛЕНО У ВАЛКІВСЬКУ ПРИЙМАЛЬНЮ</div>
+    <div class="submit-sent-screen" id="submit-sent-screen" style="display: none;">
+        <div class="sent-text">✅ ВІДПРАВЛЕНО У ВАЛКІВСЬКУ ПРИЙМАЛЬНЮ</div>
         <div class="sent-sub">Очікуйте вашу публікацію на <a href="https://t.me/valkyoperatyvno" target="_blank" class="sent-link">каналі</a></div>
         <button class="close-sent-btn" id="close-sent">Закрити</button>
     </div>
-
 </div>
+
 
 
 <div class="submit-overlay atmo-overlay" id="atmo-overlay">
