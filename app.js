@@ -896,10 +896,12 @@ if (fontSelect) {
 
 if (submitActionBtn) {
     submitActionBtn.addEventListener('click', () => {
-        updatePreviewCard();
-        if (previewMetaLine) previewMetaLine.style.display = 'none';
         submitContent.style.display = 'none';
         submitPreviewScreen.style.display = 'flex';
+        
+        updatePreviewCard();
+        
+        if (previewMetaLine) previewMetaLine.style.display = 'none';
         const mainHeader = document.querySelector('.submit-header');
         if (mainHeader) mainHeader.style.display = 'none';
     });
@@ -925,12 +927,16 @@ if (previewSendBtn) {
         const previewLabel = document.querySelector('.preview-label');
         if (previewLabel) previewLabel.style.opacity = '0';
 
+        const styleConfig = document.getElementById('style-config-panel');
+        if (styleConfig) styleConfig.style.opacity = '0';
+
         if (submitVideo) {
             submitVideo.currentTime = 0;
-            submitVideo.style.zIndex = '14';
+            submitVideo.style.zIndex = '999';
             submitVideo.style.display = 'block';
+            submitVideo.style.opacity = '1';
             submitVideo.style.filter = 'blur(0px) brightness(0.8)';
-            submitVideo.play();
+            submitVideo.play().catch(e => {});
         }
   
         previewPostCard.classList.add(`fly-to-${mode}`);
@@ -946,6 +952,7 @@ if (previewSendBtn) {
             if (editBtn) editBtn.style.opacity = '1';
             if (previewSendBtn) previewSendBtn.style.opacity = '1';
             if (previewLabel) previewLabel.style.opacity = '1';
+            if (styleConfig) styleConfig.style.opacity = '1';
         }, animDuration);
 
         const finishSend = () => {
@@ -963,6 +970,7 @@ if (previewSendBtn) {
         }
     });
 }
+
 
 
 
