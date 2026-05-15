@@ -410,12 +410,16 @@ function openSubmitOverlay(mode, placeholderText, defaultFont, titleText) {
     const appliedFont = defaultFont ? defaultFont : 'Inter';
     const fontString = `'${appliedFont}', sans-serif`;
 
-submitEditor.style.fontFamily = fontString;
-submitEditor.dataset.activeFont = fontString;
+    submitEditor.style.setProperty('font-family', fontString, 'important');
+    submitEditor.dataset.activeFont = fontString;
 
-if (fontSelect) {
-    fontSelect.value = appliedFont; 
-}
+    if (fontSelect) {
+        Array.from(fontSelect.options).forEach(opt => {
+            if (appliedFont.includes(opt.value)) {
+                fontSelect.value = opt.value;
+            }
+        });
+    }
 
     const hintEl = document.getElementById('submit-hint-text');
     if (hintEl) hintEl.style.display = 'none'; 
@@ -436,11 +440,11 @@ submitEditor.addEventListener('paste', (e) => {
     e.preventDefault();
     const text = (e.clipboardData || window.clipboardData).getData('text/plain');
     document.execCommand('insertText', false, text);
-    submitEditor.style.fontFamily = submitEditor.dataset.activeFont || 'Inter, sans-serif';
+    submitEditor.style.setProperty('font-family', submitEditor.dataset.activeFont || "'Inter', sans-serif", 'important');
 });
 
 submitEditor.addEventListener('input', () => {
-    submitEditor.style.fontFamily = submitEditor.dataset.activeFont || 'Inter, sans-serif';
+    submitEditor.style.setProperty('font-family', submitEditor.dataset.activeFont || "'Inter', sans-serif", 'important');
     const len = submitEditor.innerText.replace(/\n$/, '').length;
     const counter = document.getElementById('char-counter');
     if (counter) counter.innerText = len; 
