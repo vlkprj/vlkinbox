@@ -407,15 +407,16 @@ function openSubmitOverlay(mode, placeholderText, defaultFont, titleText) {
     const inlinePreview = document.getElementById('attach-preview-inline');
     if (inlinePreview) inlinePreview.innerHTML = '';
     
-    const appliedFont = defaultFont ? `'${defaultFont}', sans-serif` : 'Inter, sans-serif';
-    submitEditor.style.fontFamily = appliedFont;
-    submitEditor.dataset.activeFont = appliedFont;
-    
-    if (fontSelect) {
-        Array.from(fontSelect.options).forEach(opt => {
-            if (appliedFont.includes(opt.value)) {
-                fontSelect.value = opt.value;
-            }
+    const appliedFont = defaultFont ? defaultFont : 'Inter';
+    const fontString = `'${appliedFont}', sans-serif`;
+
+submitEditor.style.fontFamily = fontString;
+submitEditor.dataset.activeFont = fontString;
+
+if (fontSelect) {
+    fontSelect.value = appliedFont; 
+}
+
         });
     }
 
@@ -1359,10 +1360,15 @@ if (atmoPreviewSendBtn) {
             if (previewLabel) previewLabel.style.opacity = '1';
         }, 1000);
 
-        const finishSend = () => {
-            if (atmoVideo) atmoVideo.style.display = 'none';
-            atmoSentScreen.style.display = 'flex';
-        };
+const finishSend = () => {
+    // submitVideo.style.display = 'none'; <-- Це більше не робимо
+    submitSentScreen.style.display = 'flex';
+    submitSentScreen.style.background = 'rgba(0, 0, 0, 0.6)';
+    submitSentScreen.style.backdropFilter = 'blur(6px)';
+    submitSentScreen.style.webkitBackdropFilter = 'blur(6px)';
+    submitSentScreen.style.zIndex = '9999';
+};
+
 
         if (atmoVideo) {
             atmoVideo.onended = finishSend;
