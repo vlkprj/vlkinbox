@@ -859,59 +859,47 @@ function getActiveNickname(containerId) {
 // Головний редактор //
 
 
-const finalSubmitBtn = document.getElementById('final-submit-btn');
-if (finalSubmitBtn) {
-    finalSubmitBtn.addEventListener('click', () => {
-        const nameVal = getActiveNickname('submit-content');
-        const rawText = submitEditor.innerHTML || '';
-        let photosArr = [];
-        const inlinePreview = document.getElementById('attach-preview-inline');
-        if (inlinePreview) {
-            const imgs = inlinePreview.querySelectorAll('img');
-            imgs.forEach(img => photosArr.push(img.src));
-        }
+function updatePreviewCard() {
+    if (submitPreviewScreen.style.display !== 'flex') return;
+    const rawText = submitEditor.innerHTML || '';
+    const nameVal = getActiveNickname('submit-content');
+    let photosArr = [];
+    const inlinePreview = document.getElementById('attach-preview-inline');
+    if (inlinePreview) {
+        const imgs = inlinePreview.querySelectorAll('img');
+        imgs.forEach(img => photosArr.push(img.src));
+    }
 
-        const isHole = submitOverlay.classList.contains('hole-mode');
-        const bg = currentBgColor || (isHole ? '#1a1a1a' : '#fff');
-        const tc = currentTextColor || (isHole ? '#e0e0e0' : '#1a1a1a');
-        const font = submitEditor.style.fontFamily || 'Inter, sans-serif';
+    const isHole = submitOverlay.classList.contains('hole-mode');
+    const bg = currentBgColor || (isHole ? '#1a1a1a' : '#fff');
+    const tc = currentTextColor || (isHole ? '#e0e0e0' : '#1a1a1a');
+    const font = submitEditor.style.fontFamily || 'Inter, sans-serif';
 
-        previewPostCard.innerHTML = generateValkyCardsHTML(rawText, photosArr, bg, tc, font, nameVal);
-        submitContent.style.display = 'none';
-        submitPreviewScreen.style.display = 'flex';
+    const innerTitle = document.querySelector('.caps-label.dynamic-title');
+    const isBirthday = innerTitle && innerTitle.innerText === 'ПРИВІТАТИ З ДНЕМ НАРОДЖЕННЯ';
+    const extraClass = isBirthday ? 'festive-birthday-card' : '';
+
+    previewPostCard.innerHTML = generateValkyCardsHTML(rawText, photosArr, bg, tc, font, nameVal, extraClass);
+}
+
+const _oldApplyEditorColors = applyEditorColors;
+applyEditorColors = function() {
+    _oldApplyEditorColors();
+    updatePreviewCard();
+};
+
+if (fontSelect) {
+    fontSelect.addEventListener('change', () => {
+        setTimeout(updatePreviewCard, 50);
     });
 }
 
-
-if (finalSubmitBtn) {
-    finalSubmitBtn.addEventListener('click', () => {
-        const nameVal = getActiveNickname('submit-content');
-        const rawText = submitEditor.innerHTML || '';
-
-
-        let photosArr = [];
-        const inlinePreview = document.getElementById('attach-preview-inline');
-        if (inlinePreview) {
-            const imgs = inlinePreview.querySelectorAll('img');
-            imgs.forEach(img => photosArr.push(img.src));
-        }
-
-        const isHole = submitOverlay.classList.contains('hole-mode');
-        const bg = currentBgColor || (isHole ? '#1a1a1a' : '#fff');
-        const tc = currentTextColor || (isHole ? '#e0e0e0' : '#1a1a1a');
-        const font = submitEditor.style.fontFamily || 'Inter, sans-serif';
-
-        const innerTitle = document.querySelector('.caps-label.dynamic-title');
-        const isBirthday = innerTitle && innerTitle.innerText === 'ПРИВІТАТИ З ДНЕМ НАРОДЖЕННЯ';
-        const extraClass = isBirthday ? 'festive-birthday-card' : '';
-
-        previewPostCard.innerHTML = generateValkyCardsHTML(rawText, photosArr, bg, tc, font, nameVal, extraClass);
-
+if (submitActionBtn) {
+    submitActionBtn.addEventListener('click', () => {
+        updatePreviewCard();
         if (previewMetaLine) previewMetaLine.style.display = 'none';
-       
         submitContent.style.display = 'none';
         submitPreviewScreen.style.display = 'flex';
-
         const mainHeader = document.querySelector('.submit-header');
         if (mainHeader) mainHeader.style.display = 'none';
     });
@@ -921,7 +909,6 @@ if (previewEditBtn) {
     previewEditBtn.addEventListener('click', () => {
         submitPreviewScreen.style.display = 'none';
         submitContent.style.display = 'flex';
-
         const mainHeader = document.querySelector('.submit-header');
         if (mainHeader) mainHeader.style.display = 'flex';
     });
@@ -976,6 +963,7 @@ if (previewSendBtn) {
         }
     });
 }
+
 
 
 // Атмосфера //
