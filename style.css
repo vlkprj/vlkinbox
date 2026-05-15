@@ -4737,7 +4737,7 @@ input, textarea, [contenteditable] {
 
 /*кнопка заібала*/
 .submit-content {
-    padding-bottom: 90px !important;
+    padding-bottom: 130px !important; /* Даємо простір, щоб текст вільно скролився над кнопкою */
 }
 
 .submit-action-btn {
@@ -4745,14 +4745,15 @@ input, textarea, [contenteditable] {
     bottom: 30px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    width: 90%;
-    max-width: 380px;
+    width: max-content !important; /* Кнопка буде по розміру тексту + паддінги */
+    min-width: 220px;
     z-index: 9999 !important;
 }
 
 .submit-action-btn:active {
     transform: translateX(-50%) scale(0.96) !important;
 }
+
 
 @keyframes pulseAtmoIcon {
     0%, 100% { transform: scale(1); color: #ccc; }
