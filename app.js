@@ -1042,7 +1042,48 @@ function closeAtmoOverlay() {
 }
 
 const atmoBtnEl = document.querySelector('.b-atmosphere');
-if (atmoBtnEl) atmoBtnEl.addEventListener('click', openAtmoOverlay);
+if (atmoBtnEl) {
+    // Клонуємо кнопку, щоб вбити будь-які гнилі івент-лісенери, які могли там застрягти
+    const newAtmoBtn = atmoBtnEl.cloneNode(true);
+    atmoBtnEl.replaceWith(newAtmoBtn);
+    
+    newAtmoBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation(); // Щоб нічого іншого не тригерилось
+        
+        try {
+            lastScrollY = window.scrollY;
+            const atmoOvr = document.getElementById('atmo-overlay');
+            const atmoCnt = document.getElementById('atmo-content');
+            
+            atmoOvr.className = 'submit-overlay atmo-overlay mailbox-mode';
+            // Вбиваємо важливістю будь-який CSS, що може ховати блок
+            atmoOvr.style.setProperty('display', 'flex', 'important');
+            atmoOvr.style.setProperty('opacity', '1', 'important');
+            atmoOvr.style.setProperty('z-index', '9999', 'important');
+            
+            atmoCnt.style.setProperty('display', 'flex', 'important');
+            
+            const atmoSent = document.getElementById('atmo-sent-screen');
+            const atmoPrev = document.getElementById('atmo-preview-screen');
+            if (atmoSent) atmoSent.style.display = 'none';
+            if (atmoPrev) atmoPrev.style.display = 'none';
+            
+            document.body.classList.add('submit-open');
+
+            currentAtmoLayout = 'single-polaroid';
+            document.querySelectorAll('.atmo-layout-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.layout === 'single-polaroid');
+            });
+
+            if (typeof renderAtmoStage === 'function') {
+                renderAtmoStage('single-polaroid');
+            }
+        } catch (err) {
+            console.error("Атмосфера впала:", err);
+        }
+    });
+}
 
 if (closeAtmoBtn) closeAtmoBtn.addEventListener('click', closeAtmoOverlay);
 if (closeAtmoSent) closeAtmoSent.addEventListener('click', closeAtmoOverlay);
